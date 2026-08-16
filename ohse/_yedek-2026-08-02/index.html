@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OHSE — Dropping Soon</title>
+<meta name="description" content="OHSE. Dropping soon.">
+<link rel="canonical" href="https://ohse.store/">
+
+<!-- Site fontları (store.html ile aynı): Anton = başlık, Archivo = gövde -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+<!-- Open Graph / sosyal paylaşım önizlemesi -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OHSE">
+<meta property="og:url" content="https://ohse.store/">
+<meta property="og:title" content="OHSE — Dropping Soon">
+<meta property="og:description" content="OHSE. Tek imza ürün. Dünya bir çocuğun ellerinde.">
+<meta property="og:image" content="https://ohse.store/assets/hero.png">
+<meta property="og:image:width" content="1448">
+<meta property="og:image:height" content="1086">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OHSE — Dropping Soon">
+<meta name="twitter:description" content="OHSE. Tek imza ürün. Dünya bir çocuğun ellerinde.">
+<meta name="twitter:image" content="https://ohse.store/assets/hero.png">
+
+<!-- =========================================================
+     DROP TARİHİ — tek satır. Format: 'YYYY-MM-DDTHH:MM:SS' (yerel saat)
+========================================================== -->
+<script>
+  // 15 Temmuz 2026, 19:00 (Türkiye saati)
+  window.OHSE_LAUNCH = new Date('2026-07-15T19:00:00+03:00');
+  // drop geçtiyse hiç sayaç gösterme, direkt mağaza
+  if (!isNaN(window.OHSE_LAUNCH) && new Date() >= window.OHSE_LAUNCH) {
+    window.location.replace('store.html');
+  }
+</script>
+
+<style>
+  @font-face { font-family: 'ADrip'; src: url('assets/adrip1.ttf') format('truetype'); font-display: block; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; background: #000; overflow: hidden; }
+
+  /* page fade-out before the store opens */
+  body { opacity: 1; transition: opacity 1.1s ease; }
+  body.fade-out { opacity: 0; }
+
+  .logo {
+    position: fixed; top: 4vh; left: 50%; transform: translateX(-50%);
+    height: 10vh; width: auto; user-select: none; -webkit-user-drag: none;
+  }
+  .stage {
+    height: 100%; display: flex; align-items: center; justify-content: center;
+    padding: 0 4vw;
+  }
+  /* adrip countdown — JS auto-fits so it never overflows on mobile */
+  #countdown {
+    font-family: 'ADrip', sans-serif; color: #f5f5f5;
+    font-size: 12vw; line-height: 1; letter-spacing: 0.05em;
+    white-space: nowrap; user-select: none;
+  }
+  .stage-col { display: flex; flex-direction: column; align-items: center; gap: 4.2vh; }
+
+  /* kill any focus outline (no red rings on click/tap) */
+  #teaser-btn, .social a, #teaser-overlay button, #teaser-close,
+  .t-opt, .t-size { outline: none; -webkit-tap-highlight-color: transparent; }
+  #teaser-btn:focus, .social a:focus, #teaser-overlay button:focus,
+  .t-opt:focus, .t-size:focus { outline: none; box-shadow: none; }
+
+  /* "Fragmanı Gör" trigger — slim pill, less boxy */
+  #teaser-btn {
+    font-family: 'Archivo', sans-serif;
+    background: transparent; color: #d8d8d8; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px;
+    padding: 11px 26px; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.3em;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: all .4s cubic-bezier(.16,1,.3,1);
+  }
+  #teaser-btn:hover { color: #fff; border-color: rgba(255,255,255,0.65); letter-spacing: 0.36em; }
+  #teaser-btn .arrow { transition: transform .35s ease; font-size: 13px; }
+  #teaser-btn:hover .arrow { transform: translateX(4px); }
+
+  /* social media row — fixed at the bottom of the countdown screen */
+  .social {
+    position: fixed; bottom: 3.4vh; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; gap: 9px; align-items: center; z-index: 5;
+    font-family: 'Archivo', sans-serif;
+  }
+  /* düğme (pill) tarzı sosyal medya butonları — TikTok üstte, Instagram altta */
+  .social a {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 160px; padding: 9px 22px;
+    border: 1px solid rgba(255,255,255,0.22); border-radius: 9999px; background: rgba(255,255,255,0.03);
+    color: #d2d2d2; text-decoration: none; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.24em; transition: all .25s ease;
+  }
+  .social a:hover { background: #f5f5f5; color: #000; border-color: #f5f5f5; }
+  /* mobilde: sağ alta hizala (kaset butonundan uzak) */
+  @media (max-width: 640px) {
+    .social { left: auto; right: 16px; transform: none; bottom: 16px; align-items: flex-end; }
+  }
+
+  /* ===== ürün fragmanı (teaser) kartı ===== */
+  #teaser-overlay {
+    position: fixed; inset: 0; z-index: 50; display: none;
+    align-items: center; justify-content: center; padding: 5vw;
+    background: rgba(0,0,0,0.78); backdrop-filter: blur(8px);
+    opacity: 0; transition: opacity .35s ease; overflow: auto;
+  }
+  #teaser-overlay.open { display: flex; opacity: 1; }
+  #teaser-card {
+    position: relative; width: 100%; max-width: 380px;
+    background: #0a0a0a; border: 1px solid rgba(255,255,255,0.12);
+    padding: 30px 26px 32px; box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    transform: translateY(14px) scale(.98); transition: transform .35s cubic-bezier(.16,1,.3,1);
+    font-family: 'Archivo', sans-serif;
+  }
+  #teaser-overlay.open #teaser-card { transform: translateY(0) scale(1); }
+  #teaser-close {
+    position: absolute; top: 12px; right: 12px; width: 34px; height: 34px;
+    background: transparent; border: 0; color: #888; font-size: 24px; line-height: 1;
+    cursor: pointer; transition: color .2s ease;
+  }
+  #teaser-close:hover { color: #f5f5f5; }
+
+  /* görsel kutusu — görsel yok, sadece soru işareti */
+  .t-imgbox {
+    width: 100%; height: 210px; display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(135% 120% at 50% 34%, #1c1c1c 0%, #0c0c0c 62%, #000 100%);
+    border: 1px solid rgba(255,255,255,0.08); margin-bottom: 22px;
+  }
+  /* mystery glyph — large hollow (outlined) question mark, soft glow */
+  .t-imgbox span {
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 130px; line-height: 1;
+    user-select: none; color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255,255,255,0.42);
+    text-shadow: 0 0 38px rgba(255,255,255,0.10);
+  }
+
+  #t-name { font-family: 'Anton', sans-serif; color: #f4f3ef; font-size: 32px; line-height: 1; text-transform: uppercase; letter-spacing: .01em; }
+  #t-price { font-family: 'Anton', sans-serif; color: #f4f3ef; font-size: 22px; letter-spacing: .02em; margin-top: 12px; margin-bottom: 22px; }
+
+  .t-group { margin-top: 18px; }
+  .t-label { font-size: 10px; text-transform: uppercase; letter-spacing: .3em; color: #6e6e6e; margin-bottom: 9px; }
+  .t-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .t-opt, .t-size {
+    background: transparent; color: #c9c9c9; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.15); padding: 10px 16px;
+    font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
+    transition: all .2s ease; display: inline-flex; align-items: center; gap: 9px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .t-opt:hover, .t-size:hover { border-color: rgba(255,255,255,0.5); }
+  .t-opt.active, .t-size.active { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.06); color: #f5f5f5; }
+  .t-size { padding: 10px 14px; }
+  .dot { width: 15px; height: 15px; border-radius: 9999px; box-shadow: 0 0 0 1px rgba(255,255,255,0.5); }
+  .dot-b { background: #0c0c0c; }
+  .dot-w { background: #f4f3ef; }
+
+  /* ===== OHSE mini müzik çalar ===== */
+  #ohse-music { position: fixed; left: 18px; bottom: 18px; z-index: 45; font-family: 'Archivo', sans-serif; }
+  #ohse-music * { box-sizing: border-box; }
+  /* collapsed: kaset butonu */
+  .omp-fab {
+    position: relative; width: 112px; height: 72px; border-radius: 11px; padding: 0;
+    border: 1px solid rgba(255,255,255,0.22); background: linear-gradient(150deg,#262626,#0b0b0b);
+    cursor: pointer; overflow: hidden; box-shadow: 0 8px 26px rgba(0,0,0,.55);
+    transition: transform .3s cubic-bezier(.16,1,.3,1), border-color .3s ease;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  }
+  .omp-fab:hover { transform: scale(1.06); border-color: rgba(255,255,255,.5); animation: none; }
+  /* nefes alan parıltı — basılabilir olduğunu belli eder */
+  .omp-fab { animation: ompglow 2.4s ease-in-out infinite; }
+  #ohse-music.omp-open .omp-fab { animation: none; }
+  @keyframes ompglow {
+    0%,100% { box-shadow: 0 8px 26px rgba(0,0,0,.55), 0 0 0 0 rgba(255,255,255,0); }
+    50%     { box-shadow: 0 8px 26px rgba(0,0,0,.55), 0 0 20px 2px rgba(255,255,255,.20); }
+  }
+  /* "Müzik" ipucu balonu */
+  .omp-tip {
+    position: absolute; left: calc(100% + 11px); top: 50%; transform: translateY(-50%);
+    white-space: nowrap; background: #f4f3ef; color: #000;
+    font-family: 'Anton', sans-serif; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 7px 12px; border-radius: 8px; pointer-events: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,.5); animation: omptipbob 1.5s ease-in-out infinite;
+  }
+  .omp-tip::before { content: ''; position: absolute; left: -5px; top: 50%; transform: translateY(-50%); border: 5px solid transparent; border-right-color: #f4f3ef; }
+  @keyframes omptipbob { 0%,100% { transform: translateY(-50%) translateX(0); } 50% { transform: translateY(-50%) translateX(5px); } }
+  #ohse-music.omp-open .omp-tip, #ohse-music.omp-tapped .omp-tip { opacity: 0; visibility: hidden; transition: opacity .3s ease; }
+  .omp-fab-reels { display: flex; gap: 26px; align-items: center; }
+  .omp-fab-reels .omp-reel { width: 22px; height: 22px; }
+  .omp-fab-hint { font-family:'Anton',sans-serif; font-size: 11px; letter-spacing: .24em; color: #f4f3ef; text-transform: uppercase; }
+  /* dikkat çeken nabız rozeti */
+  .omp-fab::after { content:''; position:absolute; top:7px; right:7px; width:7px; height:7px; border-radius:50%; background:#ffffff; animation: omppulse 1.8s infinite; }
+  @keyframes omppulse { 0%{box-shadow:0 0 0 0 rgba(255,255,255,.6);} 70%{box-shadow:0 0 0 8px rgba(255,255,255,0);} 100%{box-shadow:0 0 0 0 rgba(255,255,255,0);} }
+  #ohse-music.omp-open .omp-fab::after { display:none; }
+
+  /* makaralar (çalarken döner) */
+  .omp-reel { position: relative; border-radius: 50%;
+    background: radial-gradient(circle at center, #141414 0 22%, rgba(0,0,0,0) 23%), repeating-conic-gradient(#ffffff 0deg 22deg, #c8c8c8 22deg 44deg);
+    border: 1px solid rgba(255,255,255,.75); box-shadow: 0 0 10px rgba(255,255,255,.4); animation: ompspin 2s linear infinite; }
+  .omp-reel::before { content: none; }
+  @keyframes ompspin { to { transform: rotate(360deg); } }
+  #ohse-music.omp-paused .omp-reel { animation-play-state: paused; }
+
+  /* panel */
+  .omp-panel {
+    position: absolute; left: 0; bottom: 86px; width: 292px;
+    background: linear-gradient(180deg, rgba(24,24,24,.98), rgba(7,7,7,.98)); backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 15px;
+    opacity: 0; transform: translateY(12px) scale(.96); transform-origin: bottom left;
+    pointer-events: none; transition: all .42s cubic-bezier(.16,1,.3,1);
+    box-shadow: 0 26px 60px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.06);
+    overflow: hidden;
+  }
+  /* panel arka plan görseli — hafif saydam watermark */
+  .omp-panel::before { content:''; position:absolute; inset:0; background:url('assets/panel-bg.png') center/cover no-repeat; opacity:.12; pointer-events:none; z-index:0; }
+  .omp-panel > * { position: relative; z-index: 1; }
+  #ohse-music.omp-open .omp-panel { opacity: 1; transform: none; pointer-events: auto; }
+  .omp-head { display: flex; align-items: center; justify-content: space-between; padding: 0 2px 13px; }
+  .omp-brand { display:flex; align-items:center; gap:9px; }
+  .omp-logo { height:22px; width:auto; user-select:none; -webkit-user-drag:none; filter: drop-shadow(0 0 7px rgba(255,255,255,.2)); }
+  .omp-title-lbl { font-family:'Anton',sans-serif; font-size: 15px; letter-spacing: .16em; text-transform: uppercase; color: #f4f3ef; }
+  .omp-close { background: none; border: 0; color: #888; font-size: 19px; line-height: 1; cursor: pointer; transition: color .2s ease; }
+  .omp-close:hover { color: #fff; }
+
+  /* çalan kaset — cilalı */
+  .omp-cassette { position: relative; border-radius: 13px; padding: 28px 14px 14px; background: linear-gradient(155deg, rgba(50,50,50,.66), rgba(12,12,12,.66)); border:1px solid rgba(255,255,255,.16); overflow:hidden; box-shadow: inset 0 1px 0 rgba(255,255,255,.09); }
+  .omp-cassette::after { content:''; position:absolute; inset:0; background:linear-gradient(120deg, rgba(255,255,255,.08), rgba(255,255,255,0) 44%); pointer-events:none; }
+  .omp-cass-brand { position:absolute; top:9px; left:0; right:0; text-align:center; font-family:'Anton',sans-serif; font-size:10px; letter-spacing:.5em; text-transform:uppercase; color:rgba(255,255,255,.55); }
+  .omp-cassette .omp-window { position:relative; z-index:1; display:flex; justify-content:center; gap: 48px; align-items:center; background:rgba(6,6,6,.5); border-radius:7px; padding:15px 0; border:1px solid rgba(255,255,255,.12); }
+  .omp-reel.big { width: 32px; height: 32px; }
+  .omp-cass-label { margin-top:10px; text-align:center; }
+  .omp-now-name { display:block; font-size:12.5px; font-weight:700; color:#f4f3ef; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .omp-now-artist { display:block; font-size:10.5px; color:#9a9a9a; margin-top:1px; }
+
+  /* kontroller */
+  .omp-controls { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:13px; }
+  .omp-controls button { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); color:#f4f3ef; cursor:pointer; border-radius:9999px; transition:all .2s ease; display:flex; align-items:center; justify-content:center; }
+  .omp-controls button:hover { background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.4); }
+  .omp-controls button svg { width:15px; height:15px; display:block; }
+  .omp-prev, .omp-next { width:38px; height:38px; }
+  .omp-play { width:48px; height:48px; background:#f4f3ef; color:#000; border:0; }
+  .omp-play svg { width:17px; height:17px; }
+  .omp-play:hover { background:#fff; }
+
+  /* ses */
+  .omp-vol { display:flex; align-items:center; gap:10px; margin-top:14px; padding:0 2px; }
+  .omp-vol-ic { font-size:9px; letter-spacing:.2em; color:#7a7a7a; }
+  .omp-vol-range { -webkit-appearance:none; appearance:none; flex:1; height:4px; border-radius:4px; background:rgba(255,255,255,.18); outline:none; cursor:pointer; }
+  .omp-vol-range::-webkit-slider-thumb { -webkit-appearance:none; width:13px; height:13px; border-radius:50%; background:#f4f3ef; cursor:pointer; }
+  .omp-vol-range::-moz-range-thumb { width:13px; height:13px; border:0; border-radius:50%; background:#f4f3ef; cursor:pointer; }
+
+  .omp-slogan { text-align:center; font-family:'Anton',sans-serif; font-size:8.5px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.62); margin:14px 6px 10px; line-height:1.4; }
+
+  /* şarkı listesi */
+  .omp-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px; max-height:172px; overflow-y:auto; }
+  .omp-list::-webkit-scrollbar { width:4px; }
+  .omp-list::-webkit-scrollbar-thumb { background:#2a2a2a; border-radius:4px; }
+  .omp-item { display:flex; align-items:center; gap:11px; padding:7px; border-radius:10px; cursor:pointer; transition:background .2s ease; }
+  .omp-item:hover { background:rgba(255,255,255,.06); }
+  .omp-item.active { background:rgba(255,255,255,.09); }
+  .omp-mini { width:42px; height:28px; border-radius:5px; flex:0 0 auto; display:flex; align-items:center; justify-content:center; gap:9px; overflow:hidden; border:1px solid rgba(255,255,255,.28); background:#f4f3ef; transition:all .25s ease; }
+  .omp-mini i { width:7px; height:7px; border-radius:50%; background:#141414; box-shadow:0 0 0 1.5px rgba(0,0,0,.2); transition:all .25s ease; }
+  /* çalan (aktif) şarkı: kaset simsiyah, makaraları beyaz */
+  .omp-item.active .omp-mini { background:#000; border-color:rgba(255,255,255,.55); box-shadow:0 0 14px rgba(255,255,255,.22); }
+  .omp-item.active .omp-mini i { background:#f4f3ef; box-shadow:0 0 0 1.5px rgba(255,255,255,.25); }
+  .omp-meta { flex:1; min-width:0; display:flex; flex-direction:column; gap:1px; }
+  .omp-name { font-size:12px; font-weight:600; color:#f4f3ef; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .omp-artist { font-size:10px; color:#8a8a8a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+  /* equalizer (listede çalan göstergesi) */
+  .omp-eq { display:flex; align-items:center; justify-content:center; gap:3px; }
+  .omp-eq i { width:3px; height:14px; background:#f4f3ef; border-radius:2px; transform-origin:center; animation:ompbar 1s ease-in-out infinite; }
+  .omp-eq i:nth-child(2){ animation-delay:.22s; }
+  .omp-eq i:nth-child(3){ animation-delay:.44s; }
+  @keyframes ompbar { 0%,100%{transform:scaleY(.3);} 50%{transform:scaleY(1);} }
+  #ohse-music.omp-paused .omp-eq i { animation-play-state:paused; transform:scaleY(.35); }
+  .omp-eq-item { display:none; height:14px; }
+  .omp-eq-item i { width:2.5px; }
+  .omp-item.playing .omp-eq-item { display:flex; }
+
+  .omp-fab:focus,.omp-close:focus,.omp-item:focus,.omp-controls button:focus,.omp-vol-range:focus { outline:none; }
+
+</style>
+
+<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="theme-color" content="#000000" />
+</head>
+<body>
+  <img class="logo" src="assets/drop-logo.png" alt="OHSE">
+
+  <div class="stage">
+    <div class="stage-col">
+      <div id="countdown">00:00:00:00</div>
+      <button id="teaser-btn" type="button">Sneak Peek <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+
+  <!-- sosyal medya hesapları (TikTok üstte, Instagram altta) -->
+  <div class="social">
+    <a href="https://www.tiktok.com/@ohse.twch" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://instagram.com/ohse.twch" target="_blank" rel="noopener">Instagram</a>
+  </div>
+
+  <!-- OHSE kaset müzik çalar (hybrid) -->
+  <div id="ohse-music" class="omp-paused">
+    <button class="omp-fab" type="button" aria-label="Müzik çalar">
+      <span class="omp-fab-reels"><span class="omp-reel"></span><span class="omp-reel"></span></span>
+      <span class="omp-fab-hint">Mixtape</span>
+    </button>
+    <div class="omp-panel">
+      <div class="omp-head">
+        <span class="omp-brand"><img class="omp-logo" src="assets/drop-logo.png" alt="OHSE"><span class="omp-title-lbl">Mixtape</span></span>
+        <button class="omp-close" type="button" aria-label="Kapat">&times;</button>
+      </div>
+
+      <!-- çalan kaset -->
+      <div class="omp-cassette">
+        <span class="omp-cass-brand">OHSE</span>
+        <div class="omp-window"><span class="omp-reel big"></span><span class="omp-reel big"></span></div>
+        <div class="omp-cass-label">
+          <span class="omp-now-name">Dope Boyz</span>
+          <span class="omp-now-artist">Rico Ace &amp; Esdeekid</span>
+        </div>
+      </div>
+
+      <!-- kontroller -->
+      <div class="omp-controls">
+        <button class="omp-prev" type="button" aria-label="Önceki"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 6v12l-7-6 7-6zM11 6v12l-7-6 7-6z"/></svg></button>
+        <button class="omp-play" type="button" aria-label="Oynat / Durdur"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7-11-7z"/></svg></button>
+        <button class="omp-next" type="button" aria-label="Sonraki"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6v12l7-6-7-6zM13 6v12l7-6-7-6z"/></svg></button>
+      </div>
+
+      <div class="omp-slogan">The world is in a child's hands</div>
+
+      <!-- şarkı listesi -->
+      <ul class="omp-list">
+        <li class="omp-item" data-i="0">
+          <span class="omp-mini"><i></i><i></i></span>
+          <span class="omp-meta"><span class="omp-name">Dope Boyz</span><span class="omp-artist">Rico Ace &amp; Esdeekid</span></span>
+          <span class="omp-eq omp-eq-item"><i></i><i></i><i></i></span>
+        </li>
+        <li class="omp-item" data-i="1">
+          <span class="omp-mini"><i></i><i></i></span>
+          <span class="omp-meta"><span class="omp-name">OK</span><span class="omp-artist">Kanye West &amp; Don Toliver</span></span>
+          <span class="omp-eq omp-eq-item"><i></i><i></i><i></i></span>
+        </li>
+        <li class="omp-item" data-i="2">
+          <span class="omp-mini"><i></i><i></i></span>
+          <span class="omp-meta"><span class="omp-name">Grace</span><span class="omp-artist">Lil Baby &amp; 42 Dugg</span></span>
+          <span class="omp-eq omp-eq-item"><i></i><i></i><i></i></span>
+        </li>
+      </ul>
+    </div>
+    <audio id="omp-audio" preload="metadata"></audio>
+  </div>
+
+  <!-- ürün fragmanı kartı -->
+  <div id="teaser-overlay">
+    <div id="teaser-card" role="dialog" aria-modal="true" aria-label="Ürün Fragmanı">
+      <button id="teaser-close" type="button" aria-label="Kapat">&times;</button>
+
+      <!-- görsel kutusu — görsel gizli, sürpriz: sadece soru işareti -->
+      <div class="t-imgbox"><span>?</span></div>
+
+      <h2 id="t-name" lang="en">OHSE Slim-Fit T-Shirt</h2>
+      <div id="t-price">1799.00 TL</div>
+
+      <div class="t-group">
+        <div class="t-label">Paket</div>
+        <div class="t-row" id="t-packs">
+          <button type="button" class="t-opt active" data-pack="3pack">3'lü Paket</button>
+          <button type="button" class="t-opt" data-pack="single">Tekli</button>
+        </div>
+      </div>
+
+      <div class="t-group">
+        <div class="t-label">Renk</div>
+        <div class="t-row" id="t-colors">
+          <button type="button" class="t-opt active" data-color="black"><span class="dot dot-b"></span>Siyah</button>
+          <button type="button" class="t-opt" data-color="white"><span class="dot dot-w"></span>Beyaz</button>
+        </div>
+      </div>
+
+      <div class="t-group">
+        <div class="t-label">Beden</div>
+        <div class="t-row" id="t-sizes">
+          <button type="button" class="t-size" data-size="XS">XS</button>
+          <button type="button" class="t-size active" data-size="S">S</button>
+          <button type="button" class="t-size" data-size="M">M</button>
+          <button type="button" class="t-size" data-size="L">L</button>
+          <button type="button" class="t-size" data-size="XL">XL</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const LAUNCH = window.OHSE_LAUNCH;
+  const el = document.getElementById('countdown');
+  const pad = n => String(n).padStart(2, '0');
+
+  // auto-fit the digits to the screen (mobile-safe, never overflows)
+  function fit() {
+    const prev = el.textContent;
+    el.style.fontSize = '100px';
+    el.textContent = '88:88:88:88';
+    const w = el.getBoundingClientRect().width || 1;
+    el.textContent = prev;
+    const byWidth  = 100 * (window.innerWidth  * 0.90) / w;
+    const byHeight = window.innerHeight * 0.20;
+    el.style.fontSize = Math.max(22, Math.min(byWidth, byHeight)) + 'px';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  window.addEventListener('orientationchange', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+
+  // format DD:HH:MM:SS counting down to the fixed drop date
+  let done = false;
+  function tick() {
+    const diff = LAUNCH - new Date();
+    if (diff <= 0) {
+      el.textContent = '00:00:00:00';
+      if (!done) { done = true; clearInterval(timerId);
+        document.body.classList.add('fade-out');
+        setTimeout(() => window.location.replace('store.html'), 1200);
+      }
+      return;
+    }
+    const s = Math.floor(diff / 1000);
+    el.textContent = `${pad(Math.floor(s/86400))}:${pad(Math.floor((s%86400)/3600))}:${pad(Math.floor((s%3600)/60))}:${pad(s%60)}`;
+  }
+  tick();
+  const timerId = setInterval(tick, 1000);
+</script>
+
+<script>
+  // ===== Ürün fragmanı kartı =====
+  const TEASER = {
+    '3pack':  { name: "3'lü Paket", price: 1799 },
+    'single': { name: "Tekli",      price: 749  },
+  };
+  let tPack = '3pack';
+
+  const tOverlay = document.getElementById('teaser-overlay');
+  const tPrice = document.getElementById('t-price');
+
+  function renderTeaser() {
+    // ürün adı sabit ("OHSE Slim-Fit Tişört"); sadece fiyat pakete göre değişir
+    tPrice.textContent = TEASER[tPack].price.toFixed(2) + ' TL';
+  }
+
+  function openTeaser() { tOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeTeaser() { tOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+  document.getElementById('teaser-btn').addEventListener('click', openTeaser);
+  document.getElementById('teaser-close').addEventListener('click', closeTeaser);
+  tOverlay.addEventListener('click', (e) => { if (e.target === tOverlay) closeTeaser(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeTeaser(); });
+
+  // paket seçimi → isim + fiyat güncellenir
+  document.querySelectorAll('#t-packs .t-opt').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('#t-packs .t-opt').forEach((x) => x.classList.remove('active'));
+    b.classList.add('active'); tPack = b.dataset.pack; renderTeaser();
+  }));
+  // renk seçimi
+  document.querySelectorAll('#t-colors .t-opt').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('#t-colors .t-opt').forEach((x) => x.classList.remove('active'));
+    b.classList.add('active');
+  }));
+  // beden seçimi
+  document.querySelectorAll('#t-sizes .t-size').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('#t-sizes .t-size').forEach((x) => x.classList.remove('active'));
+    b.classList.add('active');
+  }));
+
+  renderTeaser();
+</script>
+
+<script>
+  // ===== OHSE kaset müzik çalar (WebAudio ses + açılışta/ilk harekette oynat) =====
+  (function(){
+    const TRACKS = [
+      { src: 'assets/dopeboyz.mp3', name: 'Dope Boyz', artist: 'Rico Ace & Esdeekid' },
+      { src: 'assets/ok.mp3',       name: 'OK',        artist: 'Kanye West & Don Toliver' },
+      { src: 'assets/grace.mp3',    name: 'Grace',     artist: 'Lil Baby & 42 Dugg' },
+    ];
+    const DEFAULT = 0;            // site açılınca ilk çalan / listede ilk: Dope Boyz
+    const KEY = 'ohse_music_v3';
+    const SVG_PLAY  = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7-11-7z"/></svg>';
+    const SVG_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>';
+
+    const root = document.getElementById('ohse-music');
+    if (!root) return;
+    const audio = document.getElementById('omp-audio');
+    audio.loop = false; audio.preload = 'auto'; audio.playsInline = true; audio.setAttribute('playsinline','');
+    const items = Array.prototype.slice.call(root.querySelectorAll('.omp-item'));
+    const playBtn = root.querySelector('.omp-play');
+    const nowName = root.querySelector('.omp-now-name');
+    const nowArtist = root.querySelector('.omp-now-artist');
+    const volRange = root.querySelector('.omp-vol-range');
+
+    let state = { index: DEFAULT, time: 0, vol: 1 };
+    try { const raw = localStorage.getItem(KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); } catch(e){}
+    if (typeof state.vol !== 'number') state.vol = 1;
+
+    function save(){ try { localStorage.setItem(KEY, JSON.stringify({ index:state.index, time:state.time, vol:state.vol })); } catch(e){} }
+
+    function applyVol(v){ state.vol = Math.max(0, Math.min(1, v)); try { audio.volume = state.vol; } catch(e){} }
+    // GERÇEKTEN duyulabilir mi? (çalıyor + sessiz değil) — "gösteriyor ama çalmıyor" bug'ını önler
+    function audible(){ return !audio.paused && !audio.muted; }
+
+    function syncUI(){
+      const on = audible();
+      root.classList.toggle('omp-paused', !on);
+      if (playBtn) playBtn.innerHTML = on ? SVG_PAUSE : SVG_PLAY;
+      if (nowName) nowName.textContent = TRACKS[state.index].name;
+      if (nowArtist) nowArtist.textContent = TRACKS[state.index].artist;
+      items.forEach((el, k) => {
+        el.classList.toggle('active', k === state.index);
+        el.classList.toggle('playing', k === state.index && on);
+      });
+    }
+
+    function loadTrack(i, resumeTime){
+      state.index = ((i % TRACKS.length) + TRACKS.length) % TRACKS.length;
+      audio.src = TRACKS[state.index].src;
+      const t = resumeTime || 0;
+      audio.addEventListener('loadedmetadata', function once(){
+        try { if (t) audio.currentTime = t; } catch(e){}
+        audio.removeEventListener('loadedmetadata', once);
+      });
+      syncUI(); save();
+    }
+
+    // sesli başlat: graph kur + ctx'i uyandır + sesi aç + oynat (sıralama önemli)
+    function start(){
+      audio.muted = false;
+      const p = audio.play(); if (p && p.catch) p.catch(()=>{});
+      save(); setTimeout(syncUI, 80);
+    }
+    function stop(){ audio.pause(); save(); syncUI(); }
+    function toggle(){ if (audible()) stop(); else start(); }
+
+    // başlangıç
+    applyVol(state.vol);
+    if (volRange) volRange.value = Math.round(state.vol * 100);
+    loadTrack(state.index, state.time);
+
+    // liste: parça seç
+    items.forEach((el) => el.addEventListener('click', () => {
+      const i = parseInt(el.dataset.i, 10);
+      if (i === state.index && audible()) { stop(); return; }   // çalan parçaya tekrar dokun = durdur
+      loadTrack(i, 0); start();
+    }));
+
+    // kontroller
+    playBtn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
+    root.querySelector('.omp-next').addEventListener('click', (e) => { e.stopPropagation(); loadTrack(state.index + 1, 0); start(); });
+    root.querySelector('.omp-prev').addEventListener('click', (e) => { e.stopPropagation(); loadTrack(state.index - 1, 0); start(); });
+
+    // ses (WebAudio gain) — mobilde de çalışır
+
+    // panel aç/kapa
+    root.querySelector('.omp-fab').addEventListener('click', (e) => { e.stopPropagation(); root.classList.add('omp-tapped'); root.classList.toggle('omp-open'); });
+    root.querySelector('.omp-close').addEventListener('click', () => root.classList.remove('omp-open'));
+    document.addEventListener('click', (e) => { if (!root.contains(e.target)) root.classList.remove('omp-open'); });
+
+    audio.addEventListener('play', syncUI);
+    audio.addEventListener('playing', syncUI);
+    audio.addEventListener('pause', syncUI);
+    audio.addEventListener('timeupdate', () => { state.time = audio.currentTime; });
+    audio.addEventListener('ended', () => { loadTrack(state.index + 1, 0); start(); });  // biten parça → sıradaki
+    window.addEventListener('pagehide', save);
+    window.addEventListener('beforeunload', save);
+
+    // --- AÇILIŞTA ÇAL ---
+    // 1) Sessiz (muted) otomatik başlat — tarayıcılar buna izin verir, parça hemen ilerler.
+    audio.muted = true;
+    (function(){ const p = audio.play(); if (p && p.catch) p.catch(()=>{}); })();
+    // 2) İlk dokunuş / hareket / tuş / scroll'da sesi aç (unmute + ctx resume). Duyulana kadar dener.
+    const EVS = ['pointerdown','touchstart','touchend','mousedown','click','keydown'];
+    function cleanup(){ EVS.forEach((ev) => window.removeEventListener(ev, unlock, true)); }
+    function unlock(){
+      audio.muted = false;
+      const p = audio.play(); if (p && p.catch) p.catch(()=>{});   // her zaman jest içinde çal (unmute-duraklatma tuzağını önler)
+      setTimeout(() => { syncUI(); if (audible()) cleanup(); }, 120);
+    }
+    EVS.forEach((ev) => window.addEventListener(ev, unlock, true));
+
+    syncUI();
+  })();
+</script>
+</body>
+</html>

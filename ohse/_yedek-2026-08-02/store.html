@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OHSE — Slim-Fit Tişört</title>
+  <meta name="description" content="OHSE. Tek imza ürün. Dünya bir çocuğun ellerinde." />
+  <link rel="canonical" href="https://ohse.store/store.html" />
+
+  <!-- Open Graph / sosyal paylaşım önizlemesi -->
+  <meta property="og:type" content="product" />
+  <meta property="og:site_name" content="OHSE" />
+  <meta property="og:url" content="https://ohse.store/store.html" />
+  <meta property="og:title" content="OHSE — Slim-Fit Tişört" />
+  <meta property="og:description" content="OHSE. Tek imza ürün. Dünya bir çocuğun ellerinde." />
+  <meta property="og:image" content="https://ohse.store/assets/hero.png" />
+  <meta property="og:image:width" content="1448" />
+  <meta property="og:image:height" content="1086" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="OHSE — Slim-Fit Tişört" />
+  <meta name="twitter:description" content="OHSE. Tek imza ürün. Dünya bir çocuğun ellerinde." />
+  <meta name="twitter:image" content="https://ohse.store/assets/hero.png" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Anton', 'sans-serif'],
+            body: ['Archivo', 'sans-serif'],
+          },
+          colors: {
+            ink: '#0a0a0a',
+            paper: '#f4f3ef',
+          },
+          letterSpacing: {
+            ultra: '0.45em',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root { --chalk: #f4f3ef; }
+
+    html, body { background: #000; }
+    body { -webkit-font-smoothing: antialiased; cursor: default; }
+
+    /* ---- Chalk display type: distress the headings with a subtle texture mask ---- */
+    .chalk {
+      font-family: 'Anton', sans-serif;
+      text-transform: uppercase;
+      color: var(--chalk);
+      letter-spacing: 0.01em;
+    }
+    .chalk-arch {
+      /* faux varsity arch via slight rotation of letters handled in JS-free way using transform */
+      display: inline-block;
+    }
+
+    /* ---- Grain / chalk-dust overlay ---- */
+    .grain::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      pointer-events: none;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ---- Scroll reveal ---- */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal[data-delay="1"] { transition-delay: .08s; }
+    .reveal[data-delay="2"] { transition-delay: .16s; }
+    .reveal[data-delay="3"] { transition-delay: .24s; }
+    .reveal[data-delay="4"] { transition-delay: .32s; }
+
+    /* ---- Marquee ---- */
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track { animation: marquee 28s linear infinite; }
+
+    /* ---- Hero float ---- */
+    @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    .floaty { animation: floaty 7s ease-in-out infinite; }
+
+    /* packaging tap shake */
+    @keyframes pkg-shake { 0%{transform:rotate(0)} 25%{transform:rotate(2.4deg)} 50%{transform:rotate(-1.5deg)} 75%{transform:rotate(.7deg)} 100%{transform:rotate(0)} }
+    .pkg-shake { animation: pkg-shake 1.15s cubic-bezier(.36,.07,.19,.97); transform-origin: 50% 0%; }
+
+    /* ---- Buttons ---- */
+    .btn-line { position: relative; }
+    .btn-line::after {
+      content: ""; position: absolute; left: 0; bottom: -2px; height: 1px; width: 100%;
+      background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .5s cubic-bezier(.16,1,.3,1);
+    }
+    .btn-line:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    .swatch.active { outline: 1px solid #fff; outline-offset: 3px; }
+    .thumb { opacity: .55; transition: opacity .3s ease, outline-color .3s ease; }
+    .thumb.active { opacity: 1; outline: 1px solid #fff; outline-offset: 2px; }
+    .thumb:hover { opacity: 1; }
+
+    /* ---- Swipe'lı ürün galerisi (Corteiz tarzı) ---- */
+    .gallery-scroll { display:flex; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; touch-action:pan-x pan-y; }
+    .gallery-scroll::-webkit-scrollbar { display:none; }
+    .gallery-slide { flex:0 0 100%; scroll-snap-align:center; height:100%; cursor:zoom-in; }
+    .gallery-slide img { width:100%; height:100%; display:block; }
+    /* galeri kenar maskesi: yarım-piksel hizada komşu slaytın sızmasını gizler */
+    .gallery-wrap { position:relative; }
+    .gallery-edge { position:absolute; top:0; bottom:0; width:4px; background:#000; z-index:5; pointer-events:none; }
+    .gallery-edge.l { left:0; border-top-left-radius:1rem; border-bottom-left-radius:1rem; }
+    .gallery-edge.r { right:0; border-top-right-radius:1rem; border-bottom-right-radius:1rem; }
+    /* dokunmatikte tek dokunuşta seçim: hover'ı yalnızca gerçek hover'lı cihazlarda uygula */
+    .swatch-2, .size, .pack, .pack-card, #add-to-cart, #size-guide-open, [data-color], [data-size] { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+    @media (hover: hover) {
+      .swatch-2:hover { background-color: rgba(255,255,255,0.10); }
+      .size:hover { border-color: rgba(255,255,255,0.50); }
+    }
+    .g-dot { width:7px; height:7px; border-radius:9999px; background:rgba(255,255,255,.28); transition:background .2s, width .2s; }
+    .g-dot.active { background:#f4f3ef; width:20px; }
+    .g-thumb { width:4.5rem; height:5.6rem; border-radius:.6rem; overflow:hidden; outline:1px solid rgba(255,255,255,.1); outline-offset:0; background:#0c0c0c; flex:none; opacity:.5; transition:opacity .25s, outline-color .25s; }
+    .g-thumb img { width:100%; height:100%; }
+    .g-thumb:hover { opacity:.85; }
+    .g-thumb.active { opacity:1; outline:1.5px solid #fff; }
+
+    /* ---- Paket kartları (3 seçenek) — minimal, siyah/beyaz/gri ---- */
+    .pack-card { border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.02); transition:border-color .25s, background .25s, box-shadow .25s, transform .25s; }
+    .pack-card:hover { border-color:rgba(255,255,255,.35); }
+    .pack-card.active { border-color:#f4f3ef; background:rgba(255,255,255,.06); }
+    .pack-card.pack-featured.active { box-shadow:0 0 0 1px rgba(255,255,255,.22), 0 22px 45px -24px rgba(255,255,255,.18); }
+    @media (min-width:640px){ .pack-card.pack-featured { transform:translateY(-2px); } }
+    .pack-badge { position:absolute; top:-10px; right:12px; font-size:8.5px; line-height:1; letter-spacing:.22em; text-transform:uppercase; padding:4px 9px; font-weight:800; white-space:nowrap; }
+    .pack-badge-pop { background:#f4f3ef; color:#000; box-shadow:0 4px 14px -4px rgba(255,255,255,.4); }
+    .pack-badge-val { background:linear-gradient(180deg,#4a4a4a 0%,#111 100%); color:#f4f3ef; border:1px solid rgba(255,255,255,.35); }
+    .pack-save { display:none; margin-top:8px; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#8a8a8a; }
+    .pack-save.on { display:block; }
+    .pack-card.active .pack-save { color:#d8d8d8; }
+
+    /* ---- Out-of-stock size ---- */
+    .size { position: relative; }
+    .size.sold {
+      opacity: .5; text-decoration: line-through; cursor: not-allowed;
+      border-color: rgba(220,38,38,.55) !important; color: #fca5a5 !important; background: transparent !important;
+    }
+    .size.sold::after {
+      content: "TÜKENDİ";
+      position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+      background: #dc2626; color: #fff; font-size: 7px; line-height: 1; letter-spacing: .08em;
+      padding: 2px 5px; border-radius: 9999px; text-decoration: none; white-space: nowrap;
+      box-shadow: 0 0 10px rgba(220,38,38,.6);
+    }
+
+    /* ---- Size guide modal ---- */
+    #size-guide .sg-panel { animation: sgPop .45s cubic-bezier(.16,1,.3,1) both; }
+    @keyframes sgPop { from { opacity:0; transform: translateY(14px) scale(.97); } to { opacity:1; transform:none; } }
+    .sg-table td, .sg-table th { padding-top:.7rem; padding-bottom:.7rem; }
+    .sg-table tbody tr { border-top:1px solid rgba(255,255,255,.07); }
+    .sg-row .sg-size span { color: var(--chalk); }
+
+    /* account drawer form fields */
+    .acc-input { width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.15); color:#f4f3ef; padding:.8rem 1rem; font-size:14px; outline:none; transition:border-color .3s; }
+    .acc-input:focus { border-color:rgba(255,255,255,.55); }
+    .acc-input::placeholder { color:#71717a; }
+    .acc-submit { width:100%; background:#f4f3ef; color:#000; padding:.85rem; font-size:12px; text-transform:uppercase; letter-spacing:.25em; font-weight:700; transition:background .3s; }
+    .acc-submit:hover { background:#fff; }
+
+    ::selection { background: #f4f3ef; color: #000; }
+
+    /* Hide scrollbar aesthetic but keep function */
+    body::-webkit-scrollbar { width: 8px; }
+    body::-webkit-scrollbar-thumb { background: #1a1a1a; }
+
+    /* ===== OHSE mini müzik çalar ===== */
+    #ohse-music { position: fixed; left: 18px; bottom: 18px; z-index: 70; font-family: 'Archivo', sans-serif; }
+    #ohse-music * { box-sizing: border-box; }
+    /* collapsed: kaset butonu */
+    .omp-fab {
+      position: relative; width: 112px; height: 72px; border-radius: 11px; padding: 0;
+      border: 1px solid rgba(255,255,255,0.22); background: linear-gradient(150deg,#262626,#0b0b0b);
+      cursor: pointer; overflow: hidden; box-shadow: 0 8px 26px rgba(0,0,0,.55);
+      transition: transform .3s cubic-bezier(.16,1,.3,1), border-color .3s ease;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      animation: ompglow 2.4s ease-in-out infinite;
+    }
+    .omp-fab:hover { transform: scale(1.06); border-color: rgba(255,255,255,.5); animation: none; }
+    #ohse-music.omp-open .omp-fab { animation: none; }
+    @keyframes ompglow {
+      0%,100% { box-shadow: 0 8px 26px rgba(0,0,0,.55), 0 0 0 0 rgba(255,255,255,0); }
+      50%     { box-shadow: 0 8px 26px rgba(0,0,0,.55), 0 0 20px 2px rgba(255,255,255,.20); }
+    }
+    .omp-fab-reels { display: flex; gap: 26px; align-items: center; }
+    .omp-fab-reels .omp-reel { width: 22px; height: 22px; }
+    .omp-fab-hint { font-family:'Anton',sans-serif; font-size: 11px; letter-spacing: .24em; color: #f4f3ef; text-transform: uppercase; }
+    .omp-fab::after { content:''; position:absolute; top:7px; right:7px; width:7px; height:7px; border-radius:50%; background:#ffffff; animation: omppulse 1.8s infinite; }
+    @keyframes omppulse { 0%{box-shadow:0 0 0 0 rgba(255,255,255,.6);} 70%{box-shadow:0 0 0 8px rgba(255,255,255,0);} 100%{box-shadow:0 0 0 0 rgba(255,255,255,0);} }
+    #ohse-music.omp-open .omp-fab::after { display:none; }
+
+    /* "Müzik" ipucu balonu */
+    .omp-tip {
+      position: absolute; left: calc(100% + 11px); top: 50%; transform: translateY(-50%);
+      white-space: nowrap; background: #f4f3ef; color: #000;
+      font-family: 'Anton', sans-serif; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+      padding: 7px 12px; border-radius: 8px; pointer-events: none;
+      box-shadow: 0 6px 18px rgba(0,0,0,.5); animation: omptipbob 1.5s ease-in-out infinite;
+    }
+    .omp-tip::before { content: ''; position: absolute; left: -5px; top: 50%; transform: translateY(-50%); border: 5px solid transparent; border-right-color: #f4f3ef; }
+    @keyframes omptipbob { 0%,100% { transform: translateY(-50%) translateX(0); } 50% { transform: translateY(-50%) translateX(5px); } }
+    #ohse-music.omp-open .omp-tip, #ohse-music.omp-tapped .omp-tip { opacity: 0; visibility: hidden; transition: opacity .3s ease; }
+
+    /* makaralar (çalarken döner) */
+    .omp-reel { position: relative; border-radius: 50%;
+      background: radial-gradient(circle at center, #141414 0 22%, rgba(0,0,0,0) 23%), repeating-conic-gradient(#ffffff 0deg 22deg, #c8c8c8 22deg 44deg);
+      border: 1px solid rgba(255,255,255,.75); box-shadow: 0 0 10px rgba(255,255,255,.4); animation: ompspin 2s linear infinite; }
+    .omp-reel::before { content: none; }
+    @keyframes ompspin { to { transform: rotate(360deg); } }
+    #ohse-music.omp-paused .omp-reel { animation-play-state: paused; }
+
+    /* panel */
+    .omp-panel {
+      position: absolute; left: 0; bottom: 86px; width: 292px;
+      background: linear-gradient(180deg, rgba(24,24,24,.98), rgba(7,7,7,.98)); backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 15px;
+      opacity: 0; transform: translateY(12px) scale(.96); transform-origin: bottom left;
+      pointer-events: none; transition: all .42s cubic-bezier(.16,1,.3,1);
+      box-shadow: 0 26px 60px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.06);
+      overflow: hidden;
+    }
+    /* panel arka plan görseli — hafif saydam watermark */
+    .omp-panel::before { content:''; position:absolute; inset:0; background:url('assets/panel-bg.png') center/cover no-repeat; opacity:.12; pointer-events:none; z-index:0; }
+    .omp-panel > * { position: relative; z-index: 1; }
+    #ohse-music.omp-open .omp-panel { opacity: 1; transform: none; pointer-events: auto; }
+    .omp-head { display: flex; align-items: center; justify-content: space-between; padding: 0 2px 13px; }
+    .omp-brand { display:flex; align-items:center; gap:9px; }
+    .omp-logo { height:22px; width:auto; user-select:none; -webkit-user-drag:none; filter: drop-shadow(0 0 7px rgba(255,255,255,.2)); }
+    .omp-title-lbl { font-family:'Anton',sans-serif; font-size: 15px; letter-spacing: .16em; text-transform: uppercase; color: #f4f3ef; }
+    .omp-close { background: none; border: 0; color: #888; font-size: 19px; line-height: 1; cursor: pointer; transition: color .2s ease; }
+    .omp-close:hover { color: #fff; }
+
+    /* çalan kaset — cilalı */
+    .omp-cassette { position: relative; border-radius: 13px; padding: 28px 14px 14px; background: linear-gradient(155deg, rgba(50,50,50,.66), rgba(12,12,12,.66)); border:1px solid rgba(255,255,255,.16); overflow:hidden; box-shadow: inset 0 1px 0 rgba(255,255,255,.09); }
+    .omp-cassette::after { content:''; position:absolute; inset:0; background:linear-gradient(120deg, rgba(255,255,255,.08), rgba(255,255,255,0) 44%); pointer-events:none; }
+    .omp-cass-brand { position:absolute; top:9px; left:0; right:0; text-align:center; font-family:'Anton',sans-serif; font-size:10px; letter-spacing:.5em; text-transform:uppercase; color:rgba(255,255,255,.55); }
+    .omp-cassette .omp-window { position:relative; z-index:1; display:flex; justify-content:center; gap: 48px; align-items:center; background:rgba(6,6,6,.5); border-radius:7px; padding:15px 0; border:1px solid rgba(255,255,255,.12); }
+    .omp-reel.big { width: 32px; height: 32px; }
+    .omp-cass-label { margin-top:10px; text-align:center; }
+    .omp-now-name { display:block; font-size:12.5px; font-weight:700; color:#f4f3ef; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .omp-now-artist { display:block; font-size:10.5px; color:#9a9a9a; margin-top:1px; }
+
+    /* kontroller */
+    .omp-controls { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:13px; }
+    .omp-controls button { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); color:#f4f3ef; cursor:pointer; border-radius:9999px; transition:all .2s ease; display:flex; align-items:center; justify-content:center; }
+    .omp-controls button:hover { background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.4); }
+    .omp-controls button svg { width:15px; height:15px; display:block; }
+    .omp-prev, .omp-next { width:38px; height:38px; }
+    .omp-play { width:48px; height:48px; background:#f4f3ef; color:#000; border:0; }
+    .omp-play svg { width:17px; height:17px; }
+    .omp-play:hover { background:#fff; }
+
+    /* ses */
+    .omp-vol { display:flex; align-items:center; gap:10px; margin-top:14px; padding:0 2px; }
+    .omp-vol-ic { font-size:9px; letter-spacing:.2em; color:#7a7a7a; }
+    .omp-vol-range { -webkit-appearance:none; appearance:none; flex:1; height:4px; border-radius:4px; background:rgba(255,255,255,.18); outline:none; cursor:pointer; }
+    .omp-vol-range::-webkit-slider-thumb { -webkit-appearance:none; width:13px; height:13px; border-radius:50%; background:#f4f3ef; cursor:pointer; }
+    .omp-vol-range::-moz-range-thumb { width:13px; height:13px; border:0; border-radius:50%; background:#f4f3ef; cursor:pointer; }
+
+    .omp-slogan { text-align:center; font-family:'Anton',sans-serif; font-size:8.5px; letter-spacing:.24em; text-transform:uppercase; color:rgba(255,255,255,.62); margin:14px 6px 10px; line-height:1.4; }
+
+    /* şarkı listesi */
+    .omp-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px; max-height:172px; overflow-y:auto; }
+    .omp-list::-webkit-scrollbar { width:4px; }
+    .omp-list::-webkit-scrollbar-thumb { background:#2a2a2a; border-radius:4px; }
+    .omp-item { display:flex; align-items:center; gap:11px; padding:7px; border-radius:10px; cursor:pointer; transition:background .2s ease; }
+    .omp-item:hover { background:rgba(255,255,255,.06); }
+    .omp-item.active { background:rgba(255,255,255,.09); }
+    .omp-mini { width:42px; height:28px; border-radius:5px; flex:0 0 auto; display:flex; align-items:center; justify-content:center; gap:9px; overflow:hidden; border:1px solid rgba(255,255,255,.28); background:#f4f3ef; transition:all .25s ease; }
+    .omp-mini i { width:7px; height:7px; border-radius:50%; background:#141414; box-shadow:0 0 0 1.5px rgba(0,0,0,.2); transition:all .25s ease; }
+    /* çalan (aktif) şarkı: kaset simsiyah, makaraları beyaz */
+    .omp-item.active .omp-mini { background:#000; border-color:rgba(255,255,255,.55); box-shadow:0 0 14px rgba(255,255,255,.22); }
+    .omp-item.active .omp-mini i { background:#f4f3ef; box-shadow:0 0 0 1.5px rgba(255,255,255,.25); }
+    .omp-meta { flex:1; min-width:0; display:flex; flex-direction:column; gap:1px; }
+    .omp-name { font-size:12px; font-weight:600; color:#f4f3ef; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .omp-artist { font-size:10px; color:#8a8a8a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+    /* equalizer */
+    .omp-eq { display:flex; align-items:center; justify-content:center; gap:3px; }
+    .omp-eq i { width:3px; height:14px; background:#f4f3ef; border-radius:2px; transform-origin:center; animation:ompbar 1s ease-in-out infinite; }
+    .omp-eq i:nth-child(2){ animation-delay:.22s; }
+    .omp-eq i:nth-child(3){ animation-delay:.44s; }
+    @keyframes ompbar { 0%,100%{transform:scaleY(.3);} 50%{transform:scaleY(1);} }
+    #ohse-music.omp-paused .omp-eq i { animation-play-state:paused; transform:scaleY(.35); }
+    .omp-eq-item { display:none; height:14px; }
+    .omp-eq-item i { width:2.5px; }
+    .omp-item.playing .omp-eq-item { display:flex; }
+
+    .omp-fab:focus,.omp-close:focus,.omp-item:focus,.omp-controls button:focus,.omp-vol-range:focus { outline:none; }
+
+    /* ===== Kargo aracı (modern Transit van + beyaz OHSE logosu, sonsuz sol→sağ) ===== */
+    .ohse-truck-road { position:relative; width:100%; height:92px; overflow:hidden; margin-top:4px; }
+    .ohse-truck-road::after { content:''; position:absolute; left:0; right:0; bottom:12px; height:2px; background:repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 14px, transparent 14px 30px); }
+    .ohse-van { position:absolute; bottom:6px; left:-240px; width:200px; animation: ohsedrive 8.5s linear infinite; }
+    .ov-svg { display:block; width:200px; height:auto; }
+    @keyframes ohsedrive { 0%{ left:-230px; } 100%{ left:100%; } }
+
+  </style>
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#000000" />
+</head>
+
+<body class="grain font-body text-paper antialiased overflow-x-hidden selection:bg-paper">
+
+  <!-- ============ HEADER ============ -->
+  <header id="top" class="fixed top-0 inset-x-0 z-50 transition-all duration-500" data-header>
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="flex items-center justify-between py-5">
+        <!-- left: language toggle (aligned with the right buttons) -->
+        <div class="flex-1 flex justify-start">
+          <button type="button" class="lang-toggle text-[13px] sm:text-sm font-bold tracking-[0.12em] text-paper select-none" aria-label="Dil / Language">
+            <span data-lang="tr" class="lang-opt cursor-pointer">TR</span><span class="text-zinc-600 mx-1.5">|</span><span data-lang="en" class="lang-opt cursor-pointer text-zinc-500">EN</span>
+          </button>
+        </div>
+
+        <!-- centered logo -->
+        <a href="#top" class="shrink-0 flex-1 flex justify-center">
+          <img src="assets/logo-mark.png" alt="OHSE" class="h-12 sm:h-14 w-auto object-contain select-none" draggable="false" />
+        </a>
+
+        <!-- account + cart — always on the right -->
+        <div class="flex-1 flex justify-end items-center gap-5 sm:gap-6">
+          <button type="button" class="account-open text-paper hover:text-white transition-colors" aria-label="Sipariş & Kargo Takip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 sm:w-7 sm:h-7"><path d="M2.5 6.5h11.5v9.5H2.5z"/><path d="M14 9.5h3.8L21.5 13v3H14z"/><circle cx="6.5" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/></svg>
+          </button>
+          <button type="button" class="cart-open relative text-paper hover:text-white transition-colors" aria-label="Sepet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" class="w-6 h-6 sm:w-7 sm:h-7"><path d="M6 8h12l-1.1 11.3a1 1 0 0 1-1 .9H8.1a1 1 0 0 1-1-.9L6 8z"/><path d="M9 8V6.2a3 3 0 0 1 6 0V8"/></svg>
+            <span class="cart-qty hidden absolute -top-1.5 -right-2 min-w-[16px] h-[16px] px-1 rounded-full bg-paper text-black text-[10px] font-bold items-center justify-center">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="relative min-h-[62vh] flex flex-col items-center justify-center px-6 pt-28 pb-8 text-center">
+    <!-- faint backdrop wordmark -->
+    <h1 aria-hidden="true" class="pointer-events-none select-none absolute inset-0 flex items-center justify-center">
+      <span class="chalk text-[34vw] leading-none text-white/[0.025] tracking-tight">OHSE</span>
+    </h1>
+
+    <!-- packaging hero image — black backdrop blends into the site -->
+    <div class="reveal relative z-10 floaty w-full flex justify-center" data-delay="2">
+      <img src="assets/hero.png" alt="OHSE — The World Is In A Child's Hands"
+           class="relative w-[82vw] max-w-[560px] sm:max-w-[600px] mx-auto" draggable="false" />
+    </div>
+
+  </section>
+
+  <!-- ============ PRODUCT ============ -->
+  <section id="product" class="relative px-6 lg:px-10 pt-8 pb-24 sm:pt-12 sm:pb-32">
+    <div class="mx-auto max-w-7xl grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+      <!-- product visual — swipe'lı galeri -->
+      <div class="reveal order-1">
+        <div class="gallery-wrap">
+          <div id="gallery" class="gallery-scroll relative aspect-[4/5] rounded-2xl ring-1 ring-white/10 bg-black"></div>
+          <span class="gallery-edge l"></span>
+          <span class="gallery-edge r"></span>
+        </div>
+        <!-- noktalar (mobil) -->
+        <div id="gallery-dots" class="mt-3 flex justify-center gap-2 sm:hidden"></div>
+        <!-- küçük görseller (masaüstü) -->
+        <div id="gallery-thumbs" class="mt-3 hidden sm:flex flex-wrap gap-2.5"></div>
+      </div>
+
+      <!-- product info -->
+      <div class="reveal order-2" data-delay="1">
+        <h2 lang="en" class="chalk text-3xl sm:text-4xl lg:text-5xl leading-[1.0]">OHSE Slim-Fit T-Shirt</h2>
+        <p id="pack-name" class="text-[11px] uppercase tracking-[0.3em] text-zinc-400 mt-4">3'lü Paket</p>
+
+        <!-- package selector — 3 seçenek -->
+        <div class="mt-8">
+          <p data-i18n="packageLabel" class="text-[11px] uppercase tracking-[0.25em] text-zinc-500 mb-3">Paket</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <button data-pack="single" class="pack pack-card relative text-left px-5 py-5">
+              <span data-i18n="single" class="block text-[12px] uppercase tracking-[0.2em] text-paper font-semibold">Tekli</span>
+              <span data-i18n="oneTee" class="block text-zinc-500 text-xs mt-1">Tek tişört</span>
+              <span class="block chalk text-2xl mt-3 text-paper" data-price="single">749.00 TL</span>
+              <span class="pack-save" data-save="single"></span>
+            </button>
+            <button data-pack="2pack" class="pack pack-card pack-featured relative text-left px-5 py-5">
+              <span class="pack-badge pack-badge-pop" data-i18n="mostPopular">EN POPÜLER</span>
+              <span data-i18n="pack2" class="block text-[12px] uppercase tracking-[0.2em] text-paper font-semibold">2'li Paket</span>
+              <span data-i18n="twoTees" class="block text-zinc-500 text-xs mt-1">İki tişört</span>
+              <span class="block chalk text-2xl mt-3 text-paper" data-price="2pack">1199.00 TL</span>
+              <span class="pack-save" data-save="2pack"></span>
+            </button>
+            <button data-pack="3pack" class="pack pack-card pack-featured relative text-left px-5 py-5">
+              <span class="pack-badge pack-badge-val" data-i18n="bestValue">EN AVANTAJLI</span>
+              <span data-i18n="pack3" class="block text-[12px] uppercase tracking-[0.2em] text-paper font-semibold">3'lü Paket</span>
+              <span data-i18n="threeTees" class="block text-zinc-500 text-xs mt-1">Üç tişört</span>
+              <span class="block chalk text-2xl mt-3 text-paper" data-price="3pack">1699.00 TL</span>
+              <span class="pack-save" data-save="3pack"></span>
+            </button>
+          </div>
+          <p data-i18n="packChooseNote" class="text-zinc-500 text-[11px] mt-3 tracking-wide">Paketin rengini ve bedenini aşağıdan seçersin.</p>
+        </div>
+
+        <div class="mt-7 flex items-center justify-between gap-4">
+          <span id="price-line" class="chalk text-3xl">1799.00 TL</span>
+          <button id="size-guide-open" type="button" class="group shrink-0 inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] text-zinc-400 hover:text-paper transition-colors" aria-label="Beden Tablosu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-3.5 h-3.5"><rect x="2" y="7" width="20" height="10" rx="1"/><path d="M6 7v3.5M10 7v5M14 7v3.5M18 7v5"/></svg>
+            <span data-i18n="sizeGuide" class="border-b border-dashed border-white/35 group-hover:border-paper pb-px">Beden Tablosu</span>
+          </button>
+        </div>
+
+        <p id="stock-note" class="hidden mt-3 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-amber-400/90">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+          <span data-i18n="lastOne">Son 1 adet</span>
+        </p>
+
+        <!-- selectors -->
+        <div class="mt-9 space-y-6">
+          <div>
+            <p class="text-[13px] uppercase tracking-[0.25em] text-zinc-200 font-bold mb-3"><span data-i18n="colorLabel">Renk —</span> <span id="color-name" class="text-paper">Siyah</span></p>
+            <div class="flex flex-nowrap gap-1.5 sm:gap-3">
+              <button data-color="black" class="swatch-2 inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-5 py-2.5 text-[10px] sm:text-[12px] font-bold uppercase tracking-[0.06em] sm:tracking-[0.2em] whitespace-nowrap border border-white/20 text-paper bg-white/5 transition"><span class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#0c0c0c] ring-1 ring-white/50 shrink-0"></span><span data-i18n="black">Siyah</span></button>
+              <button data-color="white" class="swatch-2 inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-5 py-2.5 text-[10px] sm:text-[12px] font-bold uppercase tracking-[0.06em] sm:tracking-[0.2em] whitespace-nowrap border border-white/15 text-zinc-400 transition"><span class="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-[#f4f3ef] ring-1 ring-white/50 shrink-0"></span><span data-i18n="white">Beyaz</span></button>
+              <button data-color="mixed" class="swatch-2 inline-flex items-center justify-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-5 py-2.5 text-[10px] sm:text-[12px] font-bold uppercase tracking-[0.06em] sm:tracking-[0.2em] whitespace-nowrap border border-white/15 text-zinc-400 transition"><span class="w-3 h-3 sm:w-4 sm:h-4 rounded-full ring-1 ring-white/50 shrink-0" style="background:linear-gradient(90deg,#0c0c0c 50%,#f4f3ef 50%)"></span><span data-i18n="mixed">1 Siyah 1 Beyaz</span></button>
+            </div>
+          </div>
+
+          <div>
+            <p data-i18n="sizeLabel" class="text-[11px] uppercase tracking-[0.25em] text-zinc-500 mb-3">Beden</p>
+            <div class="flex flex-wrap gap-2" id="sizes">
+              <button data-size="XS" class="size px-4 py-2 text-[11px] tracking-[0.15em] border border-white/15 text-zinc-300 transition">XS</button>
+              <button data-size="S" class="size px-4 py-2 text-[11px] tracking-[0.15em] border border-white/50 text-paper bg-white/5 transition">S</button>
+              <button data-size="M" class="size px-4 py-2 text-[11px] tracking-[0.15em] border border-white/15 text-zinc-300 transition">M</button>
+              <button data-size="L" class="size px-4 py-2 text-[11px] tracking-[0.15em] border border-white/15 text-zinc-300 transition">L</button>
+              <button data-size="XL" class="size px-4 py-2 text-[11px] tracking-[0.15em] border border-white/15 text-zinc-300 transition">XL</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- add to cart -->
+        <button id="add-to-cart"
+          class="group mt-10 w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-paper text-black px-10 py-4 text-[12px] uppercase tracking-[0.3em] font-bold transition-all duration-300 hover:bg-white">
+          <span id="cart-label">Sepete Ekle — 1799.00&nbsp;TL</span>
+          <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PACKAGING FEATURE ============ -->
+  <section id="packaging" class="relative px-6 lg:px-10 py-16 sm:py-24 border-t border-white/10">
+    <div class="mx-auto max-w-3xl reveal flex flex-col items-center justify-center gap-6">
+      <div class="relative group">
+        <div class="absolute inset-0 -m-6 bg-[radial-gradient(closest-side,rgba(255,255,255,0.10),transparent_72%)] blur-2xl opacity-70 group-hover:opacity-100 transition-opacity duration-700"></div>
+        <img id="pkg-img" src="assets/packaging-cut.png" alt="OHSE özel paketleme kesesi"
+             class="cursor-pointer relative w-[48vw] max-w-[240px] sm:w-[52vw] sm:max-w-[320px] drop-shadow-[0_40px_70px_rgba(0,0,0,0.7)] transition-transform duration-700 group-hover:-translate-y-2 group-hover:rotate-1" draggable="false" />
+      </div>
+      <p data-i18n="pkgCaption" class="chalk text-2xl sm:text-3xl text-center">Her Sipariş Özel Pakette Gelir</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-white/10 px-6 lg:px-10 py-16">
+    <div class="mx-auto max-w-7xl grid gap-12 md:grid-cols-4 text-[13px]">
+      <div class="space-y-4">
+        <img src="assets/logo-mark.png" alt="OHSE" class="h-9 w-auto" draggable="false" />
+      </div>
+      <div>
+        <h4 data-i18n="quickLinks" class="text-[11px] uppercase tracking-[0.3em] text-zinc-500 mb-4">Hızlı Linkler</h4>
+        <ul class="space-y-2.5 text-zinc-400">
+          <li><a href="store.html" data-i18n="home" class="btn-line hover:text-paper transition-colors">Ana Sayfa</a></li>
+          <li><a href="about.html" data-i18n="about" class="btn-line hover:text-paper transition-colors">Hakkımızda</a></li>
+          <li><a href="support.html" data-i18n="support" class="btn-line hover:text-paper transition-colors">Destek</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="social" class="text-[11px] uppercase tracking-[0.3em] text-zinc-500 mb-4">Sosyal Medya</h4>
+        <ul class="space-y-2.5 text-zinc-400">
+          <li><a href="https://instagram.com/ohse.twch" target="_blank" rel="noopener" class="btn-line hover:text-paper transition-colors">Instagram — @ohse.twch</a></li>
+          <li><a href="https://www.tiktok.com/@ohse.twch" target="_blank" rel="noopener" class="btn-line hover:text-paper transition-colors">TikTok — @ohse.twch</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="contact" class="text-[11px] uppercase tracking-[0.3em] text-zinc-500 mb-4">İletişim</h4>
+        <ul class="space-y-2.5 text-zinc-400">
+          <li><span data-i18n="emailLabel">E-posta:</span> <a href="mailto:info@ohse.store" class="btn-line hover:text-paper">info@ohse.store</a></li>
+          <li><span data-i18n="phoneLabel">Telefon:</span> <a href="tel:+905452180588" class="btn-line hover:text-paper">+90 545 218 05 88</a></li>
+          <li><a href="iletisim.html" data-i18n="detailedContact" class="btn-line hover:text-paper transition-colors">Detaylı İletişim Bilgileri</a></li>
+        </ul>
+      </div>
+    </div>
+      <div class="mt-14 pt-10 border-t border-white/5 flex justify-center">
+        <img src="assets/payment-band.png" alt="Ödeme Yöntemleri: iyzico, Mastercard, Visa, American Express, Troy" class="h-7 sm:h-8 w-auto opacity-80" draggable="false" />
+      </div>
+    <div class="mx-auto max-w-7xl mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] uppercase tracking-[0.3em] text-zinc-700">
+      <p lang="en">© 2026 OHSE — The World Is In A Child's Hands</p>
+      <div class="flex flex-wrap justify-center gap-x-5 gap-y-2.5">
+        <a href="mesafeli-satis.html" data-i18n="distanceSales" class="hover:text-zinc-400">Mesafeli Satış</a>
+        <a href="iade-iptal.html" data-i18n="returnCancel" class="hover:text-zinc-400">İade & İptal</a>
+        <a href="iade-degisim.html" data-i18n="returnExchange" class="hover:text-zinc-400">İade & Değişim</a>
+        <a href="teslimat-kargo.html" data-i18n="delivery" class="hover:text-zinc-400">Teslimat & Kargo</a>
+        <a href="gizlilik-politikasi.html" data-i18n="privacy" class="hover:text-zinc-400">Gizlilik</a>
+        <a href="kullanim-kosullari.html" data-i18n="terms" class="hover:text-zinc-400">Koşullar</a>
+        <a href="cerez-politikasi.html" data-i18n="cookies" class="hover:text-zinc-400">Çerezler</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ SIZE GUIDE MODAL ============ -->
+  <div id="size-guide" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 sm:p-6">
+    <div id="sg-overlay" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+    <div class="sg-panel relative w-full max-w-lg bg-[#0a0a0a] border border-white/12 shadow-2xl overflow-hidden">
+      <!-- top accent line -->
+      <div class="h-[2px] w-full bg-gradient-to-r from-transparent via-paper to-transparent opacity-60"></div>
+      <!-- faint backdrop wordmark (desktop only) -->
+      <span aria-hidden="true" class="hidden sm:block pointer-events-none select-none absolute -right-5 -bottom-9 text-[150px] leading-none font-display text-white/[0.03]">ÖSE</span>
+
+      <div class="relative p-5 sm:p-8">
+        <div class="flex items-start justify-between mb-1.5">
+          <div>
+            <p data-i18n="sizeGuideKicker" class="text-[10px] uppercase tracking-[0.4em] text-zinc-500 mb-2">OHSE — Kalıp</p>
+            <h3 data-i18n="sizeGuideTitle" class="chalk text-3xl sm:text-4xl leading-none">Beden Tablosu</h3>
+          </div>
+          <button id="sg-close" class="text-zinc-400 hover:text-paper text-2xl leading-none -mt-1 transition-colors" aria-label="Kapat">✕</button>
+        </div>
+        <p data-i18n="sizeUnit" class="text-[11px] text-zinc-500 mb-6">Slim-fit kalıp · esnek kumaş · ölçüler cm</p>
+
+        <div>
+          <table class="sg-table table-fixed w-full text-left border-collapse">
+            <thead>
+              <tr class="text-[9px] sm:text-[10px] uppercase tracking-[0.08em] sm:tracking-[0.18em] text-zinc-500">
+                <th data-i18n="colSize" class="w-9 sm:w-auto pr-1.5 sm:pr-2 font-medium">Beden</th>
+                <th data-i18n="colChest" class="px-1.5 sm:px-2 font-medium text-right">Göğüs</th>
+                <th data-i18n="colLength" class="px-1.5 sm:px-2 font-medium text-right">Boy</th>
+                <th data-i18n="colShoulder" class="px-1.5 sm:px-2 font-medium text-right">Omuz</th>
+                <th data-i18n="colSleeve" class="pl-1.5 sm:pl-2 font-medium text-right">Kol</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="sg-row" data-size="XS"><td class="sg-size pr-1.5 sm:pr-2"><span class="font-display text-lg sm:text-xl leading-none">XS</span></td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">39</td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">56</td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">31</td><td class="sg-val pl-1.5 sm:pl-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">18</td></tr>
+              <tr class="sg-row" data-size="S"><td class="sg-size pr-1.5 sm:pr-2"><span class="font-display text-lg sm:text-xl leading-none">S</span></td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">41</td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">58</td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">32,5</td><td class="sg-val pl-1.5 sm:pl-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">18,5</td></tr>
+              <tr class="sg-row" data-size="M"><td class="sg-size pr-1.5 sm:pr-2"><span class="font-display text-lg sm:text-xl leading-none">M</span></td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">43</td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">60</td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">34</td><td class="sg-val pl-1.5 sm:pl-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">19,5</td></tr>
+              <tr class="sg-row" data-size="L"><td class="sg-size pr-1.5 sm:pr-2"><span class="font-display text-lg sm:text-xl leading-none">L</span></td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">45</td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">62</td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">35,5</td><td class="sg-val pl-1.5 sm:pl-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">20</td></tr>
+              <tr class="sg-row" data-size="XL"><td class="sg-size pr-1.5 sm:pr-2"><span class="font-display text-lg sm:text-xl leading-none">XL</span></td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">47</td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">64</td><td class="sg-val px-1.5 sm:px-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">37</td><td class="sg-val pl-1.5 sm:pl-2 text-right tabular-nums text-[13px] sm:text-sm text-zinc-300">21</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p lang="en" class="chalk text-center text-xl sm:text-2xl text-zinc-400 mt-7">The World Is In A Child's Hands</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div id="lightbox" class="fixed inset-0 z-[80] hidden items-center justify-center bg-black/90 backdrop-blur-sm p-6 cursor-zoom-out">
+    <button id="lightbox-close" class="absolute top-6 right-6 text-zinc-400 hover:text-paper text-2xl leading-none" aria-label="Kapat">✕</button>
+    <img id="lightbox-img" src="" alt="OHSE Slim-Fit Tişört — büyütülmüş" class="max-h-[88vh] max-w-[92vw] object-contain rounded-lg shadow-2xl select-none p-4" draggable="false" />
+  </div>
+
+  <!-- ============ CART DRAWER ============ -->
+  <div id="cart-overlay" class="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-400"></div>
+  <aside id="cart-drawer" class="fixed top-0 right-0 z-[100] h-full w-full max-w-md bg-[#0a0a0a] border-l border-white/10 translate-x-full transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] flex flex-col shadow-2xl">
+    <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
+      <h3 class="chalk text-xl"><span data-i18n="cartTitle">Sepetim</span> <span id="cart-count-badge" class="text-zinc-500 text-base">(0)</span></h3>
+      <button id="cart-close" class="text-zinc-400 hover:text-paper text-2xl leading-none transition-colors" aria-label="Kapat">✕</button>
+    </div>
+
+    <div id="cart-items" class="flex-1 overflow-y-auto px-6 py-5 space-y-5"></div>
+
+    <div id="cart-empty" class="flex-1 flex flex-col items-center justify-center text-center px-6 gap-3">
+      <p data-i18n="cartEmpty" class="chalk text-2xl text-zinc-600">Sepetiniz boş</p>
+      <p data-i18n="cartEmptySub" class="text-sm text-zinc-500">Bir ürün seçip sepete ekleyin.</p>
+      <button data-i18n="startShopping" class="cart-close-empty mt-3 text-[11px] uppercase tracking-[0.3em] btn-line text-paper">Alışverişe Başla</button>
+    </div>
+
+    <div id="cart-footer" class="border-t border-white/10 px-6 py-5 space-y-4 hidden">
+      <div class="flex items-baseline justify-between">
+        <span data-i18n="subtotalLabel" class="text-[11px] uppercase tracking-[0.25em] text-zinc-500">Ara Toplam</span>
+        <span id="cart-subtotal" class="chalk text-2xl">0.00 TL</span>
+      </div>
+      <p data-i18n="shippingNote" class="text-[11px] text-zinc-600">Kargo, ödeme adımında hesaplanır.</p>
+      <p id="checkout-note" class="hidden text-[11px] text-amber-400/90 tracking-wide">Bu ürün için ödeme çok yakında aktifleşecek.</p>
+      <button id="cart-checkout" class="group w-full inline-flex items-center justify-center gap-3 bg-paper text-black px-8 py-4 text-[12px] uppercase tracking-[0.3em] font-semibold transition-all duration-300 hover:bg-white">
+        <span data-i18n="checkout">Ödemeye Geç</span>
+        <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ============ ACCOUNT DRAWER ============ -->
+  <div id="account-overlay" class="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-400"></div>
+    <aside id="account-drawer" class="fixed top-0 right-0 z-[100] h-full w-full max-w-lg bg-[#0a0a0a] border-l border-white/10 translate-x-full transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] flex flex-col shadow-2xl">
+    <div class="flex items-center justify-between px-7 py-5 border-b border-white/10">
+      <h3 data-i18n="trackPanelTitle" class="chalk text-xl">Sipariş & Kargo Takip</h3>
+      <button id="account-close" class="text-zinc-400 hover:text-paper text-2xl leading-none transition-colors" aria-label="Kapat">✕</button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto px-7 py-9 sm:py-11 space-y-7">
+      <!-- HERO tracking card -> ParcelPanel (order no + email, no login needed) -->
+      <a href="https://shop.ohse.store/apps/parcelpanel" target="_blank" rel="noopener"
+         class="group relative block overflow-hidden border border-white/15 bg-gradient-to-b from-white/[0.07] to-white/[0.015] p-7 sm:p-9 transition-all duration-300 hover:border-white/35 hover:from-white/[0.10]">
+        <span aria-hidden="true" class="pointer-events-none select-none absolute -right-6 -bottom-12 text-[170px] leading-none font-display text-white/[0.05] group-hover:text-white/[0.08] transition-colors">OHSE</span>
+        <p data-i18n="trackKicker" class="relative text-[10px] uppercase tracking-[0.45em] text-zinc-500 mb-3">Kargo · Takip</p>
+        <h4 data-i18n="trackTitle" class="relative chalk text-4xl sm:text-5xl leading-[0.92] mb-4">Siparişin Nerede?</h4>
+        <p data-i18n="trackSub" class="relative text-[13px] text-zinc-400 leading-relaxed mb-7 max-w-[36ch]">Sipariş numaran ve e-postanla kargonun anlık konumunu gör.</p>
+        <span class="relative inline-flex items-center gap-2 bg-paper text-black px-7 py-3.5 text-[12px] uppercase tracking-[0.25em] font-bold group-hover:bg-white transition-colors">
+          <span data-i18n="trackBtn">Kargonu Takip Et</span>
+          <span class="transition-transform group-hover:translate-x-1">→</span>
+        </span>
+      </a>
+
+      <!-- orders card -> Shopify account (order history). Login is handled by Shopify, not the site. -->
+      <a href="https://shop.ohse.store/account" target="_blank" rel="noopener"
+         class="group relative block overflow-hidden border border-white/12 bg-white/[0.03] p-6 sm:p-7 transition-all duration-300 hover:border-white/30 hover:bg-white/[0.06]">
+        <span aria-hidden="true" class="pointer-events-none select-none absolute -right-4 -bottom-9 text-[120px] leading-none font-display text-white/[0.04] group-hover:text-white/[0.06] transition-colors">OHSE</span>
+        <p data-i18n="ordersKicker" class="relative text-[10px] uppercase tracking-[0.45em] text-zinc-500 mb-2">Hesap</p>
+        <h4 data-i18n="ordersTitle" class="relative chalk text-3xl leading-none mb-3">Siparişlerim</h4>
+        <p data-i18n="ordersSub" class="relative text-[13px] text-zinc-400 leading-relaxed mb-5 max-w-[34ch]">Geçmiş siparişlerini ve durumlarını OHSE hesabından gör.</p>
+        <span class="relative inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.2em] text-paper font-bold">
+          <span data-i18n="ordersBtn">Siparişlerime Git</span>
+          <span class="transition-transform group-hover:translate-x-1">→</span>
+        </span>
+      </a>
+
+      <p data-i18n="trackHelp" class="text-[11px] leading-relaxed text-zinc-600 text-center px-2">Takip linkin sipariş onay e-postanda da yer alır. Sorun olursa iletişim sayfasından bize ulaşabilirsin.</p>
+
+      <!-- OHSE kargo aracı (UPS tarzı) — sonsuz sol→sağ -->
+      <div class="ohse-truck-road" aria-hidden="true">
+        <div class="ohse-van">
+          <svg class="ov-svg" viewBox="0 0 196 84" xmlns="http://www.w3.org/2000/svg">
+            <!-- gövde (kamyon ikonu: yüksek kutu kasa + alçak kabin) -->
+            <path d="M8 66 L8 16 L132 16 L132 30 L160 30 L178 44 L178 66 Z"
+                  fill="#000" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/>
+            <!-- ön cam -->
+            <polygon points="160,33 170,33 175,44 165,44" fill="rgba(255,255,255,.82)"/>
+            <!-- far -->
+            <rect x="173" y="50" width="5" height="5" rx="1.5" fill="#fff"/>
+            <!-- kasa / kabin ayrım çizgisi -->
+            <line x1="132" y1="18" x2="132" y2="64" stroke="rgba(255,255,255,.4)" stroke-width="1.4"/>
+            <!-- tekerlek arkları (kesik) -->
+            <circle cx="48" cy="66" r="16" fill="#0a0a0a"/>
+            <circle cx="150" cy="66" r="16" fill="#0a0a0a"/>
+            <!-- tekerlekler -->
+            <circle cx="48" cy="66" r="13" fill="#000" stroke="#fff" stroke-width="2.6"/>
+            <circle cx="48" cy="66" r="5" fill="#fff"/>
+            <circle cx="150" cy="66" r="13" fill="#000" stroke="#fff" stroke-width="2.6"/>
+            <circle cx="150" cy="66" r="5" fill="#fff"/>
+            <!-- OHSE logosu kasanın ortasında -->
+            <image href="assets/drop-logo.png" x="36" y="25" width="62" height="30" preserveAspectRatio="xMidYMid meet"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ JS ============ -->
+  <script>
+    // ================= I18N (TR / EN) =================
+    const T = {
+      tr: { packageLabel:'Paket', pack3:"3'lü Paket", threeTees:'Üç tişört', pack2:"2'li Paket", twoTees:'İki tişört', single:'Tekli', oneTee:'Tek tişört',
+        mostPopular:'EN POPÜLER', bestValue:'EN AVANTAJLI', saveWord:'kazanç', packChooseNote:'Paketin rengini ve bedenini aşağıdan seçersin.',
+        lastOne:'Son 1 adet', colorLabel:'Renk —', black:'Siyah', white:'Beyaz', mixed:'1 Siyah 1 Beyaz', sizeLabel:'Beden',
+        sizeGuide:'Beden Tablosu', sizeGuideKicker:'OHSE — Kalıp', sizeGuideTitle:'Beden Tablosu',
+        sizeUnit:'Slim-fit kalıp · esnek kumaş · ölçüler cm', colSize:'Beden', colChest:'Göğüs', colLength:'Boy', colShoulder:'Omuz', colSleeve:'Kol',
+        addCart:'Sepete Ekle', added:'Eklendi ✓', pkgCaption:'Her Sipariş Özel Pakette Gelir',
+        quickLinks:'Hızlı Linkler', home:'Ana Sayfa', about:'Hakkımızda', support:'Destek', social:'Sosyal Medya',
+        contact:'İletişim', emailLabel:'E-posta:', phoneLabel:'Telefon:', detailedContact:'Detaylı İletişim Bilgileri',
+        privacy:'Gizlilik', terms:'Koşullar', cookies:'Çerezler',
+        distanceSales:'Mesafeli Satış', returnCancel:'İade & İptal', returnExchange:'İade & Değişim', delivery:'Teslimat & Kargo',
+        cartTitle:'Sepetim', cartEmpty:'Sepetiniz boş', cartEmptySub:'Bir ürün seçip sepete ekleyin.',
+        startShopping:'Alışverişe Başla', subtotalLabel:'Ara Toplam', shippingNote:'Kargo, ödeme adımında hesaplanır.',
+        checkout:'Ödemeye Geç', remove:'Kaldır', checkoutSoon:'2’li paket ödemesi çok yakında aktifleşecek.',
+        trackKicker:'Kargo · Takip', trackTitle:'Siparişin Nerede?', trackSub:'Sipariş numaran ve e-postanla kargonun anlık konumunu gör.', trackBtn:'Kargonu Takip Et', trackPanelTitle:'Sipariş & Kargo Takip', trackHelp:'Takip linkin sipariş onay e-postanda da yer alır. Sorun olursa iletişim sayfasından bize ulaşabilirsin.',
+        ordersKicker:'Hesap', ordersTitle:'Siparişlerim', ordersSub:'Geçmiş siparişlerini ve durumlarını OHSE hesabından gör.', ordersBtn:'Siparişlerime Git',
+      },
+      en: { packageLabel:'Package', pack3:'3-Pack', threeTees:'Three tees', pack2:'2-Pack', twoTees:'Two tees', single:'Single', oneTee:'One tee',
+        mostPopular:'MOST POPULAR', bestValue:'BEST VALUE', saveWord:'saved', packChooseNote:'Choose the color and size of your pack below.',
+        lastOne:'Last 1 left', colorLabel:'Color —', black:'Black', white:'White', mixed:'1 Black 1 White', sizeLabel:'Size',
+        sizeGuide:'Size Guide', sizeGuideKicker:'OHSE — Fit', sizeGuideTitle:'Size Guide',
+        sizeUnit:'Slim fit · stretch fabric · measurements in cm', colSize:'Size', colChest:'Chest', colLength:'Length', colShoulder:'Shoulder', colSleeve:'Sleeve',
+        addCart:'Add to Cart', added:'Added ✓', pkgCaption:'Every Order Ships in Custom Packaging',
+        quickLinks:'Quick Links', home:'Home', about:'About', support:'Support', social:'Social Media',
+        contact:'Contact', emailLabel:'Email:', phoneLabel:'Phone:', detailedContact:'Detailed Contact Info',
+        privacy:'Privacy', terms:'Terms', cookies:'Cookies',
+        distanceSales:'Distance Sales', returnCancel:'Returns & Cancellation', returnExchange:'Returns & Exchange', delivery:'Delivery & Shipping',
+        cartTitle:'My Cart', cartEmpty:'Your cart is empty', cartEmptySub:'Pick a product and add it to your cart.',
+        startShopping:'Start Shopping', subtotalLabel:'Subtotal', shippingNote:'Shipping is calculated at checkout.',
+        checkout:'Checkout', remove:'Remove', checkoutSoon:'2-Pack checkout goes live very soon.',
+        trackKicker:'Shipping · Tracking', trackTitle:"Where's Your Order?", trackSub:'Track your order live with your order number and email.', trackBtn:'Track My Order', trackPanelTitle:'Orders & Tracking', trackHelp:'Your tracking link is also in your order confirmation email. Need help? Reach us via the contact page.',
+        ordersKicker:'Account', ordersTitle:'My Orders', ordersSub:'See your past orders and their status from your OHSE account.', ordersBtn:'Go to My Orders',
+      }
+    };
+    let LANG = (function(){ try { return localStorage.getItem('ohse_lang') || 'tr'; } catch(e){ return 'tr'; } })();
+    function t(k){ const d = T[LANG] || T.tr; return (d[k] != null) ? d[k] : (T.tr[k] != null ? T.tr[k] : k); }
+    function applyLang(){
+      document.documentElement.lang = (LANG === 'en') ? 'en' : 'tr';
+      document.querySelectorAll('[data-i18n]').forEach((el) => { const k = el.getAttribute('data-i18n'); if (T[LANG][k] != null) el.textContent = T[LANG][k]; });
+      document.querySelectorAll('[data-i18n-ph]').forEach((el) => { const k = el.getAttribute('data-i18n-ph'); if (T[LANG][k] != null) el.placeholder = T[LANG][k]; });
+      document.querySelectorAll('.lang-opt').forEach((o) => { const on = o.getAttribute('data-lang') === LANG; o.classList.toggle('text-paper', on); o.classList.toggle('text-zinc-500', !on); });
+      if (typeof updatePackCards === 'function') updatePackCards();
+      if (typeof render === 'function') render();
+      if (typeof renderCart === 'function') renderCart();
+    }
+    function setLang(l){ LANG = l; try { localStorage.setItem('ohse_lang', l); } catch(e){} applyLang(); }
+    document.querySelectorAll('.lang-opt').forEach((o) => o.addEventListener('click', () => setLang(o.getAttribute('data-lang'))));
+
+    // --- Scroll reveal ---
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // ================= TRACKING DRAWER (kargo takip) =================
+    const accDrawer = document.getElementById('account-drawer');
+    const accOverlay = document.getElementById('account-overlay');
+    function openAcc(){ if (typeof closeCart === 'function') closeCart(); accOverlay.classList.remove('opacity-0','pointer-events-none'); accDrawer.classList.remove('translate-x-full'); document.body.style.overflow='hidden'; }
+    function closeAcc(){ accOverlay.classList.add('opacity-0','pointer-events-none'); accDrawer.classList.add('translate-x-full'); document.body.style.overflow=''; }
+    document.querySelectorAll('.account-open').forEach((el)=>el.addEventListener('click', openAcc));
+    document.getElementById('account-close').addEventListener('click', closeAcc);
+    accOverlay.addEventListener('click', closeAcc);
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeAcc(); });
+
+    // --- Header background on scroll ---
+    const header = document.querySelector('[data-header]');
+    const onScroll = () => {
+      if (window.scrollY > 40) header.classList.add('bg-black/70','backdrop-blur-md','border-b','border-white/10');
+      else header.classList.remove('bg-black/70','backdrop-blur-md','border-b','border-white/10');
+    };
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+    // --- Product gallery (swipe'lı, çok fotolu) ---
+    const gallery = document.getElementById('gallery');
+    const galleryDots = document.getElementById('gallery-dots');
+    const galleryThumbs = document.getElementById('gallery-thumbs');
+    const colorName = document.getElementById('color-name');
+    const cartBtn = document.getElementById('add-to-cart');
+    const cartLabel = document.getElementById('cart-label');
+
+    // two purchasable products; colour + size selectors are shared between them.
+    // 3-Pack keeps the original cut-out renders; Single uses the new product photos.
+    // Üç satın-alma seçeneği. Tek fiyat kaynağı: single. Paketler bu fiyattan
+    // hesaplanan kazancı gösterir. tees = paketteki tişört adedi.
+    const SINGLE_PRICE = 749;
+    const packBlackPhotos = ['assets/tee-black-cut-clean.png', 'assets/collar-black-label.png', 'assets/detail-black.png', 'assets/ohse-black-1.jpg', 'assets/ohse-black-3.jpg', 'assets/ohse-black-2.jpg'];
+    const packWhitePhotos = ['assets/tee-white-cut.png', 'assets/collar-white.png', 'assets/detail-white.png', 'assets/ohse-white-3.jpg', 'assets/ohse-white-1.jpg', 'assets/ohse-white-2.jpg'];
+    const products = {
+      'single': {
+        nameKey: "single", price: 749, tees: 1, badge: null,
+        soldOut: [], lowSizes: [],
+        variants: {
+          black: { photos: ['assets/single-black-front-clean.png', 'assets/collar-black-label.png', 'assets/detail-black.png', 'assets/ohse-black-1.jpg', 'assets/ohse-black-3.jpg', 'assets/ohse-black-2.jpg'], labelKey: 'black', soldOut: ['M','L','XL'], lowSizes: ['S'] },
+          white: { photos: ['assets/single-white-front-cut.png', 'assets/single-white-collar.png', 'assets/detail-white.png', 'assets/ohse-white-3.jpg', 'assets/ohse-white-1.jpg', 'assets/ohse-white-2.jpg'], labelKey: 'white', soldOut: ['XL'], lowSizes: ['L','M'] },
+        },
+      },
+      '2pack': {
+        nameKey: "pack2", price: 1199, tees: 2, badge: 'popular',
+        soldOut: [], lowSizes: [],
+        variants: {
+          // 2'li paketin kendi ön görseli (iki tişört) — gerisi diğer paketlerle aynı
+          black: { photos: ['assets/pack2-black-v2.png'].concat(packBlackPhotos.slice(1)), labelKey: 'black' },
+          white: { photos: ['assets/pack2-white-v2.png'].concat(packWhitePhotos.slice(1)), labelKey: 'white' },
+          // Karışık: bir siyah + bir beyaz. Sadece 2'li pakete özel seçenek.
+          // Galeri her iki rengin yaka + etek nakışını gösterir (siyah, sonra beyaz).
+          mixed: { photos: ['assets/pack2-mixed.png?v=11', 'assets/collar-black-label.png', 'assets/collar-white.png', 'assets/detail-black.png', 'assets/detail-white.png', 'assets/ohse-black-1.jpg', 'assets/ohse-white-1.jpg'], labelKey: 'mixed' },
+        },
+      },
+      '3pack': {
+        nameKey: "pack3", price: 1699, tees: 3, badge: 'value',
+        // 2 Ağu 2026: Shopify'da 3'lü paketin TÜM bedenleri tükendi (siyah + beyaz).
+        soldOut: ['XS','S','M','L','XL'], lowSizes: [],
+        variants: {
+          black: { photos: packBlackPhotos, labelKey: 'black' },
+          white: { photos: packWhitePhotos, labelKey: 'white' },
+        },
+      },
+    };
+    // paketin tek-tek alışa göre kazancı (TL). single = kazanç yok.
+    const packSaving = (key) => Math.max(0, SINGLE_PRICE * products[key].tees - products[key].price);
+    // aktif paket + renk için tükenen bedenler (paket geneli + renge özel birleşir)
+    const soldSizes = (pack, color) => {
+      const p = products[pack];
+      return [].concat(p.soldOut || [], (p.variants[color] && p.variants[color].soldOut) || []);
+    };
+    // aktif paket + renk için "son 1 adet" bedenleri (paket geneli + renge özel birleşir)
+    const lowStockSizes = (pack, color) => {
+      const p = products[pack];
+      return [].concat(p.lowSizes || [], (p.variants[color] && p.variants[color].lowSizes) || []);
+    };
+    let activePack = '2pack';
+    let activeColor = 'black';
+    let activeSize = 'S';
+    // Hız: açılışta yalnızca aktif varyantın (2'li siyah) fotoğraflarını preload et.
+    // Diğerleri renk/paket seçilince tembel yüklenir (buildGallery + loading=lazy).
+    (function preloadActive(){
+      const v = products[activePack] && products[activePack].variants[activeColor];
+      (v && v.photos || []).forEach((s) => { if (s) { const im = new Image(); im.src = s; } });
+    })();
+    // renk/paket değişince o varyantı arka planda hazırla (geçiş akıcı olsun)
+    function preloadVariant(pack, color){
+      const v = products[pack] && products[pack].variants[color];
+      (v && v.photos || []).forEach((s) => { if (s) { const im = new Image(); im.src = s; } });
+    }
+    // ilk yükleme bittikten sonra boşta kalan anda diğer tüm varyantları hazırla
+    (function preloadRestIdle(){
+      const run = () => Object.keys(products).forEach((pk) => Object.keys(products[pk].variants).forEach((c) => preloadVariant(pk, c)));
+      (window.requestIdleCallback || ((f) => setTimeout(f, 1500)))(run);
+    })();
+
+    const packName = document.getElementById('pack-name');
+    const priceLine = document.getElementById('price-line');
+
+    const isLifestyle = (src) => src.indexOf('lifestyle') !== -1;
+
+    // aktif renk/pakete göre swipe galerisini + küçük görselleri + noktaları kur
+    function buildGallery() {
+      const p = products[activePack];
+      const v = p.variants[activeColor];
+      const altBase = 'OHSE Slim-Fit T-Shirt — ' + t(p.nameKey) + ' — ' + t(v.labelKey);
+      gallery.innerHTML = ''; galleryThumbs.innerHTML = ''; galleryDots.innerHTML = '';
+      (v.photos || []).forEach((src, i) => {
+        const base = src.split('?')[0]; // cache-buster (?v=) sorgusunu at, yoksa fit/pad yanlış hesaplanır
+        const isCD = /collar|detail/.test(base); // yaka/nakış = gerçek foto, çerçeveyi doldurur (canlı sitedeki gibi)
+        const isCutoutFront = base.endsWith('.png') && !isCD; // ön tişört render'ı (şeffaf zemin)
+        const fit = (isCutoutFront || isLifestyle(base)) ? 'contain' : 'cover';
+        // Bazı model çekimlerinde denekler kadrajda daha alçak; onlara özel kırpma hizası.
+        const POS_OVERRIDE = { 'ohse-black-1.jpg': 'center 52%' };
+        const posKey = base.split('/').pop();
+        const pos = POS_OVERRIDE[posKey] ? POS_OVERRIDE[posKey]
+                  : (fit === 'cover' && !isCD) ? 'center 25%' : 'center';
+        const isMixedPhoto = /pack2-mixed/.test(base); // karışık = gerçek foto; kutu/çerçeve görünmesin diye glow yok
+        const pad = isCutoutFront ? '7%' : '0';
+        const filt = (isCutoutFront && !isMixedPhoto) ? 'drop-shadow(0 0 1.5px rgba(255,255,255,0.6)) drop-shadow(0 0 20px rgba(255,255,255,0.14))' : 'none';
+        const slide = document.createElement('div');
+        slide.className = 'gallery-slide';
+        const img = document.createElement('img');
+        img.src = src; img.alt = altBase; img.draggable = false;
+        img.loading = i === 0 ? 'eager' : 'lazy'; img.decoding = 'async';
+        if (i === 0) img.setAttribute('fetchpriority', 'high');
+        img.style.objectFit = fit; img.style.objectPosition = pos; img.style.padding = pad; img.style.filter = filt;
+        slide.appendChild(img);
+        slide.addEventListener('click', () => openLightbox(src, fit));
+        gallery.appendChild(slide);
+        const tb = document.createElement('button');
+        tb.type = 'button'; tb.className = 'g-thumb' + (i === 0 ? ' active' : ''); tb.dataset.i = i;
+        const timg = document.createElement('img'); timg.src = src; timg.draggable = false; timg.loading = 'lazy'; timg.decoding = 'async';
+        timg.style.objectFit = fit; timg.style.objectPosition = pos; timg.style.padding = isCutoutFront ? '10%' : '0'; timg.style.filter = filt;
+        tb.appendChild(timg);
+        tb.addEventListener('click', () => scrollToSlide(i));
+        galleryThumbs.appendChild(tb);
+        const dot = document.createElement('button');
+        dot.type = 'button'; dot.className = 'g-dot' + (i === 0 ? ' active' : ''); dot.dataset.i = i;
+        dot.setAttribute('aria-label', 'Fotoğraf ' + (i + 1));
+        dot.addEventListener('click', () => scrollToSlide(i));
+        galleryDots.appendChild(dot);
+      });
+      gallery.scrollLeft = 0; setActiveSlide(0);
+    }
+    function scrollToSlide(i) { gallery.scrollTo({ left: i * gallery.clientWidth, behavior: 'smooth' }); }
+    function setActiveSlide(i) {
+      galleryThumbs.querySelectorAll('.g-thumb').forEach((tb, j) => tb.classList.toggle('active', j === i));
+      galleryDots.querySelectorAll('.g-dot').forEach((d, j) => d.classList.toggle('active', j === i));
+    }
+    let _sraf = 0;
+    gallery.addEventListener('scroll', () => {
+      if (_sraf) return;
+      _sraf = requestAnimationFrame(() => { _sraf = 0; setActiveSlide(Math.round(gallery.scrollLeft / gallery.clientWidth)); });
+    }, { passive: true });
+
+    // paket kartlarındaki fiyat + kazanç metnini ürün modelinden doldur (dile duyarlı)
+    function updatePackCards() {
+      Object.keys(products).forEach((key) => {
+        const priceEl = document.querySelector('[data-price="' + key + '"]');
+        if (priceEl) priceEl.textContent = products[key].price.toFixed(2) + ' TL';
+        // kazanç metni gösterilmiyor (ucuz görünmesin diye kaldırıldı)
+        const saveEl = document.querySelector('[data-save="' + key + '"]');
+        if (saveEl) { saveEl.textContent = ''; saveEl.classList.remove('on'); }
+      });
+    }
+
+    function render() {
+      const p = products[activePack];
+      // aktif renk bu pakette yoksa (ör. 'mixed' sadece 2'li pakette) ilk renge düş
+      if (!p.variants[activeColor]) activeColor = Object.keys(p.variants)[0];
+      const v = p.variants[activeColor];
+      buildGallery();
+      colorName.textContent = t(v.labelKey);
+
+      // product (pack) name + price + cart label
+      packName.textContent = t(p.nameKey);
+      priceLine.textContent = p.price.toFixed(2) + ' TL';
+      if (cartLabel) cartLabel.textContent = t('addCart') + ' — ' + p.price.toFixed(2) + ' TL';
+
+      document.querySelectorAll('.swatch').forEach((s) => s.classList.toggle('active', s.dataset.color === activeColor));
+      document.querySelectorAll('.swatch-2').forEach((s) => {
+        // renk swatch'ını sadece aktif pakette o varyant varsa göster
+        s.classList.toggle('hidden', !p.variants[s.dataset.color]);
+        const on = s.dataset.color === activeColor;
+        s.classList.toggle('text-paper', on);
+        s.classList.toggle('bg-white/5', on);
+        s.classList.toggle('text-zinc-400', !on);
+      });
+      document.querySelectorAll('.pack-card').forEach((b) => b.classList.toggle('active', b.dataset.pack === activePack));
+
+      // --- stock: mark sold-out sizes for the active pack + colour ---
+      const soldOut = soldSizes(activePack, activeColor);
+      document.querySelectorAll('.size').forEach((b) => {
+        b.classList.toggle('sold', soldOut.includes(b.dataset.size));
+      });
+      // if the currently selected size is sold out for this pack, move to first available
+      if (soldOut.includes(activeSize)) {
+        const avail = [...document.querySelectorAll('.size')].find((b) => !soldOut.includes(b.dataset.size));
+        if (avail) selectSize(avail);
+      }
+      // low-stock note depends on the selected size
+      updateStockNote();
+    }
+
+    // show "Son 1 adet" only when the SELECTED size is a low-stock size for this pack
+    function updateStockNote() {
+      const lows = lowStockSizes(activePack, activeColor);
+      const sn = document.getElementById('stock-note');
+      if (sn) sn.classList.toggle('hidden', !lows.includes(activeSize));
+    }
+
+    document.querySelectorAll('[data-pack]').forEach((b) =>
+      b.addEventListener('click', () => { activePack = b.dataset.pack; render(); }));
+    document.querySelectorAll('[data-color]').forEach((b) =>
+      b.addEventListener('click', () => { activeColor = b.dataset.color; render(); }));
+    // --- Lightbox (fotoğrafa dokun -> büyüt) ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    function openLightbox(src, fit) {
+      lightboxImg.src = src || '';
+      lightboxImg.style.background = '#0a0a0a';
+      lightboxImg.style.objectFit = fit || 'contain';
+      const lbBase = (src || '').split('?')[0]; // cache-buster sorgusunu at
+      lightboxImg.style.filter = (lbBase.endsWith('.png') && !/collar|detail/.test(lbBase)) ? 'drop-shadow(0 0 1.5px rgba(255,255,255,0.6)) drop-shadow(0 0 26px rgba(255,255,255,0.16))' : 'none';
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+    lightbox.addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+    // initialise gallery state
+    render();
+
+    // --- Size select ---
+    function selectSize(b) {
+      if (b.classList.contains('sold')) return;        // can't pick a sold-out size
+      document.querySelectorAll('.size').forEach((s) => { s.classList.remove('border-white/50','text-paper','bg-white/5'); s.classList.add('border-white/15','text-zinc-300'); });
+      b.classList.remove('border-white/15','text-zinc-300'); b.classList.add('border-white/50','text-paper','bg-white/5');
+      activeSize = b.dataset.size;
+      updateStockNote();
+    }
+    document.querySelectorAll('.size').forEach((b) => b.addEventListener('click', () => selectSize(b)));
+
+    // --- Size guide modal ---
+    const sizeGuide = document.getElementById('size-guide');
+    function openSizeGuide() {
+      sizeGuide.classList.remove('hidden'); sizeGuide.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeSizeGuide() {
+      sizeGuide.classList.add('hidden'); sizeGuide.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('size-guide-open').addEventListener('click', openSizeGuide);
+    document.getElementById('sg-close').addEventListener('click', closeSizeGuide);
+    document.getElementById('sg-overlay').addEventListener('click', closeSizeGuide);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sizeGuide.classList.contains('hidden')) closeSizeGuide(); });
+
+    // ================= CART =================
+    const cart = [];
+    // ----- Shopify checkout wiring (shop.ohse.store) -----
+    const SHOP = 'https://shop.ohse.store';
+    const VARIANT_MAP = {
+      '3pack_black':  { XS:50103762157805, S:50103762190573, M:50103762223341, L:50103762256109, XL:50103762288877 },
+      '3pack_white':  { XS:50103766024429, S:50103766057197, M:50103766089965, L:50103766122733, XL:50103766155501 },
+      'single_black': { XS:50103767728365, S:50103767761133, M:50103767793901, L:50103767826669, XL:50103767859437 },
+      'single_white': { XS:50103771267309, S:50103771300077, M:50103771332845, L:50103771365613, XL:50103771398381 },
+      // 2'li paket — Shopify variant ID'leri (products.json'dan çekildi, 16 Tem 2026)
+      '2pack_black':  { XS:50292857569517, S:50292857536749, M:50292857503981, L:50292857471213, XL:50292857438445 },
+      '2pack_white':  { XS:50292847313133, S:50292847280365, M:50292847247597, L:50292847214829, XL:50292847182061 },
+      // 1 Siyah 1 Beyaz karışık 2'li paket — Shopify variant ID'leri (products.json'dan çekildi, 20 Tem 2026)
+      '2pack_mixed':  { XS:50302827692269, S:50302827725037, M:50302827757805, L:50302827790573, XL:50302827823341 },
+    };
+    function variantId(itemId){ const p = itemId.split('_'); const m = VARIANT_MAP[p[0]+'_'+p[1]]; return m ? m[p[2]] : null; }
+
+    const drawer = document.getElementById('cart-drawer');
+    const overlay = document.getElementById('cart-overlay');
+    const itemsBox = document.getElementById('cart-items');
+    const emptyBox = document.getElementById('cart-empty');
+    const cartFooter = document.getElementById('cart-footer');
+    const subtotalEl = document.getElementById('cart-subtotal');
+    const countBadge = document.getElementById('cart-count-badge');
+    const money = (n) => n.toFixed(2) + '\u00A0TL';
+
+    function openCart() { if (typeof closeAcc === 'function') closeAcc(); overlay.classList.remove('opacity-0','pointer-events-none'); drawer.classList.remove('translate-x-full'); document.body.style.overflow = 'hidden'; }
+    function closeCart() { overlay.classList.add('opacity-0','pointer-events-none'); drawer.classList.add('translate-x-full'); document.body.style.overflow = ''; }
+
+    function renderCart() {
+      const count = cart.reduce((s, i) => s + i.qty, 0);
+      const subtotal = cart.reduce((s, i) => s + i.qty * i.price, 0);
+      document.querySelectorAll('.cart-qty').forEach((el) => { el.textContent = count; el.classList.toggle('hidden', count === 0); el.classList.toggle('flex', count > 0); });
+      countBadge.textContent = `(${count})`;
+
+      if (!cart.length) {
+        itemsBox.innerHTML = '';
+        itemsBox.classList.add('hidden');
+        emptyBox.classList.remove('hidden'); emptyBox.classList.add('flex');
+        cartFooter.classList.add('hidden');
+        return;
+      }
+      itemsBox.classList.remove('hidden');
+      emptyBox.classList.add('hidden'); emptyBox.classList.remove('flex');
+      cartFooter.classList.remove('hidden');
+
+      itemsBox.innerHTML = cart.map((i) => `
+        <div class="flex gap-4 pb-5 border-b border-white/5 last:border-0">
+          <div class="flex-1">
+            <p class="text-paper text-sm font-medium">OHSE Slim-Fit T-Shirt</p>
+            <p class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 mt-1">${t(i.packKey)} · ${t(i.colorKey)} · ${t('sizeLabel')} ${i.size}</p>
+            <div class="flex items-center gap-4 mt-3">
+              <div class="flex items-center border border-white/15">
+                <button data-act="dec" data-id="${i.id}" class="px-3 py-1 text-zinc-400 hover:text-paper transition-colors" aria-label="Azalt">−</button>
+                <span class="px-3 text-sm tabular-nums">${i.qty}</span>
+                <button data-act="inc" data-id="${i.id}" class="px-3 py-1 text-zinc-400 hover:text-paper transition-colors" aria-label="Arttır">+</button>
+              </div>
+              <button data-act="rm" data-id="${i.id}" class="text-[11px] uppercase tracking-[0.2em] text-zinc-500 hover:text-paper btn-line">${t('remove')}</button>
+            </div>
+          </div>
+          <p class="chalk text-lg shrink-0">${money(i.qty * i.price)}</p>
+        </div>`).join('');
+
+      subtotalEl.textContent = money(subtotal);
+    }
+
+    function addToCart() {
+      const p = products[activePack];
+      if (soldSizes(activePack, activeColor).includes(activeSize)) return;   // sold-out size/colour can't be added
+      const v = p.variants[activeColor];
+      const id = `${activePack}_${activeColor}_${activeSize}`;
+      const found = cart.find((i) => i.id === id);
+      if (found) found.qty++;
+      else cart.push({ id, packKey: p.nameKey, colorKey: v.labelKey, size: activeSize, price: p.price, qty: 1 });
+      renderCart();
+    }
+
+    // qty +/- and remove (event delegation)
+    itemsBox.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-act]');
+      if (!btn) return;
+      const item = cart.find((i) => i.id === btn.dataset.id);
+      if (!item) return;
+      const act = btn.dataset.act;
+      if (act === 'inc') item.qty++;
+      else if (act === 'dec') { item.qty--; if (item.qty <= 0) cart.splice(cart.indexOf(item), 1); }
+      else if (act === 'rm') cart.splice(cart.indexOf(item), 1);
+      renderCart();
+    });
+
+    // add-to-cart button: add + brief feedback + open drawer
+    cartBtn.addEventListener('click', () => {
+      addToCart();
+      cartLabel.textContent = t('added');
+      setTimeout(() => { cartLabel.textContent = t('addCart') + ' — ' + products[activePack].price.toFixed(2) + '\u00A0TL'; }, 1400);
+      openCart();
+    });
+
+    // open/close wiring
+    document.querySelectorAll('.cart-open').forEach((el) => el.addEventListener('click', openCart));
+    document.getElementById('cart-close').addEventListener('click', closeCart);
+    document.querySelector('.cart-close-empty').addEventListener('click', closeCart);
+    overlay.addEventListener('click', closeCart);
+    document.getElementById('cart-checkout').addEventListener('click', () => {
+      // Straight to the payment screen: a dynamic Shopify cart permalink (VID:qty,...) skips the cart
+      // page and forwards directly to checkout (/checkouts/cn/...). Shopify handles login + all data.
+      // Koruma: sepette Shopify variant ID'si tanımsız (ör. henüz bağlanmamış 2'li paket) kalem varsa,
+      // sessizce düşürüp yanlış tutar ödetmemek için ödemeyi durdur ve kullanıcıyı uyar.
+      const unmapped = cart.filter((i) => !variantId(i.id));
+      if (unmapped.length) {
+        const note = document.getElementById('checkout-note');
+        if (note) { note.textContent = t('checkoutSoon'); note.classList.remove('hidden'); }
+        return;
+      }
+      const parts = cart.map((i) => variantId(i.id) + ':' + i.qty);
+      if (!parts.length) return;
+      window.location.href = SHOP + '/cart/' + parts.join(',');
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCart(); });
+
+    // packaging image: little shake on tap
+    const pkgImg = document.getElementById('pkg-img');
+    if (pkgImg) {
+      pkgImg.addEventListener('click', () => { pkgImg.classList.remove('pkg-shake'); void pkgImg.offsetWidth; pkgImg.classList.add('pkg-shake'); });
+      pkgImg.addEventListener('animationend', () => pkgImg.classList.remove('pkg-shake'));
+    }
+
+    renderCart();
+    applyLang();
+  </script>
+
+  <!-- OHSE kaset müzik çalar (hybrid) -->
+  <div id="ohse-music" class="omp-paused">
+    <button class="omp-fab" type="button" aria-label="Müzik çalar">
+      <span class="omp-fab-reels"><span class="omp-reel"></span><span class="omp-reel"></span></span>
+      <span class="omp-fab-hint">Mixtape</span>
+    </button>
+    <div class="omp-panel">
+      <div class="omp-head">
+        <span class="omp-brand"><img class="omp-logo" src="assets/drop-logo.png" alt="OHSE"><span class="omp-title-lbl">Mixtape</span></span>
+        <button class="omp-close" type="button" aria-label="Kapat">&times;</button>
+      </div>
+
+      <!-- çalan kaset -->
+      <div class="omp-cassette">
+        <span class="omp-cass-brand">OHSE</span>
+        <div class="omp-window"><span class="omp-reel big"></span><span class="omp-reel big"></span></div>
+        <div class="omp-cass-label">
+          <span class="omp-now-name">Dope Boyz</span>
+          <span class="omp-now-artist">Rico Ace &amp; Esdeekid</span>
+        </div>
+      </div>
+
+      <!-- kontroller -->
+      <div class="omp-controls">
+        <button class="omp-prev" type="button" aria-label="Önceki"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 6v12l-7-6 7-6zM11 6v12l-7-6 7-6z"/></svg></button>
+        <button class="omp-play" type="button" aria-label="Oynat / Durdur"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7-11-7z"/></svg></button>
+        <button class="omp-next" type="button" aria-label="Sonraki"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6v12l7-6-7-6zM13 6v12l7-6-7-6z"/></svg></button>
+      </div>
+
+      <div class="omp-slogan">The world is in a child's hands</div>
+
+      <!-- şarkı listesi -->
+      <ul class="omp-list">
+        <li class="omp-item" data-i="0">
+          <span class="omp-mini"><i></i><i></i></span>
+          <span class="omp-meta"><span class="omp-name">Dope Boyz</span><span class="omp-artist">Rico Ace &amp; Esdeekid</span></span>
+          <span class="omp-eq omp-eq-item"><i></i><i></i><i></i></span>
+        </li>
+        <li class="omp-item" data-i="1">
+          <span class="omp-mini"><i></i><i></i></span>
+          <span class="omp-meta"><span class="omp-name">OK</span><span class="omp-artist">Kanye West &amp; Don Toliver</span></span>
+          <span class="omp-eq omp-eq-item"><i></i><i></i><i></i></span>
+        </li>
+        <li class="omp-item" data-i="2">
+          <span class="omp-mini"><i></i><i></i></span>
+          <span class="omp-meta"><span class="omp-name">Grace</span><span class="omp-artist">Lil Baby &amp; 42 Dugg</span></span>
+          <span class="omp-eq omp-eq-item"><i></i><i></i><i></i></span>
+        </li>
+      </ul>
+    </div>
+    <audio id="omp-audio" preload="metadata"></audio>
+  </div>
+
+  <script>
+    // ===== OHSE kaset müzik çalar (hybrid) — index.html ile aynı, sayfa geçişinde devam =====
+    (function(){
+      const TRACKS = [
+        { src: 'assets/dopeboyz.mp3', name: 'Dope Boyz', artist: 'Rico Ace & Esdeekid' },
+        { src: 'assets/ok.mp3',       name: 'OK',        artist: 'Kanye West & Don Toliver' },
+        { src: 'assets/grace.mp3',    name: 'Grace',     artist: 'Lil Baby & 42 Dugg' },
+      ];
+      const DEFAULT = 0;            // site açılınca ilk çalan / listede ilk: Dope Boyz
+      const KEY = 'ohse_music_v3';
+      const SVG_PLAY  = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7-11-7z"/></svg>';
+      const SVG_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>';
+
+      const root = document.getElementById('ohse-music');
+      if (!root) return;
+      const audio = document.getElementById('omp-audio');
+      audio.loop = false; audio.preload = 'auto'; audio.playsInline = true; audio.setAttribute('playsinline','');
+      const items = Array.prototype.slice.call(root.querySelectorAll('.omp-item'));
+      const playBtn = root.querySelector('.omp-play');
+      const nowName = root.querySelector('.omp-now-name');
+      const nowArtist = root.querySelector('.omp-now-artist');
+      const volRange = root.querySelector('.omp-vol-range');
+
+      let state = { index: DEFAULT, time: 0, vol: 1 };
+      try { const raw = localStorage.getItem(KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); } catch(e){}
+      if (typeof state.vol !== 'number') state.vol = 1;
+
+      function save(){ try { localStorage.setItem(KEY, JSON.stringify({ index:state.index, time:state.time, vol:state.vol })); } catch(e){} }
+
+      function applyVol(v){ state.vol = Math.max(0, Math.min(1, v)); try { audio.volume = state.vol; } catch(e){} }
+      // GERÇEKTEN duyulabilir mi? (çalıyor + sessiz değil) — "gösteriyor ama çalmıyor" bug'ını önler
+      function audible(){ return !audio.paused && !audio.muted; }
+
+      function syncUI(){
+        const on = audible();
+        root.classList.toggle('omp-paused', !on);
+        if (playBtn) playBtn.innerHTML = on ? SVG_PAUSE : SVG_PLAY;
+        if (nowName) nowName.textContent = TRACKS[state.index].name;
+        if (nowArtist) nowArtist.textContent = TRACKS[state.index].artist;
+        items.forEach((el, k) => {
+          el.classList.toggle('active', k === state.index);
+          el.classList.toggle('playing', k === state.index && on);
+        });
+      }
+
+      function loadTrack(i, resumeTime){
+        state.index = ((i % TRACKS.length) + TRACKS.length) % TRACKS.length;
+        audio.src = TRACKS[state.index].src;
+        const t = resumeTime || 0;
+        audio.addEventListener('loadedmetadata', function once(){
+          try { if (t) audio.currentTime = t; } catch(e){}
+          audio.removeEventListener('loadedmetadata', once);
+        });
+        syncUI(); save();
+      }
+
+      function start(){
+        audio.muted = false;
+        const p = audio.play(); if (p && p.catch) p.catch(()=>{});
+        save(); setTimeout(syncUI, 80);
+      }
+      function stop(){ audio.pause(); save(); syncUI(); }
+      function toggle(){ if (audible()) stop(); else start(); }
+
+      applyVol(state.vol);
+      if (volRange) volRange.value = Math.round(state.vol * 100);
+      loadTrack(state.index, state.time);
+
+      items.forEach((el) => el.addEventListener('click', () => {
+        const i = parseInt(el.dataset.i, 10);
+        if (i === state.index && audible()) { stop(); return; }
+        loadTrack(i, 0); start();
+      }));
+
+      playBtn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
+      root.querySelector('.omp-next').addEventListener('click', (e) => { e.stopPropagation(); loadTrack(state.index + 1, 0); start(); });
+      root.querySelector('.omp-prev').addEventListener('click', (e) => { e.stopPropagation(); loadTrack(state.index - 1, 0); start(); });
+
+
+      root.querySelector('.omp-fab').addEventListener('click', (e) => { e.stopPropagation(); root.classList.add('omp-tapped'); root.classList.toggle('omp-open'); });
+      root.querySelector('.omp-close').addEventListener('click', () => root.classList.remove('omp-open'));
+      document.addEventListener('click', (e) => { if (!root.contains(e.target)) root.classList.remove('omp-open'); });
+
+      audio.addEventListener('play', syncUI);
+      audio.addEventListener('playing', syncUI);
+      audio.addEventListener('pause', syncUI);
+      audio.addEventListener('timeupdate', () => { state.time = audio.currentTime; });
+      audio.addEventListener('ended', () => { loadTrack(state.index + 1, 0); start(); });
+      window.addEventListener('pagehide', save);
+      window.addEventListener('beforeunload', save);
+
+      // --- AÇILIŞTA ÇAL ---
+      audio.muted = true;
+      (function(){ const p = audio.play(); if (p && p.catch) p.catch(()=>{}); })();
+      const EVS = ['pointerdown','touchstart','touchend','mousedown','click','keydown'];
+      function cleanup(){ EVS.forEach((ev) => window.removeEventListener(ev, unlock, true)); }
+      function unlock(){
+        audio.muted = false;
+        const p = audio.play(); if (p && p.catch) p.catch(()=>{});   // her zaman jest içinde çal (unmute-duraklatma tuzağını önler)
+        setTimeout(() => { syncUI(); if (audible()) cleanup(); }, 120);
+      }
+      EVS.forEach((ev) => window.addEventListener(ev, unlock, true));
+
+      syncUI();
+    })();
+  </script>
+
+</body>
+</html>

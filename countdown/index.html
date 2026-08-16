@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown</title>
+<style>
+  @font-face {
+    font-family: 'ADrip';
+    src: url('assets/adrip1.ttf') format('truetype');
+    font-display: block;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+  }
+
+  /* Logo: top-center, small */
+  .logo {
+    position: fixed;
+    top: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 10vh;
+    width: auto;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .stage {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4vw;            /* keep digits off the screen edges */
+  }
+
+  /* Countdown rendered with the adrip1 font.
+     Base size is a fallback; JS auto-fits it to the screen so it never overflows. */
+  #countdown {
+    font-family: 'ADrip', sans-serif;
+    color: #f5f5f5;
+    font-size: 12vw;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+  <img class="logo" src="assets/logo.png" alt="logo">
+
+  <div class="stage">
+    <div id="countdown">03:00:00:00</div>
+  </div>
+
+<script>
+  // Countdown: 3 days, format DD:HH:MM:SS (lowest unit = seconds)
+  const el = document.getElementById('countdown');
+
+  // --- auto-fit the digits to the screen (never overflow, mobile-safe) ---
+  // measure the element itself with the widest possible string, then scale to fit.
+  function fit() {
+    const prev = el.textContent;
+    el.style.fontSize = '100px';
+    el.textContent = '88:88:88:88';                 // widest-case width
+    const w = el.getBoundingClientRect().width || 1;
+    el.textContent = prev;
+    const byWidth  = 100 * (window.innerWidth  * 0.90) / w;
+    const byHeight = window.innerHeight * 0.20;
+    el.style.fontSize = Math.max(22, Math.min(byWidth, byHeight)) + 'px';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  window.addEventListener('orientationchange', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  const TOTAL_MS = 3 * 24 * 60 * 60 * 1000;
+  const startTime = performance.now();
+  const pad = n => String(n).padStart(2, '0');
+
+  function render(remainMs) {
+    if (remainMs < 0) remainMs = 0;
+    const totalSec = Math.floor(remainMs / 1000);
+    const d = Math.floor(totalSec / 86400);
+    const h = Math.floor(totalSec / 3600) % 24;
+    const m = Math.floor(totalSec / 60) % 60;
+    const s = totalSec % 60;
+    el.textContent = `${pad(d)}:${pad(h)}:${pad(m)}:${pad(s)}`;
+  }
+
+  function tick(now) {
+    const remain = TOTAL_MS - (now - startTime);
+    render(remain);
+    if (remain > 0) requestAnimationFrame(tick);
+    else render(0);
+  }
+
+  if (document.fonts && document.fonts.load) {
+    document.fonts.load('1em ADrip').then(() => { render(TOTAL_MS - (performance.now() - startTime)); });
+  }
+  render(TOTAL_MS);
+  requestAnimationFrame(tick);
+</script>
+</body>
+</html>

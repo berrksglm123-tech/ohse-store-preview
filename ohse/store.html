@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OHSE — Slim-Fit Tişört</title>
+<meta name="description" content="OHSE. Tek imza ürün. Sınırlı üretim.">
+<link rel="canonical" href="https://ohse.store/store.html">
+
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="OHSE">
+<meta property="og:url" content="https://ohse.store/store.html">
+<meta property="og:title" content="OHSE — Slim-Fit Tişört">
+<meta property="og:description" content="OHSE. Tek imza ürün. Sınırlı üretim.">
+<meta property="og:image" content="https://ohse.store/assets/hero.png">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#c6c4bd">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700..900&family=Courier+Prime:wght@400;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   OHSE — görsel kimlik NOIZY ile BİREBİR aynı ("fotokopi fanzin").
+   Token değerleri noizy/index.html ile aynı; birini değiştirirken diğerini de
+   güncelle.
+
+   2 Ağustos 2026 sadeleştirmesi: ürün fotoğrafları, hero slogan görseli,
+   kaset müzik çalar, TR/EN dil değiştirme, beden tablosu ve kargo takip
+   çekmecesi KALDIRILDI. Eski sürüm: _yedek-2026-08-02/store.html
+   Shopify VARIANT_MAP ve ödeme akışı korundu.
+   ========================================================================= */
+:root{
+  --wall:#c6c4bd;        /* duvar — sayfa zemini */
+  --sheet:#e7e5de;       /* afiş kağıdı — kartlar, paneller */
+  --ink:#111114;         /* mürekkep */
+  --ink-2:#6b6960;       /* solmuş mürekkep */
+  --spot:#1b2f6b;        /* lacivert — tek nokta rengi */
+  --rule:2px solid var(--ink);
+  --hair:1px solid rgba(17,17,20,.22);
+  --pad:clamp(16px,4vw,42px);
+  --hdr:56px;
+  color-scheme:light;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--wall);color:var(--ink);
+  font-family:'Archivo',system-ui,sans-serif;
+  font-weight:500;                     /* dokunun altında 400 fazla ince kalıyordu */
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.locked{overflow:hidden}
+
+.poster-face{font-family:'Big Shoulders Display','Archivo',sans-serif;
+  font-weight:900;line-height:.82;letter-spacing:-.005em;text-transform:uppercase}
+.tw{font-family:'Courier Prime',ui-monospace,monospace;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase}
+h1,h2,h3{text-wrap:balance}
+:focus-visible{outline:3px solid var(--spot);outline-offset:2px}
+
+/* toner dokusu — dozu artırıldı */
+.toner{position:fixed;inset:0;z-index:900;pointer-events:none;opacity:.68;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.26'/%3E%3C/svg%3E")}
+
+/* lacivert tram: ofset baskının nokta rasterı — retro dokuyu ve laciverti
+   aynı anda taşıyor, sayfanın tamamına yayılıyor */
+.halftone{position:fixed;inset:0;z-index:899;pointer-events:none;opacity:.34;
+  mix-blend-mode:multiply;
+  background-image:radial-gradient(rgba(27,47,107,.5) 0.9px,transparent 1px);
+  background-size:5px 5px}
+
+/* baskı ayar işaretleri — köşelerde matbaa registration mark'ı */
+.regmark{position:fixed;z-index:901;pointer-events:none;width:22px;height:22px;opacity:.5}
+.regmark::before,.regmark::after{content:'';position:absolute;background:var(--spot)}
+.regmark::before{left:50%;top:0;bottom:0;width:1px;transform:translateX(-50%)}
+.regmark::after{top:50%;left:0;right:0;height:1px;transform:translateY(-50%)}
+.regmark.tl{bottom:14px;left:12px}
+.regmark.tr{bottom:14px;right:12px}
+@media(max-width:700px){.regmark{display:none}}
+
+/* hatalı basım — z-index:0 şart, yoksa ::before body arka planının arkasına düşer */
+.misprint{position:relative;display:inline-block;z-index:0}
+.misprint::before{content:attr(data-echo);position:absolute;left:5px;top:5px;
+  color:var(--spot);z-index:-1;pointer-events:none}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:800;height:var(--hdr);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:0 var(--pad);background:var(--ink);color:var(--sheet);
+  border-bottom:var(--rule)}
+.logo{display:flex;align-items:center}
+.logo img{height:26px;display:block}
+nav{display:flex;gap:22px}
+nav a{color:var(--sheet);text-decoration:none;padding:4px 0;border-bottom:2px solid transparent}
+nav a:hover{border-bottom-color:var(--sheet)}
+.hdr-right{display:flex;align-items:center;gap:14px}
+.cartbtn{background:none;border:0;color:var(--sheet);cursor:pointer;
+  display:flex;gap:8px;align-items:center;font-family:'Courier Prime',monospace;font-weight:700;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:4px 0}
+.cartbtn:hover{color:#fff}
+.cartbtn .n{background:var(--sheet);color:var(--ink);min-width:19px;height:19px;
+  display:none;place-items:center;font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}
+.cartbtn .n.on{display:grid}
+.burger{display:none;background:none;border:0;color:var(--sheet);cursor:pointer;
+  padding:6px 0;font-size:17px;line-height:1}
+@media(max-width:860px){nav{display:none}.burger{display:block}}
+
+.mobmenu{position:fixed;top:var(--hdr);left:0;right:0;z-index:790;
+  background:var(--ink);color:var(--sheet);border-bottom:var(--rule);
+  display:none;flex-direction:column;padding:6px var(--pad) 18px}
+.mobmenu.on{display:flex}
+.mobmenu a{color:var(--sheet);text-decoration:none;padding:13px 0;border-bottom:1px solid rgba(231,229,222,.2)}
+.mobmenu a:last-child{border-bottom:0}
+
+/* ---------- slogan şeridi: soldan sağa tek satır, ortalı ---------- */
+.strip{display:flex;align-items:center;justify-content:center;
+  padding:12px var(--pad);background:var(--spot);color:var(--sheet);
+  border-bottom:var(--rule);overflow:hidden}
+.strip span{font-family:'Courier Prime',monospace;font-weight:700;
+  font-size:clamp(12px,2vw,19px);letter-spacing:clamp(.1em,.8vw,.38em);
+  text-transform:uppercase;white-space:nowrap}
+
+@media(max-width:700px){}
+@media(max-width:700px){}
+@media(max-width:700px){}
+
+/* ---------- düğmeler ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  background:var(--ink);color:var(--sheet);border:var(--rule);cursor:pointer;
+  padding:14px 22px;font-family:'Courier Prime',monospace;font-weight:700;font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;text-decoration:none;
+  transition:background .15s,color .15s}
+.btn:hover{background:var(--spot);border-color:var(--spot);color:var(--sheet)}
+.btn.ghost{background:none;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--sheet)}
+
+/* ---------- filtre sekmeleri ---------- */
+/* şeridin hemen altında: üstte ayrı çizgi yok, şeridin alt çizgisi yeterli */
+.filters{position:sticky;top:var(--hdr);z-index:700;display:flex;gap:7px;
+  overflow-x:auto;padding:13px var(--pad);background:var(--wall);
+  border-bottom:var(--rule);scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filters button{background:var(--sheet);border:var(--rule);color:var(--ink);cursor:pointer;
+  padding:8px 14px;white-space:nowrap;font-family:'Courier Prime',monospace;font-weight:700;
+  font-size:11px;letter-spacing:.13em;text-transform:uppercase;transition:.14s}
+.filters button:hover{background:var(--ink);color:var(--sheet)}
+.filters button.on{background:var(--spot);color:var(--sheet);border-color:var(--spot)}
+
+/* ---------- ürün listesi: basılı katalog satırı ----------
+   Izgara yerine satır: her ürün tek satır, çok daha kompakt ve okunur.
+   Matbaa fiyat listesi mantığı — tasarım diline birebir oturuyor. */
+.grid{padding:0;border-top:var(--rule)}
+.list-head{display:grid;align-items:center;gap:16px;
+  grid-template-columns:78px 78px 1fr auto 116px 28px;
+  padding:9px var(--pad);background:var(--ink);color:var(--sheet);
+  font-family:'Courier Prime',monospace;font-weight:700;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase}
+.list-head .r{text-align:right}
+@media(max-width:820px){.list-head{display:none}}
+
+.row{display:grid;align-items:center;gap:16px;width:100%;
+  grid-template-columns:78px 78px 1fr auto 116px 28px;
+  padding:14px var(--pad);background:var(--sheet);border:0;border-bottom:var(--rule);
+  cursor:pointer;text-align:left;color:inherit;font:inherit;
+  transition:background .14s,padding-left .14s}
+.row:hover,.row:focus-visible{background:#efeee8;padding-left:calc(var(--pad) + 8px)}
+.row:hover .row-go{color:var(--spot);transform:translateX(4px)}
+
+.row-code{font-family:'Courier Prime',monospace;font-weight:700;font-size:12px;
+  letter-spacing:.14em;color:var(--spot)}
+/* küçük afiş: ürün adının baş harfleri, kartın minyatürü */
+.row-thumb{width:78px;height:78px;border:var(--rule);display:grid;place-items:center;
+  overflow:hidden;background:var(--wall);font-family:'Big Shoulders Display',sans-serif;
+  font-weight:900;font-size:28px;line-height:1;color:transparent;
+  -webkit-text-stroke:1.4px rgba(17,17,20,.5)}
+/* multiply YOK: beyaz tişörtler açık zeminde tamamen kayboluyordu.
+   PNG'ler zaten kesme (saydam), karışıma gerek yok. */
+.row-thumb img{width:100%;height:100%;object-fit:contain;display:block;padding:5px}
+.row:hover .row-thumb{-webkit-text-stroke-color:var(--spot)}
+.row-name{display:block;font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+  text-transform:uppercase;font-size:26px;line-height:1}
+.row-var{display:block;font-family:'Courier Prime',monospace;font-weight:700;font-size:11px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--spot);margin-top:3px}
+.row-tag{font-family:'Courier Prime',monospace;font-weight:700;font-size:10px;
+  letter-spacing:.13em;text-transform:uppercase;padding:4px 8px;white-space:nowrap;
+  background:var(--spot);color:var(--sheet);border:2px solid var(--spot)}
+.row-tag.out{background:var(--sheet);color:var(--ink-2);border-color:var(--ink-2)}
+.row-tag.bos{background:none;border-color:transparent}
+.price{font-family:'Courier Prime',monospace;font-weight:700;font-size:14px;
+  white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+.price s{color:var(--ink-2);margin-right:6px;font-weight:400;font-size:11px}
+.row-go{text-align:right;color:var(--ink-2);font-size:17px;transition:.14s}
+.grid .none{padding:70px var(--pad);text-align:center;color:var(--ink-2)}
+
+@media(max-width:820px){
+  .row{grid-template-columns:66px 1fr auto;gap:12px;row-gap:6px;padding:13px var(--pad)}
+  .row-thumb{width:66px;height:66px;font-size:24px;grid-row:span 2}
+  .row-code{grid-column:2/-1;font-size:11px}
+  .row-main{grid-column:2}
+  .row-name{font-size:22px}
+  .row-tag{grid-column:2;justify-self:start;margin-top:4px}
+  .price{grid-column:3;grid-row:2;align-self:end}
+  .row-go{display:none}
+}
+
+/* ---------- manifesto ---------- */
+.manifesto{border-block:var(--rule);background:var(--ink);color:var(--sheet);
+  padding:clamp(46px,8vw,96px) var(--pad)}
+.manifesto h2{font-family:'Big Shoulders Display',sans-serif;font-weight:900;
+  text-transform:uppercase;font-size:clamp(40px,8vw,104px);line-height:.94;max-width:16ch}
+.manifesto .cols{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(20px,3.5vw,44px);margin-top:clamp(28px,4vw,52px)}
+@media(max-width:820px){.manifesto .cols{grid-template-columns:1fr}}
+.manifesto .col{border-top:2px solid var(--sheet);padding-top:14px}
+.manifesto .col h4{font-family:'Courier Prime',monospace;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:#a9b4d8;margin-bottom:9px}
+.manifesto .col p{font-size:14px;line-height:1.7;color:#d6d4cd}
+
+/* ---------- bülten ---------- */
+.news{padding:clamp(44px,7vw,92px) var(--pad);border-bottom:var(--rule)}
+.coupon{max-width:620px;margin:0 auto;background:var(--sheet);border:2px dashed var(--ink);
+  padding:clamp(22px,4vw,38px);text-align:center}
+.news h2{font-family:'Big Shoulders Display',sans-serif;font-weight:900;
+  text-transform:uppercase;font-size:clamp(34px,6vw,66px);line-height:.86}
+.news .lead{color:var(--ink-2);margin-top:12px;font-size:14px;line-height:1.6}
+.news form{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.news input{flex:1 1 200px;background:transparent;border:var(--rule);color:var(--ink);
+  padding:13px 14px;font-family:'Courier Prime',monospace;font-size:12px}
+.news input::placeholder{color:var(--ink-2)}
+.news .ok{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--spot);margin-top:13px;min-height:15px}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:var(--sheet);padding:clamp(40px,6vw,72px) var(--pad) 26px;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+@media(max-width:820px){footer{grid-template-columns:1fr 1fr}}
+footer img{height:24px;margin-bottom:14px}
+footer p{color:#a4a29b;font-size:13px;line-height:1.7;max-width:32ch}
+footer h4{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:#a9b4d8;margin-bottom:13px}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+footer a{color:var(--sheet);text-decoration:none;font-size:13px;font-weight:500}
+footer a:hover{text-decoration:underline;text-underline-offset:3px}
+.footmark{grid-column:1/-1;border-top:1px solid rgba(231,229,222,.25);margin-top:18px;
+  padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+  font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:#a4a29b}
+.footmark a{color:#a4a29b;font-size:11px}
+
+/* ---------- çekmeceler ---------- */
+.veil{position:fixed;inset:0;z-index:950;background:rgba(17,17,20,.55);
+  opacity:0;pointer-events:none;transition:opacity .25s}
+.veil.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:960;width:min(430px,100vw);
+  background:var(--sheet);border-left:var(--rule);transform:translateX(101%);
+  transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.dhead{display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:0 var(--pad);height:var(--hdr);background:var(--ink);color:var(--sheet);
+  border-bottom:var(--rule);flex:none}
+.dhead button{background:none;border:0;color:var(--sheet);cursor:pointer;font-size:19px;line-height:1;padding:4px}
+.dbody{flex:1;overflow-y:auto;padding:var(--pad)}
+.dfoot{border-top:var(--rule);padding:var(--pad);background:var(--sheet)}
+
+.line{display:flex;gap:14px;justify-content:space-between;padding-bottom:16px;
+  margin-bottom:16px;border-bottom:var(--hair)}
+.line:last-child{border-bottom:0;margin-bottom:0}
+.line h4{font-family:'Big Shoulders Display',sans-serif;font-weight:800;
+  text-transform:uppercase;font-size:22px;line-height:1}
+.line .sub{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-2);margin-top:5px}
+.qty{display:flex;align-items:center;border:var(--rule);margin-top:10px;width:max-content}
+.qty button{background:none;border:0;color:var(--ink);cursor:pointer;padding:3px 10px;font-size:15px}
+.qty button:hover{background:var(--ink);color:var(--sheet)}
+.qty span{padding:0 10px;font-family:'Courier Prime',monospace;font-size:12px;font-variant-numeric:tabular-nums}
+.rm{background:none;border:0;color:var(--ink-2);cursor:pointer;margin-top:9px;padding:0;
+  font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.rm:hover{color:var(--spot);text-decoration:underline}
+.sum{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.sum strong{font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:32px;
+  font-variant-numeric:tabular-nums}
+.note{background:var(--spot);color:var(--sheet);padding:11px 13px;margin-top:12px;
+  font-family:'Courier Prime',monospace;font-size:11px;line-height:1.6;letter-spacing:.06em;display:none}
+.note.on{display:block}
+.foot-fine{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-2);margin-top:12px;line-height:1.6}
+.empty{font-family:'Courier Prime',monospace;font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-2);text-align:center;padding-top:56px;line-height:1.9}
+
+.pposter{aspect-ratio:4/5;position:relative;overflow:hidden;border:var(--rule);
+  container-type:inline-size;margin-bottom:20px;display:flex;align-items:flex-end;padding:14px;
+  background-color:var(--sheet);}
+/* çekmecedeki afiş yazısı — katalog satırına geçerken ızgara CSS'iyle
+   birlikte silinmişti, buraya taşındı */
+.pposter .poster-type{font-family:'Big Shoulders Display',sans-serif;font-weight:900;
+  text-transform:uppercase;line-height:.78;letter-spacing:-.01em;
+  font-size:calc(var(--fit,26) * 1cqw);
+  color:transparent;-webkit-text-stroke:1.5px rgba(17,17,20,.45);
+  margin-left:-.04em;overflow-wrap:normal;word-break:normal}
+.pposter .code{position:absolute;top:10px;left:12px;font-family:'Courier Prime',monospace;
+  font-size:11px;letter-spacing:.14em;color:var(--ink);white-space:nowrap}
+#p-name{font-family:'Big Shoulders Display',sans-serif;font-weight:900;
+  text-transform:uppercase;font-size:clamp(34px,7vw,52px);line-height:.86;margin-bottom:8px}
+#p-price{font-family:'Courier Prime',monospace;font-size:15px;font-weight:700;
+  font-variant-numeric:tabular-nums}
+#p-desc{font-size:14px;line-height:1.75;margin:16px 0 24px;max-width:46ch}
+.label{font-family:'Courier Prime',monospace;font-size:11px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-2);margin-bottom:10px}
+.sizes{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:8px}
+.sizes button{background:var(--sheet);border:var(--rule);color:var(--ink);cursor:pointer;
+  min-width:52px;padding:11px 6px;font-family:'Courier Prime',monospace;font-size:12px;
+  font-weight:700;transition:.14s}
+.sizes button:hover:not(:disabled){background:var(--ink);color:var(--sheet)}
+.sizes button.on{background:var(--ink);color:var(--sheet)}
+.sizes button:disabled{color:rgba(17,17,20,.3);border-color:rgba(17,17,20,.22);
+  cursor:not-allowed;text-decoration:line-through}
+.hint{font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-2);margin-bottom:20px;min-height:14px}
+.hint.warn{color:var(--spot);font-weight:700}
+.add{width:100%}
+
+/* beden tablosu bağlantısı (ürün çekmecesinde) */
+.rowbtn{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.linkbtn{background:none;border:0;color:var(--ink-2);cursor:pointer;padding:4px 0;
+  font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  border-bottom:1px dashed rgba(17,17,20,.35)}
+.linkbtn:hover{color:var(--spot);border-bottom-color:var(--spot)}
+
+/* ---------- kargo takip çekmecesi ---------- */
+.track-card{border:var(--rule);background:var(--sheet);padding:clamp(16px,3vw,22px);margin-bottom:16px}
+.track-card h3{font-family:'Big Shoulders Display',sans-serif;font-weight:900;
+  text-transform:uppercase;font-size:30px;line-height:.95;margin-bottom:8px}
+.track-sub{font-size:14px;line-height:1.6;color:var(--ink-2);margin-bottom:16px}
+.track-help{font-family:'Courier Prime',monospace;font-size:11px;line-height:1.7;
+  color:var(--ink-2);border-top:var(--hair);padding-top:14px}
+.track-help a{color:var(--spot)}
+
+/* ---------- alt bilgi: iletişim + ödeme bandı ---------- */
+.foot-contact .hours{font-family:'Courier Prime',monospace;font-size:11px;line-height:1.7;
+  color:#8b8981;margin-top:12px;max-width:30ch}
+.foot-pay{grid-column:1/-1;display:flex;justify-content:flex-start;padding-top:6px}
+.foot-pay .ink-block{display:inline-flex;padding:10px 16px;background:#0b0b0d;border:2px solid #26251f}
+.foot-pay img{height:26px;width:auto;display:block}
+
+/* ---------- beden tablosu / bilgi modalı ---------- */
+.modal{position:fixed;inset:0;z-index:970;display:none;align-items:center;justify-content:center;padding:var(--pad)}
+.modal.on{display:flex}
+.modal-in{background:var(--sheet);border:var(--rule);width:min(640px,100%);
+  max-height:85svh;display:flex;flex-direction:column}
+.modal-body{padding:var(--pad);overflow-y:auto}
+.modal-body p{font-size:14px;line-height:1.75;margin-bottom:10px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:14px}
+.sg{width:100%;border-collapse:collapse;font-family:'Courier Prime',monospace;font-size:12px}
+.sg th,.sg td{padding:11px 8px;text-align:left;border-bottom:var(--hair);white-space:nowrap}
+.sg th{color:var(--ink-2);font-weight:400;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.sg td{font-variant-numeric:tabular-nums}
+
+/* ---------- sepette ücretsiz kargo çubuğu ---------- */
+.ship-bar{margin-bottom:16px}
+.ship-bar .track{height:3px;background:rgba(17,17,20,.18);position:relative;overflow:hidden;margin-top:8px}
+.ship-bar .track i{position:absolute;inset:0 auto 0 0;background:var(--spot);transition:width .4s}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="toner" aria-hidden="true"></div>
+<div class="halftone" aria-hidden="true"></div>
+<span class="regmark tl" aria-hidden="true"></span>
+<span class="regmark tr" aria-hidden="true"></span>
+
+<header>
+  <a href="#top" class="logo" aria-label="OHSE ana sayfa"><img src="assets/logo-mark.png" alt="OHSE"></a>
+  <nav class="tw">
+    <a href="#shop" data-jump="all">Tüm Ürünler</a>
+    <a href="#shop" data-jump="single">Tekli</a>
+    <a href="#shop" data-jump="2pack">2'li Paket</a>
+    <a href="#shop" data-jump="3pack">3'lü Paket</a>
+    <a href="about.html">Hakkımızda</a>
+  </nav>
+  <div class="hdr-right">
+    <button class="cartbtn" id="open-track" aria-label="Sipariş ve kargo takip">Takip</button>
+    <button class="cartbtn" id="open-cart">Sepet <span class="n" id="badge">0</span></button>
+    <button class="burger" id="burger" aria-label="Menü" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<div class="mobmenu tw" id="mobmenu">
+  <a href="#shop" data-jump="all">Tüm Ürünler</a>
+  <a href="#shop" data-jump="single">Tekli</a>
+  <a href="#shop" data-jump="2pack">2'li Paket</a>
+  <a href="#shop" data-jump="3pack">3'lü Paket</a>
+  <a href="about.html">Hakkımızda</a>
+</div>
+
+<!-- Marka sloganı: hero.png'deki baskının aynısı. lang="en" şart, yoksa
+     Türkçe büyük harf kuralı "Is/In" içindeki i'yi İ yapıyor. -->
+<div class="strip" id="top"><span lang="en">The World Is In A Child's Hands</span></div>
+
+<div class="filters" id="shop">
+  <button class="on" data-f="all">Hepsi</button>
+  <button data-f="single">Tekli</button>
+  <button data-f="2pack">2'li Paket</button>
+  <button data-f="3pack">3'lü Paket</button>
+  <button data-f="black">Siyah</button>
+  <button data-f="white">Beyaz</button>
+</div>
+
+<main class="grid" id="grid"></main>
+
+<section class="manifesto" id="manifesto">
+  <h2>Tek ürün, doğru yapılmış</h2>
+  <div class="cols">
+    <div class="col">
+      <h4>Üretim</h4>
+      <p>Tek bir imza ürün, sayılı adette basılır. Stok bittiğinde restock yok — arşive girer ve orada kalır.</p>
+    </div>
+    <div class="col">
+      <h4>Kalıp</h4>
+      <p>Slim-fit kalıp üzerine kurulu. Ağır pamuk, yıkamada çekmeyen kumaş. Bedenler giysinin kendi ölçüsüdür, vücut ölçüsü değil.</p>
+    </div>
+    <div class="col">
+      <h4>Baskı</h4>
+      <p>Baskılar elde uygulanır, o yüzden hiçbiri diğerinin aynısı olmaz. Kayma ve doku farkı hata değil, işin kendisidir.</p>
+    </div>
+  </div>
+</section>
+
+<section class="news">
+  <div class="coupon">
+    <p class="tw" style="color:var(--spot)">Drop bildirimi</p>
+    <h2>Drop'u kaçırma</h2>
+    <p class="lead">Yeni drop'lar ve arşive düşen parçalar önce e-postana gelir. Başka hiçbir şey göndermiyoruz.</p>
+    <form id="news-form">
+      <input type="email" placeholder="e-posta adresin" required aria-label="E-posta adresin">
+      <button type="submit" class="btn">Kaydol</button>
+    </form>
+    <p class="ok" id="news-ok" role="status"></p>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <img src="assets/logo-mark.png" alt="OHSE">
+    <p>Sınırlı üretim sokak giyimi. Türkiye'de üretildi.</p>
+  </div>
+  <div>
+    <h4>Mağaza</h4>
+    <ul>
+      <li><a href="#shop" data-jump="all">Tüm Ürünler</a></li>
+      <li><a href="#shop" data-jump="single">Tekli</a></li>
+      <li><a href="#shop" data-jump="2pack">2'li Paket</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Yardım</h4>
+    <ul>
+      <li><a href="teslimat-kargo.html">Kargo &amp; Teslimat</a></li>
+      <li><a href="iade-degisim.html">İade &amp; Değişim</a></li>
+      <li><a href="iletisim.html">İletişim</a></li>
+      <li><a href="support.html">Destek</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Kurumsal</h4>
+    <ul>
+      <li><a href="about.html">Hakkımızda</a></li>
+      <li><a href="iade-iptal.html">İade &amp; İptal</a></li>
+      <li><a href="cerez-politikasi.html">Çerez Politikası</a></li>
+      <li><a href="kullanim-kosullari.html">Kullanım Koşulları</a></li>
+    </ul>
+  </div>
+
+  <!-- Gerçek iletişim bilgileri: iletisim.html'den alındı, uydurma yok -->
+  <div class="foot-contact">
+    <h4>İletişim</h4>
+    <ul>
+      <li><a href="mailto:info@ohse.store">info@ohse.store</a></li>
+      <li><a href="tel:+905452180588">+90 545 218 05 88</a></li>
+      <li><a href="https://instagram.com/ohse.twch" target="_blank" rel="noopener">Instagram — @ohse.twch</a></li>
+      <li><a href="https://tiktok.com/@ohse.twch" target="_blank" rel="noopener">TikTok — @ohse.twch</a></li>
+    </ul>
+    <p class="hours">Hafta içi 09:00–18:00 · Cumartesi 10:00–16:00 · Pazar kapalı</p>
+  </div>
+
+  <div class="foot-pay">
+    <span class="ink-block"><img src="assets/payment-band.png"
+      alt="Ödeme yöntemleri: iyzico, Mastercard, Visa, American Express, Troy"></span>
+  </div>
+
+  <div class="footmark">
+    <span>© <span id="yil"></span> OHSE</span>
+    <span style="display:flex;gap:18px;flex-wrap:wrap">
+      <a href="gizlilik-politikasi.html">KVKK &amp; Gizlilik</a>
+      <a href="mesafeli-satis.html">Mesafeli Satış</a>
+    </span>
+  </div>
+</footer>
+
+<div class="veil" id="veil"></div>
+
+<!-- Sipariş & kargo takip — ana sitedeki araç, aynı hedeflere gidiyor:
+     ParcelPanel (kargo) ve Shopify hesabı (siparişler). -->
+<aside class="drawer" id="tdraw" aria-hidden="true" aria-label="Sipariş ve kargo takip">
+  <div class="dhead">
+    <span class="tw">Sipariş &amp; Kargo Takip</span>
+    <button data-close aria-label="Kapat">✕</button>
+  </div>
+  <div class="dbody">
+    <div class="track-card">
+      <p class="label" style="margin-bottom:6px">Kargo</p>
+      <h3>Kargonu takip et</h3>
+      <p class="track-sub">Sipariş numaran ve e-postanla kargonun anlık konumunu gör.</p>
+      <a class="btn" style="width:100%" href="https://shop.ohse.store/apps/parcelpanel"
+         target="_blank" rel="noopener">Kargonu Takip Et</a>
+    </div>
+
+    <div class="track-card">
+      <p class="label" style="margin-bottom:6px">Hesap</p>
+      <h3>Siparişlerim</h3>
+      <p class="track-sub">Geçmiş siparişlerini ve durumlarını OHSE hesabından gör.</p>
+      <a class="btn ghost" style="width:100%"
+         href="https://shop.ohse.store/account" target="_blank" rel="noopener">Siparişlerime Git</a>
+    </div>
+
+    <p class="track-help">Takip linkin sipariş onay e-postanda da yer alır. Sorun olursa
+      <a href="iletisim.html">iletişim sayfasından</a> bize ulaşabilirsin.</p>
+  </div>
+</aside>
+
+<!-- Beden tablosu — ana sitedeki modal. Ölçüler orada da boştu, uydurmuyorum. -->
+<div class="modal" id="sizemodal" role="dialog" aria-modal="true" aria-labelledby="sg-title">
+  <div class="modal-in">
+    <div class="dhead">
+      <span class="tw" id="sg-title">Beden Tablosu</span>
+      <button data-close-modal aria-label="Kapat">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>Ölçüler <strong>giysinin kendi ölçüsüdür</strong>, vücut ölçüsü değil.
+         Kalıp slim-fit üzerine kuruludur.</p>
+      <div class="table-wrap">
+        <table class="sg">
+          <thead><tr><th>Beden</th><th>Göğüs (cm)</th><th>Boy (cm)</th><th>Omuz (cm)</th><th>Kol (cm)</th></tr></thead>
+          <tbody>
+            <tr><td>XS</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>S</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>M</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>L</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>XL</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="color:var(--spot);margin-top:14px">Ölçüler ana sitede de boştu — gerçek
+         numaralar girilince buraya yazılacak.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ürün çekmecesi -->
+<aside class="drawer" id="pdraw" aria-hidden="true" aria-label="Ürün">
+  <div class="dhead">
+    <span class="tw" id="p-code">—</span>
+    <button data-close aria-label="Kapat">✕</button>
+  </div>
+  <div class="dbody">
+    <div class="pposter" id="p-poster"></div>
+    <h2 id="p-name"></h2>
+    <p id="p-price"></p>
+    <p id="p-desc"></p>
+    <div class="rowbtn">
+      <span class="label" style="margin:0">Beden</span>
+      <button class="linkbtn" id="open-size">Beden tablosu</button>
+    </div>
+    <div class="sizes" id="p-sizes"></div>
+    <p class="hint" id="p-hint"></p>
+  </div>
+  <div class="dfoot">
+    <button class="btn add" id="p-add">Sepete Ekle</button>
+  </div>
+</aside>
+
+<!-- sepet -->
+<aside class="drawer" id="cdraw" aria-hidden="true" aria-label="Sepet">
+  <div class="dhead">
+    <span class="tw">Sepet <span id="cnt">(0)</span></span>
+    <button data-close aria-label="Kapat">✕</button>
+  </div>
+  <div class="dbody" id="clines"><p class="empty">Sepetin boş.</p></div>
+  <div class="dfoot" id="cfoot" style="display:none">
+    <div class="ship-bar">
+      <p class="label" id="ship-note" style="margin:0"></p>
+      <div class="track"><i id="ship-fill" style="width:0"></i></div>
+    </div>
+    <div class="sum">
+      <span class="label" style="margin:0">Ara Toplam</span>
+      <strong id="ctotal">0 TL</strong>
+    </div>
+    <button class="btn add" id="checkout">Ödemeye Geç</button>
+    <p class="note" id="cnote" role="status"></p>
+    <p class="foot-fine">Kargo ödeme adımında hesaplanır.</p>
+  </div>
+</aside>
+
+<script>
+/* =========================================================================
+   OHSE — statik mağaza
+   Ödeme kendi sitemizde DEĞİL: sepet Shopify cart permalink'ine yönlendirilir
+   (SHOP + '/cart/<variantId>:<adet>,...'), Shopify checkout'u devralır.
+   Ürün eklerken/çıkarırken PRODUCTS ve VARIANT_MAP'in İKİSİ de güncellenmeli.
+   ========================================================================= */
+
+const SHOP = 'https://shop.ohse.store';
+/* Ücretsiz kargo eşiği — teslimat-kargo.html'deki gerçek değer (500 TL) */
+const FREE_SHIP = 500;
+
+/* ---- Shopify varyant ID'leri — GERÇEK, canlı ödemeyi bunlar yürütüyor.
+   Anahtar: '<paket>_<renk>'. Değiştirmeden önce Shopify'dan doğrula. ---- */
+const VARIANT_MAP = {
+  '3pack_black':  { XS:50103762157805, S:50103762190573, M:50103762223341, L:50103762256109, XL:50103762288877 },
+  '3pack_white':  { XS:50103766024429, S:50103766057197, M:50103766089965, L:50103766122733, XL:50103766155501 },
+  'single_black': { XS:50103767728365, S:50103767761133, M:50103767793901, L:50103767826669, XL:50103767859437 },
+  'single_white': { XS:50103771267309, S:50103771300077, M:50103771332845, L:50103771365613, XL:50103771398381 },
+  '2pack_black':  { XS:50292857569517, S:50292857536749, M:50292857503981, L:50292857471213, XL:50292857438445 },
+  '2pack_white':  { XS:50292847313133, S:50292847280365, M:50292847247597, L:50292847214829, XL:50292847182061 },
+  '2pack_mixed':  { XS:50302827692269, S:50302827725037, M:50302827757805, L:50302827790573, XL:50302827823341 },
+};
+
+/* ---- Ürünler. sku = VARIANT_MAP anahtarı. out = tükenen bedenler.
+   Fotoğraf yok: kartlarda ürün adı afiş olarak basılıyor. ---- */
+const SIZES = ['XS','S','M','L','XL'];
+const PRODUCTS = [
+  { sku:'single_black', code:'OH-01', name:'Slim-Fit Tee', variant:'Siyah',          pack:'single', color:'black', price:749,  sizes:SIZES, img:'assets/single-black-front-clean.png', out:['M','L','XL'],            desc:'Tek tişört. Slim-fit kalıp, ağır pamuk. Göğüste elde uygulanmış baskı.' },
+  { sku:'single_white', code:'OH-02', name:'Slim-Fit Tee', variant:'Beyaz',          pack:'single', color:'white', price:749,  sizes:SIZES, img:'assets/single-white-front-cut.png', out:['XL'],                    desc:'Tek tişört, beyaz kolorway. Aynı kalıp, ters baskı.' },
+  { sku:'2pack_black',  code:'OH-03', name:"2'li Paket",   variant:'Siyah',          pack:'2pack',  color:'black', price:1199, sizes:SIZES, img:'assets/pack2-black-v2.png', out:[],            new:true,   desc:'İki siyah tişört. Tek tek almaya göre 299 TL avantajlı.' },
+  { sku:'2pack_white',  code:'OH-04', name:"2'li Paket",   variant:'Beyaz',          pack:'2pack',  color:'white', price:1199, sizes:SIZES, img:'assets/pack2-white-v2.png', out:[],            new:true,   desc:'İki beyaz tişört. Tek tek almaya göre 299 TL avantajlı.' },
+  { sku:'2pack_mixed',  code:'OH-05', name:"2'li Paket",   variant:'1 Siyah 1 Beyaz',pack:'2pack',  color:'mixed', price:1199, sizes:SIZES, img:'assets/pack2-mixed.png', out:[],            new:true,   desc:'Bir siyah, bir beyaz. Sadece 2\'li pakete özel.' },
+  { sku:'3pack_black',  code:'OH-06', name:"3'lü Paket",   variant:'Siyah',          pack:'3pack',  color:'black', price:1699, sizes:SIZES, img:'assets/tee-black-cut-clean.png', out:SIZES,                     desc:'Üç siyah tişört. Şu an tüm bedenleri tükendi.' },
+  { sku:'3pack_white',  code:'OH-07', name:"3'lü Paket",   variant:'Beyaz',          pack:'3pack',  color:'white', price:1699, sizes:SIZES, img:'assets/tee-white-cut.png', out:SIZES,                     desc:'Üç beyaz tişört. Şu an tüm bedenleri tükendi.' },
+];
+
+/* ===================== durum ===================== */
+let filter = 'all', current = null, size = null;
+const cart = [];
+const $ = (s) => document.querySelector(s);
+const money = (n) => n.toLocaleString('tr-TR') + ' TL';
+const variantId = (sku, sz) => (VARIANT_MAP[sku] || {})[sz] || null;
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+
+/* Afiş puntosu: en uzun kelime kartın enine sığacak şekilde küçültülür. */
+const fitSize = (name) => {
+  const longest = Math.max(...name.split(/\s+/).map((w) => w.length));
+  return Math.min(30, Math.round(238 / longest));
+};
+
+/* ===================== ızgara ===================== */
+function matches(p){
+  if (filter === 'all') return true;
+  return p.pack === filter || p.color === filter;
+}
+
+function drawGrid(){
+  const liste = PRODUCTS.filter(matches);
+  if (!liste.length) {
+    $('#grid').innerHTML = '<p class="none">Bu kategoride ürün yok.</p>';
+    return;
+  }
+  /* satır başlığı: matbaa fiyat listesi gibi */
+  const bas = `<div class="list-head" aria-hidden="true">
+      <span>Kod</span><span></span><span>Ürün</span><span></span>
+      <span class="r">Fiyat</span><span></span>
+    </div>`;
+  $('#grid').innerHTML = bas + liste.map((p) => {
+    const gone = p.out.length === p.sizes.length;
+    const tag = gone ? '<span class="row-tag out">Tükendi</span>'
+              : p.new ? '<span class="row-tag">Avantajlı</span>'
+              : '<span class="row-tag bos"></span>';
+    /* minyatür afiş: ürün adının baş harfleri */
+    const kisa = p.name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+    return `<button class="row" data-sku="${p.sku}">
+      <span class="row-code">${p.code}</span>
+      <span class="row-thumb">${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.name)} — ${esc(p.variant)}" loading="lazy">` : kisa}</span>
+      <span class="row-main">
+        <span class="row-name">${esc(p.name)}</span>
+        <span class="row-var">${esc(p.variant)} · ${p.sizes[0]}–${p.sizes[p.sizes.length - 1]}</span>
+      </span>
+      ${tag}
+      <span class="price">${money(p.price)}</span>
+      <span class="row-go" aria-hidden="true">→</span>
+    </button>`;
+  }).join('');
+}
+
+document.querySelectorAll('.filters button').forEach((b) => b.addEventListener('click', () => {
+  document.querySelectorAll('.filters button').forEach((x) => x.classList.remove('on'));
+  b.classList.add('on'); filter = b.dataset.f; drawGrid();
+}));
+
+document.querySelectorAll('[data-jump]').forEach((a) => a.addEventListener('click', () => {
+  const btn = document.querySelector(`.filters button[data-f="${a.dataset.jump}"]`);
+  if (btn) btn.click();
+  closeMenu();
+}));
+
+/* ===================== mobil menü ===================== */
+const burger = $('#burger'), mobmenu = $('#mobmenu');
+function closeMenu(){ mobmenu.classList.remove('on'); burger.setAttribute('aria-expanded','false'); }
+burger.addEventListener('click', () => {
+  burger.setAttribute('aria-expanded', String(mobmenu.classList.toggle('on')));
+});
+
+/* ===================== çekmece kontrolü ===================== */
+function openD(el){
+  $('#veil').classList.add('on'); el.classList.add('on');
+  el.setAttribute('aria-hidden','false'); document.body.classList.add('locked');
+}
+function closeAll(){
+  $('#veil').classList.remove('on');
+  document.querySelectorAll('.drawer').forEach((d) => { d.classList.remove('on'); d.setAttribute('aria-hidden','true'); });
+  document.body.classList.remove('locked');
+}
+$('#veil').addEventListener('click', () => { closeAll(); closeSize(); });
+document.querySelectorAll('[data-close]').forEach((b) => b.addEventListener('click', closeAll));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeSize(); closeAll(); closeMenu(); } });
+
+/* ===================== ürün çekmecesi ===================== */
+$('#grid').addEventListener('click', (e) => {
+  const row = e.target.closest('.row');
+  if (row) openProduct(row.dataset.sku);
+});
+
+function openProduct(sku){
+  const p = PRODUCTS.find((x) => x.sku === sku);
+  if (!p) return;
+  current = p; size = null;
+
+  $('#p-code').textContent = p.code;
+  $('#p-name').textContent = p.name + ' — ' + p.variant;
+  $('#p-price').textContent = money(p.price);
+  $('#p-desc').textContent = p.desc;
+  $('#p-poster').innerHTML =
+    `<span class="code">${p.code}</span>` +
+    `<span class="poster-type" style="--fit:${fitSize(p.name)}">${esc(p.name)}</span>`;
+
+  $('#p-sizes').innerHTML = p.sizes.map((s) =>
+    `<button data-s="${s}" ${p.out.includes(s) ? 'disabled' : ''}>${s}</button>`).join('');
+  const hint = $('#p-hint');
+  hint.className = 'hint';
+  hint.textContent = p.out.length === p.sizes.length ? 'Tüm bedenler tükendi.'
+                   : p.out.length ? 'Üstü çizili bedenler tükendi.' : '';
+  openD($('#pdraw'));
+}
+
+$('#p-sizes').addEventListener('click', (e) => {
+  const b = e.target.closest('button');
+  if (!b || b.disabled) return;
+  $('#p-sizes').querySelectorAll('button').forEach((x) => x.classList.remove('on'));
+  b.classList.add('on'); size = b.dataset.s;
+  const hint = $('#p-hint'); hint.className = 'hint'; hint.textContent = '';
+});
+
+$('#p-add').addEventListener('click', () => {
+  if (!current) return;
+  if (!size) {
+    const hint = $('#p-hint'); hint.className = 'hint warn'; hint.textContent = 'Önce beden seç.';
+    return;
+  }
+  const id = current.sku + '_' + size;
+  const found = cart.find((i) => i.id === id);
+  if (found) found.qty++;
+  else cart.push({ id, sku:current.sku, name:current.name + ' — ' + current.variant, size, price:current.price, qty:1 });
+  drawCart();
+  closeAll();
+  openD($('#cdraw'));
+});
+
+/* ===================== sepet ===================== */
+function drawCart(){
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  const total = cart.reduce((s, i) => s + i.qty * i.price, 0);
+  const badge = $('#badge');
+  badge.textContent = count;
+  badge.classList.toggle('on', count > 0);
+  $('#cnt').textContent = `(${count})`;
+  $('#cnote').classList.remove('on');
+
+  if (!cart.length) {
+    $('#clines').innerHTML = '<p class="empty">Sepetin boş.</p>';
+    $('#cfoot').style.display = 'none';
+    return;
+  }
+  $('#cfoot').style.display = '';
+  $('#clines').innerHTML = cart.map((i) => `
+    <div class="line">
+      <div>
+        <h4>${esc(i.name)}</h4>
+        <p class="sub">Beden ${i.size}</p>
+        <div class="qty">
+          <button data-a="dec" data-id="${i.id}" aria-label="Azalt">−</button>
+          <span>${i.qty}</span>
+          <button data-a="inc" data-id="${i.id}" aria-label="Arttır">+</button>
+        </div>
+        <button class="rm" data-a="rm" data-id="${i.id}">Kaldır</button>
+      </div>
+      <span class="price">${money(i.qty * i.price)}</span>
+    </div>`).join('');
+  $('#ctotal').textContent = money(total);
+
+  const kalan = FREE_SHIP - total;
+  $('#ship-note').textContent = kalan > 0 ? `Ücretsiz kargoya ${money(kalan)} kaldı` : 'Kargo bedava';
+  $('#ship-fill').style.width = Math.min(100, (total / FREE_SHIP) * 100) + '%';
+}
+
+$('#clines').addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-a]');
+  if (!b) return;
+  const i = cart.find((x) => x.id === b.dataset.id);
+  if (!i) return;
+  if (b.dataset.a === 'inc') i.qty++;
+  else if (b.dataset.a === 'dec') { i.qty--; if (i.qty <= 0) cart.splice(cart.indexOf(i), 1); }
+  else cart.splice(cart.indexOf(i), 1);
+  drawCart();
+});
+
+$('#open-cart').addEventListener('click', () => { closeMenu(); closeAll(); openD($('#cdraw')); });
+$('#open-track').addEventListener('click', () => { closeMenu(); closeAll(); openD($('#tdraw')); });
+
+/* beden tablosu modalı */
+const sizeModal = $('#sizemodal');
+$('#open-size').addEventListener('click', () => {
+  sizeModal.classList.add('on'); $('#veil').classList.add('on'); document.body.classList.add('locked');
+});
+function closeSize(){
+  sizeModal.classList.remove('on');
+  if (!document.querySelector('.drawer.on')) { $('#veil').classList.remove('on'); document.body.classList.remove('locked'); }
+}
+document.querySelectorAll('[data-close-modal]').forEach((b) => b.addEventListener('click', closeSize));
+
+/* Ödeme: Shopify cart permalink. Varyant ID'si tanımsız kalem varsa
+   yanlış tutar ödetmemek için ödemeyi durdurur. */
+$('#checkout').addEventListener('click', () => {
+  if (!cart.length) return;
+  const eksik = cart.filter((i) => !variantId(i.sku, i.size));
+  if (eksik.length) {
+    const n = $('#cnote');
+    n.textContent = 'Bu ürün için ödeme altyapısı hazır değil. Instagram\'dan yazabilirsin.';
+    n.classList.add('on');
+    return;
+  }
+  const parts = cart.map((i) => variantId(i.sku, i.size) + ':' + i.qty);
+  window.location.href = SHOP + '/cart/' + parts.join(',');
+});
+
+/* ===================== bülten ===================== */
+$('#news-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  e.target.reset();
+  $('#news-ok').textContent = 'Kaydedildi. Drop\'ta haber vereceğiz.';
+});
+
+/* ===================== başlat ===================== */
+$('#yil').textContent = new Date().getFullYear();
+drawGrid();
+drawCart();
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OHSE — Destek</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display:['Anton','sans-serif'], body:['Archivo','sans-serif'] },
+      colors: {
+        /* NOIZY paleti — değerler ters çevrildi: paper/white = mürekkep, black = kağıt */
+        ink:'#111114', paper:'#111114', white:'#111114', black:'#e7e5de', spot:'#1b2f6b',
+        zinc:{ 200:'#26251f', 300:'#3a382f', 400:'#57554c', 500:'#6b6960', 600:'#87857b' },
+      },
+      letterSpacing: { ultra:'0.45em' },
+    } } };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700;900&family=Big+Shoulders+Display:wght@700..900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --chalk:#111114; --wall:#c6c4bd; --sheet:#e7e5de; --ink:#111114;
+      --ink-2:#6b6960; --spot:#1b2f6b; --rule:2px solid #111114; color-scheme:light; }
+    html, body { background:var(--wall); color:var(--ink); }
+    .chalk { font-family:'Big Shoulders Display','Anton',sans-serif; font-weight:900;
+      text-transform:uppercase; color:var(--ink); letter-spacing:-.005em; line-height:.9; }
+    .tw { font-family:'Courier Prime',ui-monospace,monospace; letter-spacing:.14em; text-transform:uppercase; }
+    /* başlık kalıcı mürekkep bandı — logo beyaz tebeşir, kağıtta kaybolurdu */
+    header { background:var(--ink) !important; border-bottom:var(--rule) !important;
+      backdrop-filter:none !important; }
+    header a, header button, header .text-paper { color:var(--sheet) !important; }
+    header .text-zinc-400, header .text-zinc-500, header .text-zinc-600 { color:#8b8981 !important; }
+    :focus-visible { outline:3px solid var(--spot); outline-offset:2px; }
+    body { -webkit-font-smoothing:antialiased; }
+        .grain::before { content:""; position:fixed; inset:0; z-index:60; pointer-events:none; opacity:0.5; mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E"); }
+    .btn-line { position:relative; }
+    .btn-line::after { content:""; position:absolute; left:0; bottom:-2px; height:1px; width:100%; background:currentColor; transform:scaleX(0); transform-origin:right; transition:transform .5s cubic-bezier(.16,1,.3,1); }
+    .btn-line:hover::after { transform:scaleX(1); transform-origin:left; }
+    ::selection { background:#111114; color:#e7e5de; }
+    body::-webkit-scrollbar { width:8px; }
+    body::-webkit-scrollbar-thumb { background:#111114; }
+  </style>
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#c6c4bd" />
+</head>
+<body class="grain font-body text-paper antialiased overflow-x-hidden">
+
+  <header class="fixed top-0 inset-x-0 z-50 bg-black/70 backdrop-blur-md border-b border-white/10">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="flex items-center justify-between py-4">
+        <a href="store.html" data-i18n="backStore" class="text-[11px] uppercase tracking-[0.25em] text-zinc-400 hover:text-paper transition-colors btn-line">← Mağaza</a>
+        <a href="store.html" class="shrink-0"><img src="assets/logo-mark.png" alt="OHSE" class="h-10 w-auto object-contain" draggable="false" /></a>
+        <button type="button" class="lang-toggle text-[12px] font-bold tracking-[0.12em] text-paper select-none" aria-label="Dil / Language">
+          <span data-lang="tr" class="lang-opt cursor-pointer">TR</span><span class="text-zinc-600 mx-1.5">|</span><span data-lang="en" class="lang-opt cursor-pointer text-zinc-500">EN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="px-6 lg:px-10 pt-36 pb-8">
+    <article class="mx-auto max-w-3xl">
+      <p class="text-[11px] uppercase tracking-[0.35em] text-zinc-600 mb-4">OHSE</p>
+      <h1 data-i18n="support" class="chalk text-4xl sm:text-6xl leading-[0.95] mb-8">Destek</h1>
+      <div class="h-px w-full bg-white/10 mb-10"></div>
+      <p data-i18n="faqIntro" class="text-zinc-400 leading-relaxed text-[15px] mb-2">Size yardımcı olmak için hazırız. Sorularınızın cevaplarını burada bulabilirsiniz.</p>
+      <h2 data-i18n="faqTitle" class="chalk text-2xl sm:text-3xl mt-10 mb-6">Sıkça Sorulan Sorular</h2>
+      <div class="space-y-3">
+      <details class="group rounded-xl ring-1 ring-white/10 bg-white/[0.02] px-6 py-5 open:bg-white/[0.04] transition">
+        <summary class="flex items-center justify-between cursor-pointer list-none text-paper font-semibold text-[17px]">
+          <span data-i18n="q1">Kargo süresi nedir?</span>
+          <span class="ml-4 text-zinc-500 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <p data-i18n="a1" class="text-zinc-400 leading-relaxed text-[15px] mt-4">Siparişleriniz 2-3 iş günü içinde kargoya verilir. Kargo takip bilgisi e-posta ile gönderilir. Türkiye içi kargo süresi 1-3 iş günüdür. Detaylı bilgi için Teslimat ve Kargo Politikası sayfasını ziyaret edebilirsiniz.</p>
+        <a href="teslimat-kargo.html" class="inline-block mt-3 text-[12px] uppercase tracking-[0.2em] text-zinc-300 btn-line hover:text-paper" data-i18n="shippingPolicyLink">Teslimat ve Kargo Politikası →</a>
+      </details>
+      <details class="group rounded-xl ring-1 ring-white/10 bg-white/[0.02] px-6 py-5 open:bg-white/[0.04] transition">
+        <summary class="flex items-center justify-between cursor-pointer list-none text-paper font-semibold text-[17px]">
+          <span data-i18n="q2">İade politikası nedir?</span>
+          <span class="ml-4 text-zinc-500 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <p data-i18n="a2" class="text-zinc-400 leading-relaxed text-[15px] mt-4">14 gün içinde iade garantisi. Ürün kullanılmamış, etiketleri takılı ve orijinal paketinde olmalıdır. İade kargo ücreti müşteriye aittir (ürün hatası hariç). Detaylı bilgi için İade ve İptal Politikası sayfasını ziyaret edebilirsiniz.</p>
+        <a href="iade-iptal.html" class="inline-block mt-3 text-[12px] uppercase tracking-[0.2em] text-zinc-300 btn-line hover:text-paper" data-i18n="returnPolicyLink">İade ve İptal Politikası →</a>
+      </details>
+      <details class="group rounded-xl ring-1 ring-white/10 bg-white/[0.02] px-6 py-5 open:bg-white/[0.04] transition">
+        <summary class="flex items-center justify-between cursor-pointer list-none text-paper font-semibold text-[17px]">
+          <span data-i18n="q3">Beden seçimi nasıl yapılır?</span>
+          <span class="ml-4 text-zinc-500 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <p data-i18n="a3" class="text-zinc-400 leading-relaxed text-[15px] mt-4">Ürün açıklamalarında beden tablosu bulunmaktadır. Şüpheniz varsa bizimle iletişime geçin. Beden değişikliği yapılabilir. Ölçü tablolarımız standart beden ölçülerine göre hazırlanmıştır.</p>
+        
+      </details>
+      <details class="group rounded-xl ring-1 ring-white/10 bg-white/[0.02] px-6 py-5 open:bg-white/[0.04] transition">
+        <summary class="flex items-center justify-between cursor-pointer list-none text-paper font-semibold text-[17px]">
+          <span data-i18n="q4">Ödeme yöntemleri nelerdir?</span>
+          <span class="ml-4 text-zinc-500 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <p data-i18n="a4" class="text-zinc-400 leading-relaxed text-[15px] mt-4">Güvenli ödeme altyapısı ile tüm kredi kartları ve banka kartları kabul edilir. Kapıda ödeme seçeneği mevcuttur. Ödeme işlemleri SSL sertifikası ile korunmaktadır.</p>
+        
+      </details>
+      <details class="group rounded-xl ring-1 ring-white/10 bg-white/[0.02] px-6 py-5 open:bg-white/[0.04] transition">
+        <summary class="flex items-center justify-between cursor-pointer list-none text-paper font-semibold text-[17px]">
+          <span data-i18n="q5">Stok durumu nasıl öğrenilir?</span>
+          <span class="ml-4 text-zinc-500 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <p data-i18n="a5" class="text-zinc-400 leading-relaxed text-[15px] mt-4">Ürün sayfalarında stok durumu gösterilmektedir. Stokta olmayan ürünler için bildirim alabilirsiniz. Stok güncellemeleri günlük olarak yapılmaktadır.</p>
+        
+      </details>
+      <details class="group rounded-xl ring-1 ring-white/10 bg-white/[0.02] px-6 py-5 open:bg-white/[0.04] transition">
+        <summary class="flex items-center justify-between cursor-pointer list-none text-paper font-semibold text-[17px]">
+          <span data-i18n="q6">Özel sipariş yapabilir miyim?</span>
+          <span class="ml-4 text-zinc-500 transition-transform group-open:rotate-45">+</span>
+        </summary>
+        <p data-i18n="a6" class="text-zinc-400 leading-relaxed text-[15px] mt-4">Özel tasarım ve toplu siparişler için bizimle iletişime geçin. info@ohse.store adresinden veya İletişim sayfasından bize ulaşabilirsiniz. Özel siparişler için fiyat teklifi hazırlanmaktadır.</p>
+        <a href="iletisim.html" class="inline-block mt-3 text-[12px] uppercase tracking-[0.2em] text-zinc-300 btn-line hover:text-paper" data-i18n="contactLink">İletişim →</a>
+      </details>
+      </div>
+
+      <div class="mt-12 rounded-xl ring-1 ring-white/10 bg-white/[0.02] p-7 text-center">
+        <p data-i18n="ctaTitle" class="text-paper font-semibold text-lg">Sorunuz burada yok mu?</p>
+        <p data-i18n="ctaSub" class="text-zinc-400 text-[15px] mt-2">Bize doğrudan ulaşın, en geç 48 saat içinde yanıtlayalım.</p>
+        <div class="mt-5 flex flex-wrap justify-center gap-4 text-[12px] uppercase tracking-[0.2em]">
+          <a href="mailto:info@ohse.store" class="btn-line text-zinc-300 hover:text-paper">info@ohse.store</a>
+          <a href="iletisim.html" data-i18n="contactPageLink" class="btn-line text-zinc-300 hover:text-paper">İletişim Sayfası →</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="border-t border-white/10 px-6 lg:px-10 py-16 mt-24">
+    <div class="mx-auto max-w-7xl grid gap-12 md:grid-cols-4 text-[13px]">
+      <div class="space-y-4">
+        <img src="assets/logo-mark.png" alt="OHSE" class="h-9 w-auto" draggable="false" />
+      </div>
+      <div>
+        <h4 data-i18n="quickLinks" class="text-[11px] uppercase tracking-[0.3em] text-zinc-500 mb-4">Hızlı Linkler</h4>
+        <ul class="space-y-2.5 text-zinc-400">
+          <li><a href="store.html" data-i18n="home" class="btn-line hover:text-paper transition-colors">Ana Sayfa</a></li>
+          <li><a href="about.html" data-i18n="about" class="btn-line hover:text-paper transition-colors">Hakkımızda</a></li>
+          <li><a href="support.html" data-i18n="support" class="btn-line hover:text-paper transition-colors">Destek</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="social" class="text-[11px] uppercase tracking-[0.3em] text-zinc-500 mb-4">Sosyal Medya</h4>
+        <ul class="space-y-2.5 text-zinc-400">
+          <li><a href="https://instagram.com/ohse.twch" target="_blank" rel="noopener" class="btn-line hover:text-paper transition-colors">Instagram — @ohse.twch</a></li>
+          <li><a href="https://www.tiktok.com/@ohse.twch" target="_blank" rel="noopener" class="btn-line hover:text-paper transition-colors">TikTok — @ohse.twch</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="contact" class="text-[11px] uppercase tracking-[0.3em] text-zinc-500 mb-4">İletişim</h4>
+        <ul class="space-y-2.5 text-zinc-400">
+          <li><span data-i18n="emailLabel">E-posta:</span> <a href="mailto:info@ohse.store" class="btn-line hover:text-paper">info@ohse.store</a></li>
+          <li><span data-i18n="phoneLabel">Telefon:</span> <a href="tel:+905452180588" class="btn-line hover:text-paper">+90 545 218 05 88</a></li>
+          <li><a href="iletisim.html" data-i18n="detailedContact" class="btn-line hover:text-paper transition-colors">Detaylı İletişim Bilgileri</a></li>
+        </ul>
+      </div>
+    </div>
+      <div class="mt-14 pt-10 border-t border-white/5 flex justify-center">
+        <img src="assets/payment-band.png" alt="Ödeme Yöntemleri: iyzico, Mastercard, Visa, American Express, Troy" class="h-7 sm:h-8 w-auto opacity-80" draggable="false" />
+      </div>
+    <div class="mx-auto max-w-7xl mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] uppercase tracking-[0.3em] text-zinc-700">
+      <p data-i18n="rightsReserved">© 2026 OHSE. Tüm hakları saklıdır.</p>
+      <div class="flex gap-6">
+        <a href="gizlilik-politikasi.html" data-i18n="privacy" class="hover:text-zinc-400">Gizlilik</a>
+        <a href="kullanim-kosullari.html" data-i18n="terms" class="hover:text-zinc-400">Koşullar</a>
+        <a href="cerez-politikasi.html" data-i18n="cookies" class="hover:text-zinc-400">Çerezler</a>
+      </div>
+    </div>
+  </footer>
+<script>
+const T={tr:{"backStore": "← Mağaza", "quickLinks": "Hızlı Linkler", "home": "Ana Sayfa", "about": "Hakkımızda", "support": "Destek", "social": "Sosyal Medya", "contact": "İletişim", "emailLabel": "E-posta:", "phoneLabel": "Telefon:", "detailedContact": "Detaylı İletişim Bilgileri", "rightsReserved": "© 2026 OHSE. Tüm hakları saklıdır.", "privacy": "Gizlilik", "terms": "Koşullar", "cookies": "Çerezler", "legalNote": "Bu belgenin geçerli ve resmî dili Türkçedir."},en:{"backStore": "← Store", "quickLinks": "Quick Links", "home": "Home", "about": "About", "support": "Support", "social": "Social Media", "contact": "Contact", "emailLabel": "Email:", "phoneLabel": "Phone:", "detailedContact": "Detailed Contact Info", "rightsReserved": "© 2026 OHSE. All rights reserved.", "privacy": "Privacy", "terms": "Terms", "cookies": "Cookies", "legalNote": "The official language of this document is Turkish; the English version is for information only."}};
+let LANG=(function(){try{return localStorage.getItem('ohse_lang')||'tr';}catch(e){return 'tr';}})();
+function applyLang(){document.documentElement.lang=(LANG==="en")?"en":"tr";document.querySelectorAll("[data-i18n]").forEach(function(el){var k=el.getAttribute("data-i18n");if(T[LANG][k]!=null)el.textContent=T[LANG][k];});document.querySelectorAll("[data-i18n-ph]").forEach(function(el){var k=el.getAttribute("data-i18n-ph");if(T[LANG][k]!=null)el.placeholder=T[LANG][k];});document.querySelectorAll(".lang-opt").forEach(function(o){var on=o.getAttribute("data-lang")===LANG;o.classList.toggle("text-paper",on);o.classList.toggle("text-zinc-500",!on);});}
+function setLang(l){LANG=l;try{localStorage.setItem("ohse_lang",l);}catch(e){}applyLang();}
+document.querySelectorAll(".lang-opt").forEach(function(o){o.addEventListener("click",function(){setLang(o.getAttribute("data-lang"));});});
+Object.assign(T.tr,{"faqIntro": "Size yardımcı olmak için hazırız. Sorularınızın cevaplarını burada bulabilirsiniz.", "faqTitle": "Sıkça Sorulan Sorular", "q1": "Kargo süresi nedir?", "a1": "Siparişleriniz 2-3 iş günü içinde kargoya verilir. Kargo takip bilgisi e-posta ile gönderilir. Türkiye içi kargo süresi 1-3 iş günüdür. Detaylı bilgi için Teslimat ve Kargo Politikası sayfasını ziyaret edebilirsiniz.", "shippingPolicyLink": "Teslimat ve Kargo Politikası →", "q2": "İade politikası nedir?", "a2": "14 gün içinde iade garantisi. Ürün kullanılmamış, etiketleri takılı ve orijinal paketinde olmalıdır. İade kargo ücreti müşteriye aittir (ürün hatası hariç). Detaylı bilgi için İade ve İptal Politikası sayfasını ziyaret edebilirsiniz.", "returnPolicyLink": "İade ve İptal Politikası →", "q3": "Beden seçimi nasıl yapılır?", "a3": "Ürün açıklamalarında beden tablosu bulunmaktadır. Şüpheniz varsa bizimle iletişime geçin. Beden değişikliği yapılabilir. Ölçü tablolarımız standart beden ölçülerine göre hazırlanmıştır.", "q4": "Ödeme yöntemleri nelerdir?", "a4": "Güvenli ödeme altyapısı ile tüm kredi kartları ve banka kartları kabul edilir. Kapıda ödeme seçeneği mevcuttur. Ödeme işlemleri SSL sertifikası ile korunmaktadır.", "q5": "Stok durumu nasıl öğrenilir?", "a5": "Ürün sayfalarında stok durumu gösterilmektedir. Stokta olmayan ürünler için bildirim alabilirsiniz. Stok güncellemeleri günlük olarak yapılmaktadır.", "q6": "Özel sipariş yapabilir miyim?", "a6": "Özel tasarım ve toplu siparişler için bizimle iletişime geçin. info@ohse.store adresinden veya İletişim sayfasından bize ulaşabilirsiniz. Özel siparişler için fiyat teklifi hazırlanmaktadır.", "contactLink": "İletişim →", "ctaTitle": "Sorunuz burada yok mu?", "ctaSub": "Bize doğrudan ulaşın, en geç 48 saat içinde yanıtlayalım.", "contactPageLink": "İletişim Sayfası →"});Object.assign(T.en,{"faqIntro": "We're here to help. Find answers to your questions below.", "faqTitle": "Frequently Asked Questions", "q1": "How long is shipping?", "a1": "Your orders are dispatched within 2-3 business days. Tracking info is sent by email. Domestic delivery takes 1-3 business days. See the Shipping & Delivery Policy page for details.", "shippingPolicyLink": "Shipping & Delivery Policy →", "q2": "What is the return policy?", "a2": "14-day return guarantee. The item must be unused, with tags attached and in its original packaging. Return shipping is the customer’s responsibility (except for defective items). See the Return & Cancellation Policy page for details.", "returnPolicyLink": "Return & Cancellation Policy →", "q3": "How do I choose my size?", "a3": "A size chart is included in the product descriptions. If unsure, contact us. Size exchange is possible. Our charts follow standard size measurements.", "q4": "What payment methods are accepted?", "a4": "All credit and debit cards are accepted via our secure payment infrastructure. Cash on delivery is available. Payments are protected with an SSL certificate.", "q5": "How can I check stock?", "a5": "Stock status is shown on product pages. You can get a notification for out-of-stock items. Stock is updated daily.", "q6": "Can I place a custom order?", "a6": "Contact us for custom designs and bulk orders. Reach us at info@ohse.store or via the Contact page. We prepare a quote for custom orders.", "contactLink": "Contact →", "ctaTitle": "Question not listed here?", "ctaSub": "Reach us directly — we’ll reply within 48 hours.", "contactPageLink": "Contact Page →"});applyLang();
+</script>
+</body>
+</html>

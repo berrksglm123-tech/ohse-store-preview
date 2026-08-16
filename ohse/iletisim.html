@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OHSE — İletişim</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { display:['Anton','sans-serif'], body:['Archivo','sans-serif'] },
+      colors: {
+        /* NOIZY paleti — değerler ters çevrildi: paper/white = mürekkep, black = kağıt */
+        ink:'#111114', paper:'#111114', white:'#111114', black:'#e7e5de', spot:'#1b2f6b',
+        zinc:{ 200:'#26251f', 300:'#3a382f', 400:'#57554c', 500:'#6b6960', 600:'#87857b' },
+      },
+      letterSpacing: { ultra:'0.45em' },
+    } } };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@300;400;500;600;700;900&family=Big+Shoulders+Display:wght@700..900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --chalk:#111114; --wall:#c6c4bd; --sheet:#e7e5de; --ink:#111114;
+      --ink-2:#6b6960; --spot:#1b2f6b; --rule:2px solid #111114; color-scheme:light; }
+    html, body { background:var(--wall); color:var(--ink); }
+    .chalk { font-family:'Big Shoulders Display','Anton',sans-serif; font-weight:900;
+      text-transform:uppercase; color:var(--ink); letter-spacing:-.005em; line-height:.9; }
+    .tw { font-family:'Courier Prime',ui-monospace,monospace; letter-spacing:.14em; text-transform:uppercase; }
+    /* başlık kalıcı mürekkep bandı — logo beyaz tebeşir, kağıtta kaybolurdu */
+    header { background:var(--ink) !important; border-bottom:var(--rule) !important;
+      backdrop-filter:none !important; }
+    header a, header button, header .text-paper { color:var(--sheet) !important; }
+    header .text-zinc-400, header .text-zinc-500, header .text-zinc-600 { color:#8b8981 !important; }
+    :focus-visible { outline:3px solid var(--spot); outline-offset:2px; }
+    body { -webkit-font-smoothing:antialiased; }
+        .grain::before { content:""; position:fixed; inset:0; z-index:60; pointer-events:none; opacity:0.5; mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E"); }
+    .btn-line { position:relative; }
+    .btn-line::after { content:""; position:absolute; left:0; bottom:-2px; height:1px; width:100%; background:currentColor; transform:scaleX(0); transform-origin:right; transition:transform .5s cubic-bezier(.16,1,.3,1); }
+    .btn-line:hover::after { transform:scaleX(1); transform-origin:left; }
+    ::selection { background:#111114; color:#e7e5de; }
+    body::-webkit-scrollbar { width:8px; }
+    body::-webkit-scrollbar-thumb { background:#111114; }
+  </style>
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#c6c4bd" />
+</head>
+<body class="grain font-body text-paper antialiased overflow-x-hidden">
+
+  <header class="fixed top-0 inset-x-0 z-50 bg-black/70 backdrop-blur-md border-b border-white/10">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="flex items-center justify-between py-4">
+        <a href="store.html" data-i18n="backStore" class="text-[11px] uppercase tracking-[0.25em] text-zinc-400 hover:text-paper transition-colors btn-line">← Mağaza</a>
+        <a href="store.html" class="shrink-0"><img src="assets/logo-mark.png" alt="OHSE" class="h-10 w-auto object-contain" draggable="false" /></a>
+        <button type="button" class="lang-toggle text-[12px] font-bold tracking-[0.12em] text-paper select-none" aria-label="Dil / Language">
+          <span data-lang="tr" class="lang-opt cursor-pointer">TR</span><span class="text-zinc-600 mx-1.5">|</span><span data-lang="en" class="lang-opt cursor-pointer text-zinc-500">EN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="px-6 lg:px-10 pt-36 pb-8">
+    <article class="mx-auto max-w-3xl">
+      <p class="text-[11px] uppercase tracking-[0.35em] text-zinc-600 mb-4">OHSE</p>
+      <h1 data-i18n="contact" class="chalk text-4xl sm:text-6xl leading-[0.95] mb-8">İletişim</h1>
+      <div class="h-px w-full bg-white/10 mb-10"></div>
+      <p data-i18n="getInTouch" class="text-zinc-400 leading-relaxed text-[15px] my-3">Bizimle iletişime geçin</p>
+      <h2 data-i18n="contactDetails" class="chalk text-2xl sm:text-3xl mt-14 mb-5 pt-2">OHSE İletişim Bilgileri</h2>
+      <h3 data-i18n="generalInfo" class="text-paper font-semibold text-lg mt-8 mb-3 tracking-wide">Genel Bilgiler</h3>
+      <p class="text-zinc-400 leading-relaxed text-[15px] my-3"><strong data-i18n="companyLabel" class="text-paper">Şirket Adı:</strong> OHSE</p>
+      <p class="text-zinc-400 leading-relaxed text-[15px] my-3"><strong data-i18n="emailLabel" class="text-paper">E-posta:</strong> info@ohse.store</p>
+      <p class="text-zinc-400 leading-relaxed text-[15px] my-3"><strong data-i18n="phoneLabel" class="text-paper">Telefon:</strong> +90 545 218 05 88</p>
+      <p class="text-zinc-400 leading-relaxed text-[15px] my-3"><strong data-i18n="workHoursLabel" class="text-paper">Çalışma Saatleri:</strong> <span data-i18n="hoursWeekday">Pazartesi - Cuma, 09:00 - 18:00</span></p>
+      <p class="text-zinc-400 leading-relaxed text-[15px] my-3"><strong data-i18n="saturdayLabel" class="text-paper">Cumartesi:</strong> 10:00 - 16:00</p>
+      <p class="text-zinc-400 leading-relaxed text-[15px] my-3"><strong data-i18n="sundayLabel" class="text-paper">Pazar:</strong> <span data-i18n="closed">Kapalı</span></p>
+      <h3 data-i18n="emailH" class="text-paper font-semibold text-lg mt-8 mb-3 tracking-wide">E-posta</h3>
+      <ul class="space-y-2.5 text-zinc-400 leading-relaxed text-[15px]">
+        <li class="flex gap-3"><span class="text-zinc-600 mt-[2px]">—</span><span><strong data-i18n="generalContactLabel" class="text-paper">Genel İletişim:</strong> info@ohse.store</span></li>
+      </ul>
+      <h3 data-i18n="phoneH" class="text-paper font-semibold text-lg mt-8 mb-3 tracking-wide">Telefon</h3>
+      <p class="text-zinc-400 leading-relaxed text-[15px] my-3"><strong data-i18n="custServiceLabel" class="text-paper">Müşteri Hizmetleri:</strong> +90 545 218 05 88</p>
+      <p class="text-zinc-400 leading-relaxed text-[15px] my-3"><strong data-i18n="callCenterLabel" class="text-paper">Çağrı Merkezi Çalışma Saatleri:</strong> <span data-i18n="callCenterHours">Hafta içi 09:00-18:00</span></p>
+      <h3 data-i18n="social" class="text-paper font-semibold text-lg mt-8 mb-3 tracking-wide">Sosyal Medya</h3>
+      <p data-i18n="followSocial" class="text-zinc-400 leading-relaxed text-[15px] my-3">Bizi sosyal medya hesaplarımızdan takip edebilirsiniz:</p>
+      <ul class="space-y-2.5 text-zinc-400 leading-relaxed text-[15px]">
+        <li class="flex gap-3"><span class="text-zinc-600 mt-[2px]">—</span><span>Instagram: @ohse.twch</span></li>
+        <li class="flex gap-3"><span class="text-zinc-600 mt-[2px]">—</span><span>TikTok: @ohse.twch</span></li>
+      </ul>
+      <h2 data-i18n="responseTime" class="chalk text-2xl sm:text-3xl mt-14 mb-5 pt-2">Yanıt Süresi</h2>
+      <p data-i18n="responseP" class="text-zinc-400 leading-relaxed text-[15px] my-3">E-postalarınız ve telefon görüşmeleriniz en geç 48 saat içinde yanıtlanmaktadır. Acil durumlar için telefon ile bize ulaşabilirsiniz.</p>
+    </article>
+  </main>
+
+  <footer class="border-t border-white/10 px-6 lg:px-10 py-16 mt-24">
+    <div class="mx-auto max-w-7xl grid gap-12 md:grid-cols-4 text-[13px]">
+      <div class="space-y-4">
+        <img src="assets/logo-mark.png" alt="OHSE" class="h-9 w-auto" draggable="false" />
+      </div>
+      <div>
+        <h4 data-i18n="quickLinks" class="text-[11px] uppercase tracking-[0.3em] text-zinc-500 mb-4">Hızlı Linkler</h4>
+        <ul class="space-y-2.5 text-zinc-400">
+          <li><a href="store.html" data-i18n="home" class="btn-line hover:text-paper transition-colors">Ana Sayfa</a></li>
+          <li><a href="about.html" data-i18n="about" class="btn-line hover:text-paper transition-colors">Hakkımızda</a></li>
+          <li><a href="support.html" data-i18n="support" class="btn-line hover:text-paper transition-colors">Destek</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="social" class="text-[11px] uppercase tracking-[0.3em] text-zinc-500 mb-4">Sosyal Medya</h4>
+        <ul class="space-y-2.5 text-zinc-400">
+          <li><a href="https://instagram.com/ohse.twch" target="_blank" rel="noopener" class="btn-line hover:text-paper transition-colors">Instagram — @ohse.twch</a></li>
+          <li><a href="https://www.tiktok.com/@ohse.twch" target="_blank" rel="noopener" class="btn-line hover:text-paper transition-colors">TikTok — @ohse.twch</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="contact" class="text-[11px] uppercase tracking-[0.3em] text-zinc-500 mb-4">İletişim</h4>
+        <ul class="space-y-2.5 text-zinc-400">
+          <li><span data-i18n="emailLabel">E-posta:</span> <a href="mailto:info@ohse.store" class="btn-line hover:text-paper">info@ohse.store</a></li>
+          <li><span data-i18n="phoneLabel">Telefon:</span> <a href="tel:+905452180588" class="btn-line hover:text-paper">+90 545 218 05 88</a></li>
+          <li><a href="iletisim.html" data-i18n="detailedContact" class="btn-line hover:text-paper transition-colors">Detaylı İletişim Bilgileri</a></li>
+        </ul>
+      </div>
+    </div>
+      <div class="mt-14 pt-10 border-t border-white/5 flex justify-center">
+        <img src="assets/payment-band.png" alt="Ödeme Yöntemleri: iyzico, Mastercard, Visa, American Express, Troy" class="h-7 sm:h-8 w-auto opacity-80" draggable="false" />
+      </div>
+    <div class="mx-auto max-w-7xl mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] uppercase tracking-[0.3em] text-zinc-700">
+      <p data-i18n="rightsReserved">© 2026 OHSE. Tüm hakları saklıdır.</p>
+      <div class="flex gap-6">
+        <a href="gizlilik-politikasi.html" data-i18n="privacy" class="hover:text-zinc-400">Gizlilik</a>
+        <a href="kullanim-kosullari.html" data-i18n="terms" class="hover:text-zinc-400">Koşullar</a>
+        <a href="cerez-politikasi.html" data-i18n="cookies" class="hover:text-zinc-400">Çerezler</a>
+      </div>
+    </div>
+  </footer>
+<script>
+const T={tr:{"backStore": "← Mağaza", "quickLinks": "Hızlı Linkler", "home": "Ana Sayfa", "about": "Hakkımızda", "support": "Destek", "social": "Sosyal Medya", "contact": "İletişim", "emailLabel": "E-posta:", "phoneLabel": "Telefon:", "detailedContact": "Detaylı İletişim Bilgileri", "rightsReserved": "© 2026 OHSE. Tüm hakları saklıdır.", "privacy": "Gizlilik", "terms": "Koşullar", "cookies": "Çerezler", "legalNote": "Bu belgenin geçerli ve resmî dili Türkçedir."},en:{"backStore": "← Store", "quickLinks": "Quick Links", "home": "Home", "about": "About", "support": "Support", "social": "Social Media", "contact": "Contact", "emailLabel": "Email:", "phoneLabel": "Phone:", "detailedContact": "Detailed Contact Info", "rightsReserved": "© 2026 OHSE. All rights reserved.", "privacy": "Privacy", "terms": "Terms", "cookies": "Cookies", "legalNote": "The official language of this document is Turkish; the English version is for information only."}};
+let LANG=(function(){try{return localStorage.getItem('ohse_lang')||'tr';}catch(e){return 'tr';}})();
+function applyLang(){document.documentElement.lang=(LANG==="en")?"en":"tr";document.querySelectorAll("[data-i18n]").forEach(function(el){var k=el.getAttribute("data-i18n");if(T[LANG][k]!=null)el.textContent=T[LANG][k];});document.querySelectorAll("[data-i18n-ph]").forEach(function(el){var k=el.getAttribute("data-i18n-ph");if(T[LANG][k]!=null)el.placeholder=T[LANG][k];});document.querySelectorAll(".lang-opt").forEach(function(o){var on=o.getAttribute("data-lang")===LANG;o.classList.toggle("text-paper",on);o.classList.toggle("text-zinc-500",!on);});}
+function setLang(l){LANG=l;try{localStorage.setItem("ohse_lang",l);}catch(e){}applyLang();}
+document.querySelectorAll(".lang-opt").forEach(function(o){o.addEventListener("click",function(){setLang(o.getAttribute("data-lang"));});});
+Object.assign(T.tr,{"getInTouch": "Bizimle iletişime geçin", "contactDetails": "OHSE İletişim Bilgileri", "generalInfo": "Genel Bilgiler", "companyLabel": "Şirket Adı:", "workHoursLabel": "Çalışma Saatleri:", "hoursWeekday": "Pazartesi - Cuma, 09:00 - 18:00", "saturdayLabel": "Cumartesi:", "sundayLabel": "Pazar:", "closed": "Kapalı", "emailH": "E-posta", "generalContactLabel": "Genel İletişim:", "phoneH": "Telefon", "custServiceLabel": "Müşteri Hizmetleri:", "callCenterLabel": "Çağrı Merkezi Çalışma Saatleri:", "callCenterHours": "Hafta içi 09:00-18:00", "followSocial": "Bizi sosyal medya hesaplarımızdan takip edebilirsiniz:", "responseTime": "Yanıt Süresi", "responseP": "E-postalarınız ve telefon görüşmeleriniz en geç 48 saat içinde yanıtlanmaktadır. Acil durumlar için telefon ile bize ulaşabilirsiniz."});Object.assign(T.en,{"getInTouch": "Get in touch", "contactDetails": "OHSE Contact Details", "generalInfo": "General Info", "companyLabel": "Company:", "workHoursLabel": "Working Hours:", "hoursWeekday": "Monday - Friday, 09:00 - 18:00", "saturdayLabel": "Saturday:", "sundayLabel": "Sunday:", "closed": "Closed", "emailH": "Email", "generalContactLabel": "General Contact:", "phoneH": "Phone", "custServiceLabel": "Customer Service:", "callCenterLabel": "Call Center Hours:", "callCenterHours": "Weekdays 09:00-18:00", "followSocial": "Follow us on our social media accounts:", "responseTime": "Response Time", "responseP": "Your emails and calls are answered within 48 hours at most. For urgent matters, please reach us by phone."});applyLang();
+</script>
+</body>
+</html>
