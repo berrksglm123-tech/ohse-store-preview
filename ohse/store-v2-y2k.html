@@ -74,8 +74,6 @@ a{color:inherit}
 #bag-n,#tb-bag-n{display:inline-block}
 .pop{animation:badge-pop .35s ease}
 @keyframes badge-pop{0%{transform:scale(1)}40%{transform:scale(1.55);color:var(--green)}100%{transform:scale(1)}}
-.confetti-bit{position:fixed;width:6px;height:6px;z-index:1400;pointer-events:none;animation:confetti-fly .65s ease-out forwards}
-@keyframes confetti-fly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
 
 /* ---------- start menu ---------- */
 .start-veil{position:fixed;inset:0;z-index:1090;display:none;background:transparent}
@@ -923,7 +921,6 @@ $('#sheet-add').addEventListener('click', () => {
   if (existing) existing.qty++;
   else cart.push({ sku: cfg.sku, pack: sheetPack, color: sheetColor, size: sheetSize, variantId: vid, qty: 1 });
   playCut();
-  burstConfetti($('#sheet-add'));
   saveCart(); drawBagBadge();
   $('#sheet-ok').textContent = t('added_ok');
   $('#sheet-goto-bag').hidden = false;
@@ -952,26 +949,6 @@ function tickClock(){
   const el = $('#tb-clock'); if (el) el.textContent = hh + ':' + mm;
 }
 tickClock(); setInterval(tickClock, 15000);
-/* small confetti burst from the button that triggered it — pure delight,
-   respects reduced-motion, cleans up its own DOM nodes. */
-function burstConfetti(originEl){
-  if (reducedMotion || !originEl) return;
-  const rect = originEl.getBoundingClientRect();
-  const colors = ['#39ff6a','#4ad0ff','#ffe94a','#ff2b2b','#c66aff'];
-  for (let i = 0; i < 10; i++) {
-    const p = document.createElement('span');
-    p.className = 'confetti-bit';
-    p.style.left = (rect.left + rect.width / 2) + 'px';
-    p.style.top = (rect.top + rect.height / 2) + 'px';
-    p.style.background = colors[i % colors.length];
-    const angle = (Math.PI * 2 * i) / 10 + Math.random() * 0.4;
-    const dist = 40 + Math.random() * 30;
-    p.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
-    p.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 700);
-  }
-}
 let lastBagCount = cart.reduce((s,i)=>s+i.qty,0);
 function drawBagBadge(){
   const count = cart.reduce((s,i)=>s+i.qty,0);
