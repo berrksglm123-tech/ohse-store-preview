@@ -180,7 +180,6 @@ body.shell-compact .desktop-wrap{max-width:460px}
 .item-media.stacked img.layer-1{transform:translate(-9%,7%) rotate(-3deg);z-index:2}
 .item-info{padding:0 8px 10px;display:flex;flex-direction:column;gap:4px}
 .item-name{font-family:'Fredoka';font-weight:700;font-size:14px;text-transform:uppercase;line-height:1.3}
-.item-price-from{font-size:13px;font-weight:600;color:#333}
 .item-tap{font-size:11px;color:#0000a2;font-weight:600}
 .sold{font-family:'Press Start 2P',monospace;font-size:7px;color:#c00}
 
@@ -582,7 +581,6 @@ const TEXT = {
     color_black_full:'Siyah', color_white_full:'Beyaz', color_mixed_full:'1 Siyah 1 Beyaz',
     product_name_base:'OHSE Slim Fit Tişört',
     tap_select:'Paket & beden seç →', sold_out:'TÜKENDİ', available_prefix:'Mevcut — ',
-    price_from:'{price}’dan başlayan',
     size_first_hint:'Önce beden seç.', vid_missing_hint:'Bu ürün için ödeme altyapısı hazır değil.',
     add_to_bag:'SEPETE EKLE', added_ok:'SEPETE EKLENDİ', goto_bag:'SEPETE GİT →',
     mixed_note:'İki ürün de seçtiğiniz aynı bedende gönderilir.',
@@ -620,7 +618,6 @@ const TEXT = {
     color_black_full:'Black', color_white_full:'White', color_mixed_full:'1 Black + 1 White',
     product_name_base:'OHSE Slim Fit Tee',
     tap_select:'Select pack & size →', sold_out:'SOLD OUT', available_prefix:'In stock — ',
-    price_from:'From {price}',
     size_first_hint:'Pick a size first.', vid_missing_hint:"Checkout isn't wired up for this item yet.",
     add_to_bag:'ADD TO BAG', added_ok:'ADDED TO BAG', goto_bag:'GO TO BAG →',
     mixed_note:'Both tees ship in the size you pick here.',
@@ -898,7 +895,6 @@ function renderGrid(){
       <div class="crt-frame"><div class="item-media${cfg.imgLayers?' stacked':''}">${mediaHTML(cfg, name, i===0)}</div><span class="crt-led" aria-hidden="true"></span></div>
       <div class="item-info">
         <span class="item-name">${esc(name)}</span>
-        <span class="item-price-from">${t('price_from', { price: money(cfg.price) })}</span>
         ${sold ? `<span class="sold">${t('sold_out')}</span>` : `<span class="item-tap">${t('tap_select')}</span>`}
       </div>
     </button>`;
