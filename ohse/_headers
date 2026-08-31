@@ -1,0 +1,15 @@
+# Netlify custom headers — drafted for store-v2-y2k.html's real needs
+# (Google Fonts stylesheet+files, Shopify products.json fetch + checkout
+# navigation). Not deployed by this pass — staged for review before launch.
+# The static pages here rely on inline <script>/<style> (no build step to
+# generate nonces/hashes), so CSP keeps 'unsafe-inline' for script-src/
+# style-src; tightening that later would need moving JS/CSS to external
+# files. Test against every page (store, about, support, legal, Shopify
+# checkout redirect) before turning this on in production.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://shop.ohse.store; frame-ancestors 'self'; base-uri 'self'
