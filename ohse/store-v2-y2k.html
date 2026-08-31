@@ -74,6 +74,8 @@ a{color:inherit}
 #bag-n,#tb-bag-n{display:inline-block}
 .pop{animation:badge-pop .35s ease}
 @keyframes badge-pop{0%{transform:scale(1)}40%{transform:scale(1.55);color:var(--green)}100%{transform:scale(1)}}
+.confetti-bit{position:fixed;width:6px;height:6px;z-index:1400;pointer-events:none;animation:confetti-fly .65s ease-out forwards}
+@keyframes confetti-fly{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
 
 /* ---------- start menu ---------- */
 .start-veil{position:fixed;inset:0;z-index:1090;display:none;background:transparent}
@@ -312,9 +314,6 @@ footer{max-width:100%;margin:20px auto 0}
 .boot-bar-fill{height:100%;width:0%;background:var(--neon);transition:width .9s linear}
 .boot-text{font-family:'Press Start 2P',monospace;color:#888;font-size:9px;text-align:center;padding:0 20px}
 .boot-text.tap{color:#fff}
-.boot-skip{margin-top:2px;background:none;border:1px solid #555;color:#aaa;font-family:'Press Start 2P',monospace;
-  font-size:8px;padding:9px 14px;cursor:pointer;min-height:36px}
-.boot-skip:hover{color:#fff;border-color:#fff}
 
 /* ---------- fake close/shutdown dialog ---------- */
 .win-dialog-veil{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:1200;display:none}
@@ -340,7 +339,7 @@ footer{max-width:100%;margin:20px auto 0}
   <div class="boot-logo">OHSE</div>
   <div class="boot-bar"><div class="boot-bar-fill" id="boot-fill"></div></div>
   <div class="boot-text" id="boot-text">SİSTEM BAŞLATILIYOR...</div>
-  <button class="boot-skip" id="boot-skip" data-i18n="boot_skip">ATLA →</button>
+
 </div>
 
 <div class="desktop-wrap">
@@ -540,14 +539,13 @@ const TEXT = {
   tr: {
     tagline:'SLIM FIT TİŞÖRT — vertice store', bag_short:'SEPET',
     win_min:'Küçült', win_max:'Büyüt', win_close:'Kapat', close:'Kapat',
-    boot_loading:'SİSTEM BAŞLATILIYOR...', boot_tap:'▶ BAŞLAMAK İÇİN DOKUN', boot_skip:'ATLA →',
+    boot_loading:'SİSTEM BAŞLATILIYOR...', boot_tap:'▶ BAŞLAMAK İÇİN DOKUN',
     boot_shutdown:'KAPATILIYOR...', boot_reboot:'YENİDEN BAŞLATILIYOR...', boot_tap_continue:'▶ DEVAM ETMEK İÇİN DOKUN',
     close_confirm:"OHSE.EXE'yi kapatmak istediğinize emin misiniz?", cancel:'İPTAL', confirm_close:'EVET, KAPAT',
     feature_ribbon:'ÇOK YAKINDA', feature_name:'OHSE Eşofman Altı — Gri',
     feature_sub:"Henüz satışta değil — Shopify'a eklenince aktif olacak",
     feature_note:"Shopify'a eklendiğinde burada satışa çıkacak. Gerçek çıkış tarihi henüz belli değil.",
     feature_aria:'OHSE Eşofman Altı — Gri — Çok yakında',
-    trust_secure:'Güvenli Ödeme', trust_returns:'İade & Değişim', trust_track:'Kargo Takip', trust_shopify:'Shopify Altyapısı',
     foot_about:'Hakkımızda', foot_ship:'Kargo', foot_returns:'İade', foot_contact:'İletişim', foot_support:'Destek',
     foot_account:'Hesabım', foot_tracking:'Kargo Takip', foot_privacy:'Gizlilik', foot_terms:'Koşullar',
     foot_distance:'Mesafeli Satış', foot_cookies:'Çerez',
@@ -577,14 +575,13 @@ const TEXT = {
   en: {
     tagline:'SLIM FIT TEE — vertice store', bag_short:'BAG',
     win_min:'Minimize', win_max:'Maximize', win_close:'Close', close:'Close',
-    boot_loading:'STARTING SYSTEM...', boot_tap:'▶ TAP TO START', boot_skip:'SKIP →',
+    boot_loading:'STARTING SYSTEM...', boot_tap:'▶ TAP TO START',
     boot_shutdown:'SHUTTING DOWN...', boot_reboot:'RESTARTING...', boot_tap_continue:'▶ TAP TO CONTINUE',
     close_confirm:'Are you sure you want to close OHSE.EXE?', cancel:'CANCEL', confirm_close:'YES, CLOSE',
     feature_ribbon:'COMING SOON', feature_name:'OHSE Sweatpants — Grey',
     feature_sub:'Not for sale yet — will go live once added to Shopify',
     feature_note:"It'll go on sale here once it's added to Shopify. No real release date yet.",
     feature_aria:'OHSE Sweatpants — Grey — Coming soon',
-    trust_secure:'Secure Checkout', trust_returns:'Returns & Exchanges', trust_track:'Order Tracking', trust_shopify:'Powered by Shopify',
     foot_about:'About', foot_ship:'Shipping', foot_returns:'Returns', foot_contact:'Contact', foot_support:'Support',
     foot_account:'My Account', foot_tracking:'Track Order', foot_privacy:'Privacy', foot_terms:'Terms',
     foot_distance:'Distance Sales', foot_cookies:'Cookies',
@@ -926,6 +923,7 @@ $('#sheet-add').addEventListener('click', () => {
   if (existing) existing.qty++;
   else cart.push({ sku: cfg.sku, pack: sheetPack, color: sheetColor, size: sheetSize, variantId: vid, qty: 1 });
   playCut();
+  burstConfetti($('#sheet-add'));
   saveCart(); drawBagBadge();
   $('#sheet-ok').textContent = t('added_ok');
   $('#sheet-goto-bag').hidden = false;
@@ -954,6 +952,26 @@ function tickClock(){
   const el = $('#tb-clock'); if (el) el.textContent = hh + ':' + mm;
 }
 tickClock(); setInterval(tickClock, 15000);
+/* small confetti burst from the button that triggered it — pure delight,
+   respects reduced-motion, cleans up its own DOM nodes. */
+function burstConfetti(originEl){
+  if (reducedMotion || !originEl) return;
+  const rect = originEl.getBoundingClientRect();
+  const colors = ['#39ff6a','#4ad0ff','#ffe94a','#ff2b2b','#c66aff'];
+  for (let i = 0; i < 10; i++) {
+    const p = document.createElement('span');
+    p.className = 'confetti-bit';
+    p.style.left = (rect.left + rect.width / 2) + 'px';
+    p.style.top = (rect.top + rect.height / 2) + 'px';
+    p.style.background = colors[i % colors.length];
+    const angle = (Math.PI * 2 * i) / 10 + Math.random() * 0.4;
+    const dist = 40 + Math.random() * 30;
+    p.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+    p.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 700);
+  }
+}
 let lastBagCount = cart.reduce((s,i)=>s+i.qty,0);
 function drawBagBadge(){
   const count = cart.reduce((s,i)=>s+i.qty,0);
@@ -1152,12 +1170,12 @@ function unlockAudioAndMusic(){
 }
 document.addEventListener('click', unlockAudioAndMusic, { once: true, capture: true });
 
-/* ===== boot screen — ~1s fill, then waits for a tap/ATLA to enter. Shown
+/* ===== boot screen — ~1s fill, then waits for a tap anywhere to enter. Shown
    automatically only once per browser session (sessionStorage); the fake
    "reboot" from the close-dialog below is a separate, user-triggered replay. ===== */
 const BOOT_KEY = 'ohse_booted_session';
 (function boot(){
-  const screen = $('#boot-screen'), fill = $('#boot-fill'), text = $('#boot-text'), skip = $('#boot-skip');
+  const screen = $('#boot-screen'), fill = $('#boot-fill'), text = $('#boot-text');
   function enter(){
     try { sessionStorage.setItem(BOOT_KEY, '1'); } catch(e){}
     unlockAudioAndMusic();
@@ -1171,7 +1189,6 @@ const BOOT_KEY = 'ohse_booted_session';
   requestAnimationFrame(() => { fill.style.width = '100%'; });
   setTimeout(() => { text.textContent = t('boot_tap'); text.classList.add('tap','blink'); }, 900);
   screen.addEventListener('click', enter);
-  skip.addEventListener('click', e => { e.stopPropagation(); enter(); });
 })();
 
 /* ===== window chrome buttons — minimize/maximize are a harmless wobble;
