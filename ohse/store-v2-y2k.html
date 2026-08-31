@@ -65,10 +65,15 @@ a{color:inherit}
 @media(min-width:420px){.tb-app{display:block}}
 .tb-clock{background:var(--winface);border:1px solid #808080;box-shadow:inset 1px 1px 0 #000;
   padding:8px 9px;font-family:'Press Start 2P',monospace;font-size:9px;min-height:38px;display:flex;align-items:center}
-.tb-music,.tb-bag{background:var(--winface);border:2px solid #fff;box-shadow:inset -1px -1px 0 #000,inset 1px 1px 0 #dfdfdf;
-  padding:0 9px;cursor:pointer;font-size:13px;min-height:38px;min-width:38px;display:flex;align-items:center;justify-content:center;gap:4px}
+.tb-music,.tb-bag,.tb-track{background:var(--winface);border:2px solid #fff;box-shadow:inset -1px -1px 0 #000,inset 1px 1px 0 #dfdfdf;
+  padding:0 9px;cursor:pointer;font-size:13px;min-height:38px;min-width:38px;display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:transform .1s ease}
 .tb-music.on{box-shadow:inset 1px 1px 0 #000,inset -1px -1px 0 #dfdfdf;background:#a8ffb0}
 .tb-bag{font-size:12px;font-family:'Fredoka';font-weight:700}
+.tb-music:active,.tb-bag:active,.tb-track:active{transform:scale(.92)}
+#bag-n,#tb-bag-n{display:inline-block}
+.pop{animation:badge-pop .35s ease}
+@keyframes badge-pop{0%{transform:scale(1)}40%{transform:scale(1.55);color:var(--green)}100%{transform:scale(1)}}
 
 /* ---------- start menu ---------- */
 .start-veil{position:fixed;inset:0;z-index:1090;display:none;background:transparent}
@@ -130,16 +135,27 @@ a{color:inherit}
 .tbtn::after{content:'';position:absolute;inset:-13px -12px} /* expands the tap target to ~44px without changing the look */
 
 .deskhead{padding:20px 14px;text-align:center;display:flex;flex-direction:column;align-items:center}
-.deskhead .sig{height:62px;width:auto}
+.deskhead .sig{height:62px;width:auto;animation:logo-glitch 9s ease-in-out infinite}
+@keyframes logo-glitch{
+  0%,93%,100%{filter:none;transform:translate(0,0)}
+  94%{filter:drop-shadow(2px 0 0 #ff2b2b) drop-shadow(-2px 0 0 #4ad0ff);transform:translate(1px,0)}
+  95%{filter:none;transform:translate(-1px,0)}
+  96%{filter:drop-shadow(-2px 0 0 #ff2b2b) drop-shadow(2px 0 0 #4ad0ff);transform:translate(0,1px)}
+  97%{filter:none;transform:translate(0,0)}
+}
 .hud-row{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-top:1px solid #808080}
 .btn3d{background:var(--winface);border:2px solid #fff;box-shadow:inset -1px -1px 0 #000,inset 1px 1px 0 #dfdfdf;
-  padding:9px 13px;cursor:pointer;font-family:'Fredoka';font-weight:700;font-size:11.5px;min-height:40px}
-.btn3d:active{box-shadow:inset 1px 1px 0 #000,inset -1px -1px 0 #dfdfdf}
+  padding:9px 13px;cursor:pointer;font-family:'Fredoka';font-weight:700;font-size:11.5px;min-height:40px;
+  transition:transform .1s ease}
+.btn3d:active{box-shadow:inset 1px 1px 0 #000,inset -1px -1px 0 #dfdfdf;transform:scale(.96)}
 
 /* ---------- product grid — original compact 2-up cards ---------- */
 .grid{max-width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .item-line{padding:0;text-align:left;cursor:pointer;width:100%;background:var(--winface-grad);border:2px solid #fff;
-  box-shadow:inset -2px -2px 0 #000,inset 2px 2px 0 #dfdfdf,3px 3px 0 rgba(0,0,0,.25);display:block}
+  box-shadow:inset -2px -2px 0 #000,inset 2px 2px 0 #dfdfdf,3px 3px 0 rgba(0,0,0,.25);display:block;
+  transition:transform .14s ease,box-shadow .14s ease}
+.item-line:hover{transform:translateY(-3px);box-shadow:inset -2px -2px 0 #000,inset 2px 2px 0 #dfdfdf,5px 6px 0 rgba(0,0,0,.3)}
+.item-line:active{transform:translateY(-1px) scale(.98)}
 /* ---------- "transparent PNG viewer" checker background + scan-corner frame —
    ties product photo tiles to the OS/file-viewer theme instead of a flat
    plain-white e-commerce box (ref: user feedback, 31 Aug 2026: "beyaz arka
@@ -226,7 +242,9 @@ footer{max-width:100%;margin:20px auto 0}
 .sizes-label{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--grey);margin:14px 0 8px}
 .sizes{display:flex;flex-wrap:wrap;gap:7px}
 .szbtn{position:relative;background:var(--winface);border:2px solid #fff;box-shadow:inset -1px -1px 0 #000,inset 1px 1px 0 #dfdfdf;
-  min-width:48px;min-height:44px;padding:9px 7px;font-family:'Fredoka';font-weight:700;font-size:12.5px;cursor:pointer}
+  min-width:48px;min-height:44px;padding:9px 7px;font-family:'Fredoka';font-weight:700;font-size:12.5px;cursor:pointer;
+  transition:transform .1s ease}
+.szbtn:active:not(:disabled){transform:scale(.94)}
 .szbtn.on{box-shadow:inset 1px 1px 0 #000,inset -1px -1px 0 #dfdfdf;background:#bfe8c7;border-color:var(--green)}
 .szbtn:disabled{color:#888;cursor:not-allowed;text-decoration:line-through}
 .mixed-note{font-size:10.5px;color:var(--grey);margin-top:8px;line-height:1.5;font-style:italic}
@@ -235,8 +253,8 @@ footer{max-width:100%;margin:20px auto 0}
   font-weight:600;cursor:pointer;padding:9px 0;min-height:36px}
 .addbtn{width:100%;margin-top:12px;background:linear-gradient(180deg,#3ee06e,#1e7d34);color:#fff;border:2px solid #fff;
   box-shadow:inset -2px -2px 0 rgba(0,0,0,.35),inset 2px 2px 0 rgba(255,255,255,.4);padding:15px;font-family:'Fredoka';
-  font-weight:700;font-size:14px;text-transform:uppercase;cursor:pointer;letter-spacing:.3px}
-.addbtn:active:not(:disabled){box-shadow:inset 2px 2px 0 rgba(0,0,0,.4),inset -2px -2px 0 rgba(255,255,255,.3)}
+  font-weight:700;font-size:14px;text-transform:uppercase;cursor:pointer;letter-spacing:.3px;transition:transform .1s ease}
+.addbtn:active:not(:disabled){box-shadow:inset 2px 2px 0 rgba(0,0,0,.4),inset -2px -2px 0 rgba(255,255,255,.3);transform:scale(.97)}
 .addbtn:disabled{background:var(--winface);color:#888;cursor:not-allowed}
 .addok{font-size:11px;color:#008000;font-weight:700;text-align:center;margin-top:6px;min-height:12px}
 .bag-line{display:grid;grid-template-columns:56px 1fr auto;gap:10px;padding:12px 0;border-bottom:1px solid #808080}
@@ -368,6 +386,7 @@ footer{max-width:100%;margin:20px auto 0}
 <div class="taskbar">
   <div class="tb-left">
     <button class="tb-start" id="tb-start" aria-haspopup="true" aria-expanded="false" aria-label="Menü">▦ <span data-i18n="tb_start">OHSE</span></button>
+    <button class="tb-track" id="tb-track" aria-label="Kargo Takip" data-i18n-aria="nav_track" title="Kargo Takip">📦</button>
     <button class="tb-app" id="tb-app" data-i18n="tb_app">OHSE Store</button>
   </div>
   <div class="tb-right">
@@ -433,6 +452,7 @@ footer{max-width:100%;margin:20px auto 0}
       <p class="hint" id="sheet-hint"></p>
       <button class="addbtn" id="sheet-add" data-i18n="add_to_bag">SEPETE EKLE</button>
       <p class="addok" id="sheet-ok"></p>
+      <button class="linkbtn" id="sheet-goto-bag" data-i18n="goto_bag" hidden>SEPETE GİT →</button>
     </div>
   </div>
 </div>
@@ -531,7 +551,7 @@ const TEXT = {
     product_name_base:'OHSE Slim Fit Tişört',
     tap_select:'Paket & beden seç →', sold_out:'TÜKENDİ', available_prefix:'Mevcut — ',
     size_first_hint:'Önce beden seç.', vid_missing_hint:'Bu ürün için ödeme altyapısı hazır değil.',
-    add_to_bag:'SEPETE EKLE', added_ok:'SEPETE EKLENDİ',
+    add_to_bag:'SEPETE EKLE', added_ok:'SEPETE EKLENDİ', goto_bag:'SEPETE GİT →',
     mixed_note:'İki ürün de seçtiğiniz aynı bedende gönderilir.',
     size_chart_btn:'BEDEN TABLOSU', size_chart_missing:'Ölçü verileri yakında eklenecek. Güncel ölçüler için bizimle iletişime geçebilirsin.',
     sc_measure:'Ölçü (cm)', sc_chest:'Göğüs', sc_length:'Boy', sc_shoulder:'Omuz',
@@ -568,7 +588,7 @@ const TEXT = {
     product_name_base:'OHSE Slim Fit Tee',
     tap_select:'Select pack & size →', sold_out:'SOLD OUT', available_prefix:'In stock — ',
     size_first_hint:'Pick a size first.', vid_missing_hint:"Checkout isn't wired up for this item yet.",
-    add_to_bag:'ADD TO BAG', added_ok:'ADDED TO BAG',
+    add_to_bag:'ADD TO BAG', added_ok:'ADDED TO BAG', goto_bag:'GO TO BAG →',
     mixed_note:'Both tees ship in the size you pick here.',
     size_chart_btn:'SIZE CHART', size_chart_missing:'Measurements coming soon. Contact us for current sizing.',
     sc_measure:'Measurement (cm)', sc_chest:'Chest', sc_length:'Length', sc_shoulder:'Shoulder',
@@ -641,9 +661,48 @@ function playCut(){
     src.start(t2 + 0.36);
   } catch(e){}
 }
+/* extra sound palette (ref: user request, 31 Aug 2026: "ses efektleri
+   çeşitlensin") — all synthesized, still no external audio files. */
+function playError(){
+  const ctx = getAudioCtx(); if (!ctx) return;
+  const t2 = ctx.currentTime;
+  playBlip(280, 0.05, t2);
+  playBlip(190, 0.05, t2 + 0.11);
+}
+function playWhoosh(opening){
+  const ctx = getAudioCtx(); if (!ctx) return;
+  try {
+    const t2 = ctx.currentTime;
+    const osc = ctx.createOscillator(), gain = ctx.createGain();
+    osc.type = 'sine';
+    if (opening) { osc.frequency.setValueAtTime(300, t2); osc.frequency.exponentialRampToValueAtTime(900, t2 + 0.12); }
+    else { osc.frequency.setValueAtTime(700, t2); osc.frequency.exponentialRampToValueAtTime(220, t2 + 0.12); }
+    gain.gain.setValueAtTime(0.05, t2);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t2 + 0.14);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(t2); osc.stop(t2 + 0.15);
+  } catch(e){}
+}
+function playToggle(on){
+  const ctx = getAudioCtx(); if (!ctx) return;
+  const t2 = ctx.currentTime;
+  playBlip(on ? 950 : 500, 0.04, t2);
+  playBlip(on ? 1300 : 350, 0.03, t2 + 0.05);
+}
+function playSuccess(){
+  const ctx = getAudioCtx(); if (!ctx) return;
+  const t2 = ctx.currentTime;
+  [660, 880, 1100].forEach((f,i) => playBlip(f, 0.045, t2 + i*0.07));
+}
+/* modals/product-cards/external links get their own dedicated sound
+   (whoosh, toggle, etc.) instead of the generic button blip below, so
+   nothing double-fires on the same click. */
+const GENERIC_BLIP_SKIP_IDS = ['sheet-add','hud-lang','start-lang','tb-music','tb-track','hud-bag','tb-bag','sheet-sizechart'];
 document.addEventListener('click', e => {
   const b = e.target.closest('button');
-  if (!b || b.id === 'sheet-add') return;
+  if (!b) return;
+  if (GENERIC_BLIP_SKIP_IDS.includes(b.id)) return;
+  if (b.classList.contains('item-line') || b.classList.contains('feature-tile') || b.classList.contains('modal-close')) return;
   playBlip(b.classList.contains('szbtn') ? 900 : 700, 0.045);
 }, true);
 
@@ -809,17 +868,19 @@ function renderSheetContent(){
   $('#sheet-avail').textContent = sold ? t('sold_out') : t('available_prefix') + colorLabelFull(cfg.color);
   $('#sheet-sizes').innerHTML = SIZES.map(s => { const so = isSoldOut(cfg, s); return `<button class="szbtn${s===sheetSize?' on':''}" data-s="${s}" ${so?'disabled':''}>${s}</button>`; }).join('');
   $('#sheet-mixed-note').hidden = cfg.color !== 'mixed';
-  $('#sheet-hint').textContent = ''; $('#sheet-ok').textContent = '';
+  $('#sheet-hint').textContent = ''; $('#sheet-ok').textContent = ''; $('#sheet-goto-bag').hidden = true;
 }
 function anyModalOpen(){ return ['#modal-sheet','#modal-bag','#modal-size','#modal-preview'].some(sel => $(sel).classList.contains('on')); }
 function openModal(id){
   lastFocused = document.activeElement;
   document.body.classList.add('locked'); $('#veil').classList.add('on'); $(id).classList.add('on');
+  playWhoosh(true);
   const first = $(id).querySelector('button:not(:disabled), a[href]'); if (first) first.focus();
 }
 function closeModal(id){
   if (!$(id).classList.contains('on')) return;
   $(id).classList.remove('on');
+  playWhoosh(false);
   if (!anyModalOpen()) { $('#veil').classList.remove('on'); document.body.classList.remove('locked'); }
   if (lastFocused && lastFocused.focus) lastFocused.focus();
 }
@@ -843,22 +904,27 @@ $('#sheet-sizes').addEventListener('click', e => {
 });
 $('#sheet-sizechart').addEventListener('click', () => openModal('#modal-size'));
 $('#size-close').addEventListener('click', () => closeModal('#modal-size'));
-$('#feature-sweatpants').addEventListener('click', () => { playBlip(220, 0.05); openModal('#modal-preview'); });
+$('#feature-sweatpants').addEventListener('click', () => { openModal('#modal-preview'); });
 $('#preview-close').addEventListener('click', () => closeModal('#modal-preview'));
 $('#sheet-add').addEventListener('click', () => {
   const cfg = sheetCfgNow();
-  if (!sheetSize) { $('#sheet-hint').textContent = t('size_first_hint'); playBlip(300, 0.05); return; }
+  if (!sheetSize) { $('#sheet-hint').textContent = t('size_first_hint'); playError(); return; }
   const vid = variantId(sheetPack, sheetColor, sheetSize);
-  if (!vid) { $('#sheet-hint').textContent = t('vid_missing_hint'); playBlip(300, 0.05); return; }
+  if (!vid) { $('#sheet-hint').textContent = t('vid_missing_hint'); playError(); return; }
   const existing = cart.find(i => i.variantId === vid);
   if (existing) existing.qty++;
   else cart.push({ sku: cfg.sku, pack: sheetPack, color: sheetColor, size: sheetSize, variantId: vid, qty: 1 });
   playCut();
   saveCart(); drawBagBadge();
   $('#sheet-ok').textContent = t('added_ok');
+  $('#sheet-goto-bag').hidden = false;
   showReceiptPrint(configTitle(cfg), sheetSize, money(cfg.price));
   announce(t('added_announce', { name: configTitle(cfg), size: sheetSize }));
   setTimeout(() => { const el = $('#sheet-ok'); if (el) el.textContent = ''; }, 1400);
+});
+$('#sheet-goto-bag').addEventListener('click', () => {
+  closeModal('#modal-sheet');
+  setTimeout(openBag, 220);
 });
 let receiptTimer = null;
 function showReceiptPrint(name, size, price){
@@ -877,10 +943,18 @@ function tickClock(){
   const el = $('#tb-clock'); if (el) el.textContent = hh + ':' + mm;
 }
 tickClock(); setInterval(tickClock, 15000);
+let lastBagCount = cart.reduce((s,i)=>s+i.qty,0);
 function drawBagBadge(){
   const count = cart.reduce((s,i)=>s+i.qty,0);
   $('#bag-n').textContent = count; $('#foot-bag-n').textContent = count; $('#bag-cnt').textContent = count;
   $('#tb-bag-n').textContent = count;
+  if (count > lastBagCount) {
+    ['#bag-n','#tb-bag-n'].forEach(sel => {
+      const el = $(sel); if (!el) return;
+      el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+    });
+  }
+  lastBagCount = count;
 }
 function drawBag(){
   drawBagBadge(); $('#bag-note').classList.remove('on');
@@ -941,9 +1015,10 @@ document.addEventListener('keydown', e => {
 $('#checkout').addEventListener('click', () => {
   if (!cart.length) return;
   const missing = cart.filter(i => variantId(i.pack, i.color, i.size) !== i.variantId || !i.variantId);
-  if (missing.length) { const n = $('#bag-note'); n.textContent = t('checkout_missing'); n.classList.add('on'); return; }
+  if (missing.length) { const n = $('#bag-note'); n.textContent = t('checkout_missing'); n.classList.add('on'); playError(); return; }
+  playSuccess();
   const parts = cart.map(i => i.variantId + ':' + i.qty);
-  window.location.href = SHOP + '/cart/' + parts.join(',');
+  setTimeout(() => { window.location.href = SHOP + '/cart/' + parts.join(','); }, 260);
 });
 
 /* ===== start menu ===== */
@@ -952,8 +1027,9 @@ function closeStart(){ $('#start-menu').classList.remove('on'); $('#start-veil')
 $('#tb-start').addEventListener('click', e => { e.stopPropagation(); playBlip(650,0.035); if ($('#start-menu').classList.contains('on')) closeStart(); else openStart(); });
 $('#start-veil').addEventListener('click', closeStart);
 $('#start-store').addEventListener('click', () => { closeStart(); $('#grid').scrollIntoView({ behavior: reducedMotion?'auto':'smooth', block:'start' }); });
-$('#start-lang').addEventListener('click', () => { lang = lang === 'tr' ? 'en' : 'tr'; applyLanguage(); });
-$('#hud-lang').addEventListener('click', () => { lang = lang === 'tr' ? 'en' : 'tr'; applyLanguage(); });
+$('#start-lang').addEventListener('click', () => { lang = lang === 'tr' ? 'en' : 'tr'; playToggle(lang === 'en'); applyLanguage(); });
+$('#hud-lang').addEventListener('click', () => { lang = lang === 'tr' ? 'en' : 'tr'; playToggle(lang === 'en'); applyLanguage(); });
+$('#tb-track').addEventListener('click', () => { playWhoosh(true); window.open('https://shop.ohse.store/apps/parcelpanel', '_blank', 'noopener'); });
 $('#start-sysinfo').addEventListener('click', () => { const p = $('#start-sysinfo-panel'); p.hidden = !p.hidden; $('#start-sysinfo').setAttribute('aria-expanded', String(!p.hidden)); playBlip(800,0.03); });
 $('#tb-app').addEventListener('click', () => { playBlip(650,0.03); $('#win-main').scrollIntoView({ behavior: reducedMotion?'auto':'smooth', block:'start' }); });
 
@@ -1053,6 +1129,7 @@ function stopMusic(){ musicOn = false; clearTimeout(musicTimer); musicTimer = nu
 $('#tb-music').addEventListener('click', e => {
   e.stopPropagation();
   const btn = $('#tb-music');
+  playToggle(!musicOn);
   if (musicOn) { stopMusic(); btn.classList.remove('on'); btn.setAttribute('aria-pressed','false'); }
   else { getAudioCtx(); startMusic(); btn.classList.add('on'); btn.setAttribute('aria-pressed','true'); }
 });
