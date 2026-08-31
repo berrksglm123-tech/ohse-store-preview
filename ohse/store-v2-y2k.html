@@ -140,7 +140,16 @@ a{color:inherit}
 .grid{max-width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .item-line{padding:0;text-align:left;cursor:pointer;width:100%;background:var(--winface-grad);border:2px solid #fff;
   box-shadow:inset -2px -2px 0 #000,inset 2px 2px 0 #dfdfdf,3px 3px 0 rgba(0,0,0,.25);display:block}
-.item-media{aspect-ratio:1/1;background:var(--chip);display:flex;align-items:center;justify-content:center;
+/* ---------- "transparent PNG viewer" checker background + scan-corner frame —
+   ties product photo tiles to the OS/file-viewer theme instead of a flat
+   plain-white e-commerce box (ref: user feedback, 31 Aug 2026: "beyaz arka
+   plan siteye hiç uymuyor"). Photos themselves are never recolored/altered. */
+.checker-bg{background-color:#fff;background-image:repeating-conic-gradient(#e6eaf2 0% 25%, #ffffff 0% 50%);background-size:16px 16px}
+.scan-frame{position:relative}
+.scan-frame::before,.scan-frame::after{content:'';position:absolute;width:13px;height:13px;pointer-events:none;z-index:5}
+.scan-frame::before{top:4px;left:4px;border-top:2px solid var(--neon);border-left:2px solid var(--neon)}
+.scan-frame::after{bottom:4px;right:4px;border-bottom:2px solid var(--neon);border-right:2px solid var(--neon)}
+.item-media{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;
   padding:8%;position:relative;border:2px inset #808080;margin:6px}
 .item-media img{width:100%;height:100%;object-fit:contain}
 .item-media.stacked img{position:absolute;inset:8%}
@@ -155,7 +164,7 @@ a{color:inherit}
 /* ---------- featured "coming soon" tile ---------- */
 .feature-tile{max-width:100%;margin:0 auto 16px;display:block;width:100%;text-align:left;cursor:pointer;
   background:var(--winface-grad);border:2px solid #fff;box-shadow:inset -2px -2px 0 #000,inset 2px 2px 0 #dfdfdf,4px 4px 0 rgba(0,0,0,.3)}
-.feature-media{aspect-ratio:4/5;background:var(--chip);border:2px inset #808080;margin:8px;overflow:hidden;position:relative;
+.feature-media{aspect-ratio:4/5;border:2px inset #808080;margin:8px;overflow:hidden;position:relative;
   display:flex;align-items:center;justify-content:center}
 .feature-media img{width:100%;height:100%;object-fit:contain}
 .feature-ribbon{position:absolute;top:10px;left:-30px;background:var(--a-red);color:#fff;padding:4px 40px;
@@ -193,7 +202,7 @@ footer{max-width:100%;margin:20px auto 0}
 .modal-close::after{content:'';position:absolute;inset:-13px -12px}
 .modal-body{padding:16px}
 .sheet-media{aspect-ratio:1/1;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;
-  touch-action:pan-x;scrollbar-width:none;background:var(--chip);border:2px inset #808080}
+  touch-action:pan-x;scrollbar-width:none;border:2px inset #808080}
 .sheet-media::-webkit-scrollbar{display:none}
 .g-slide{flex:0 0 100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:10%;position:relative}
 .g-slide img{width:100%;height:100%;object-fit:contain}
@@ -224,7 +233,7 @@ footer{max-width:100%;margin:20px auto 0}
 .addbtn:disabled{background:var(--winface);color:#888;cursor:not-allowed}
 .addok{font-size:11px;color:#008000;font-weight:700;text-align:center;margin-top:6px;min-height:12px}
 .bag-line{display:grid;grid-template-columns:56px 1fr auto;gap:10px;padding:12px 0;border-bottom:1px solid #808080}
-.bag-media{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:var(--chip);border:1px inset #808080}
+.bag-media{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;border:1px inset #808080}
 .bag-media img{width:100%;height:100%;object-fit:contain}
 .bag-name{font-family:'Fredoka';font-weight:700;font-size:12.5px;text-transform:uppercase}
 .bag-sub{font-size:11px;color:var(--grey);margin-top:4px}
@@ -321,7 +330,7 @@ footer{max-width:100%;margin:20px auto 0}
 <div class="marquee"><span>THE WORLD IS IN A CHILD'S HANDS</span></div>
 
 <button class="feature-tile" id="feature-sweatpants" aria-label="OHSE Eşofman Altı — Gri — Çok yakında" data-i18n-aria="feature_aria">
-  <div class="feature-media">
+  <div class="feature-media checker-bg scan-frame">
     <span class="feature-ribbon" data-i18n="feature_ribbon">ÇOK YAKINDA</span>
     <img src="assets/sweatpants-grey-ref.jpg" alt="OHSE Eşofman Altı — Gri" loading="eager">
   </div>
@@ -398,7 +407,7 @@ footer{max-width:100%;margin:20px auto 0}
   <div class="modal-in">
     <div class="modal-head"><span id="sheet-title">OHSE</span><button class="modal-close" id="sheet-close" aria-label="Kapat" data-i18n-aria="close">✕</button></div>
     <div class="modal-body">
-      <div class="sheet-media" id="sheet-media"></div>
+      <div class="sheet-media checker-bg scan-frame" id="sheet-media"></div>
       <div class="g-dots" id="sheet-dots"></div>
       <p class="g-hint" id="sheet-photo-label"></p>
       <div class="sheet-name" id="sheet-name"></div>
@@ -453,7 +462,7 @@ footer{max-width:100%;margin:20px auto 0}
   <div class="modal-in">
     <div class="modal-head"><span id="preview-title" data-i18n="feature_name">OHSE Eşofman Altı — Gri</span><button class="modal-close" id="preview-close" aria-label="Kapat" data-i18n-aria="close">✕</button></div>
     <div class="modal-body">
-      <div class="sheet-media" style="cursor:default"><div class="g-slide"><img src="assets/sweatpants-grey-ref.jpg" alt="OHSE Eşofman Altı — Gri" loading="lazy"></div></div>
+      <div class="sheet-media checker-bg scan-frame" style="cursor:default"><div class="g-slide"><img src="assets/sweatpants-grey-ref.jpg" alt="OHSE Eşofman Altı — Gri" loading="lazy"></div></div>
       <div class="sheet-name" data-i18n="feature_name">OHSE Eşofman Altı — Gri</div>
       <p class="sheet-avail" data-i18n="feature_sub">Henüz satışta değil — Shopify'a eklenince aktif olacak</p>
       <p class="hint" style="color:var(--grey)" data-i18n="feature_note">Shopify'a eklendiğinde burada satışa çıkacak. Gerçek çıkış tarihi henüz belli değil.</p>
@@ -741,7 +750,7 @@ function renderGrid(){
     const sold = opts.every(o => isFullySoldOut(resolveConfig(o.pack, o.color)));
     const name = `${t('product_name_base')} — ${colorLabelFull(tc.id)}`;
     return `<button class="item-line" data-top="${tc.id}" aria-label="${esc(name)}${sold?' — '+t('sold_out'):''}">
-      <div class="item-media${cfg.imgLayers?' stacked':''}">${mediaHTML(cfg, name, true)}</div>
+      <div class="item-media checker-bg scan-frame${cfg.imgLayers?' stacked':''}">${mediaHTML(cfg, name, true)}</div>
       <div class="item-info">
         <span class="item-code">ART. N0.0${i+1}</span>
         <span class="item-name">${esc(name)}</span>
@@ -866,7 +875,7 @@ function drawBag(){
   $('#bag-lines').innerHTML = cart.map(i => {
     const cfg = resolveConfig(i.pack, i.color);
     return `<div class="bag-line">
-      <div class="bag-media"><img src="${cfg.img}" alt="${esc(configTitle(cfg))}"></div>
+      <div class="bag-media checker-bg"><img src="${cfg.img}" alt="${esc(configTitle(cfg))}"></div>
       <div>
         <div class="bag-name">${esc(configTitle(cfg))}</div>
         <div class="bag-sub">${t('size_label')} ${i.size}</div>
