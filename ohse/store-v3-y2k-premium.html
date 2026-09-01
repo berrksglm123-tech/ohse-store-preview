@@ -210,7 +210,7 @@ body.shell-compact .desktop-wrap{max-width:460px}
 .crt-led{position:absolute;bottom:6px;right:13px;width:6px;height:6px;border-radius:50%;
   background:var(--neon);box-shadow:0 0 6px 2px rgba(57,255,106,.75);animation:led-pulse 2.4s ease-in-out infinite}
 @keyframes led-pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.item-media{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;
+.item-media{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;
   padding:9%;position:relative;border-radius:6px;overflow:hidden;
   background:radial-gradient(ellipse at 50% 28%,#f8f9fc 0%,#dee2ea 100%);
   box-shadow:inset 0 2px 5px rgba(0,0,0,.28),inset 0 0 24px rgba(0,0,0,.1)}
@@ -224,6 +224,14 @@ body.shell-compact .desktop-wrap{max-width:460px}
 .item-name{font-family:'Fredoka';font-weight:700;font-size:14px;text-transform:uppercase;line-height:1.3}
 .item-tap{font-size:11px;color:#0000a2;font-weight:600}
 .sold{font-family:'Press Start 2P',monospace;font-size:7px;color:#c00}
+
+/* ---------- collection cover — the combined black+white product photo used
+   once, above the product grid, as a compact "insert" rather than a new
+   full-width hero section (ref: user brief, 1 Sep 2026). Reuses the same
+   .win/.titlebar/.crt-frame/.item-media chrome as everything else, just
+   capped narrower so it doesn't push the product cards down. */
+.drop-cover-window{max-width:280px}
+@media(min-width:640px){.drop-cover-window{max-width:320px}}
 
 /* ---------- NEW_DROP.DAT — the sweatpants teaser reframed as a locked
    drop-detection window instead of a plain "coming soon" product card
@@ -306,7 +314,7 @@ footer{max-width:100%;margin:20px auto 0}
   cursor:pointer;font-size:11px;width:18px;height:16px;padding:0}
 .modal-close::after{content:'';position:absolute;inset:-13px -12px}
 .modal-body{padding:16px}
-.sheet-media-wrap{aspect-ratio:1/1}
+.sheet-media-wrap{aspect-ratio:4/5}
 .sheet-media{width:100%;height:100%;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;
   touch-action:pan-x;scrollbar-width:none;border-radius:6px;position:relative;
   background:radial-gradient(ellipse at 50% 28%,#f8f9fc 0%,#dee2ea 100%);
@@ -362,7 +370,7 @@ footer{max-width:100%;margin:20px auto 0}
 .addbtn:disabled{background:var(--winface);color:#888;cursor:not-allowed}
 .addok{font-size:11px;color:#008000;font-weight:700;text-align:center;margin-top:6px;min-height:12px}
 .bag-line{display:grid;grid-template-columns:56px 1fr auto;gap:10px;padding:12px 0;border-bottom:1px solid #808080}
-.bag-media{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;border-radius:4px;
+.bag-media{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;border-radius:4px;
   background:radial-gradient(ellipse at 50% 28%,#f8f9fc 0%,#dee2ea 100%);box-shadow:inset 0 1px 3px rgba(0,0,0,.28)}
 .bag-media img{width:100%;height:100%;object-fit:contain}
 .bag-name{font-family:'Fredoka';font-weight:700;font-size:12.5px;text-transform:uppercase}
@@ -499,6 +507,19 @@ footer{max-width:100%;margin:20px auto 0}
       <span class="drop-locked-tag"><span aria-hidden="true">🔒</span> <span data-i18n="drop_locked_btn">DROP LOCKED — ÇOK YAKINDA</span></span>
     </div>
   </button>
+</div>
+
+<div class="win drop-cover-window">
+  <div class="titlebar"><span data-i18n="drop_cover_title">COLLECTION.PNG — SİYAH &amp; BEYAZ</span></div>
+  <div class="crt-frame">
+    <div class="item-media">
+      <img src="assets/products/y2k-media/drop-black-white-player.png"
+        srcset="assets/products/y2k-media/drop-black-white-player-480.webp 480w, assets/products/y2k-media/drop-black-white-player-768.webp 768w, assets/products/y2k-media/drop-black-white-player-1122.webp 1122w"
+        sizes="(min-width:640px) 320px, 280px"
+        alt="OHSE — Siyah ve Beyaz Tişört" data-i18n-alt="drop_cover_alt" loading="eager" fetchpriority="high" width="1122" height="1402">
+    </div>
+    <span class="crt-led" aria-hidden="true"></span>
+  </div>
 </div>
 
 <main class="grid" id="grid"></main>
@@ -752,6 +773,8 @@ const TEXT = {
     added_announce:'Sepete eklendi: {name}, Beden {size}', cart_count_announce:'Sepet: {n}',
     photo_ÖN:'ÖN', photo_MODEL:'MODEL', photo_YAKA:'YAKA', photo_DETAY:'DETAY',
     photo_MODEL_SİYAH:'MODEL SİYAH', photo_MODEL_BEYAZ:'MODEL BEYAZ', photo_SİYAH_YAKA:'SİYAH YAKA', photo_BEYAZ_YAKA:'BEYAZ YAKA',
+    photo_SET:'SET', photo_LOGO:'LOGO',
+    drop_cover_title:'COLLECTION.PNG — SİYAH & BEYAZ', drop_cover_alt:'OHSE — Siyah ve Beyaz Tişört',
   },
   en: {
     bag_short:'BAG',
@@ -803,6 +826,8 @@ const TEXT = {
     added_announce:'Added to bag: {name}, Size {size}', cart_count_announce:'Bag: {n}',
     photo_ÖN:'FRONT', photo_MODEL:'MODEL', photo_YAKA:'COLLAR', photo_DETAY:'DETAIL',
     photo_MODEL_SİYAH:'MODEL BLACK', photo_MODEL_BEYAZ:'MODEL WHITE', photo_SİYAH_YAKA:'BLACK COLLAR', photo_BEYAZ_YAKA:'WHITE COLLAR',
+    photo_SET:'SET', photo_LOGO:'LOGO',
+    drop_cover_title:'COLLECTION.PNG — BLACK & WHITE', drop_cover_alt:'OHSE — Black and White Tee',
   }
 };
 let lang = (localStorage.getItem('ohse_lang') === 'en') ? 'en' : 'tr';
@@ -940,29 +965,44 @@ function packageOptionsFor(topColor){
   return opts.map(o => ({ ...o, label: t(packLabelKey(o.pack, o.color)) }));
 }
 function photo(src,labelKey){ return { src:'assets/'+src, labelKey }; }
+/* Windows-Media-Player-framed product photography (ref: user brief, 1 Sep
+   2026) — one shared 4-photo gallery per color (front/set/logo/inner-tag),
+   reused across every pack size of that color since there is no separate
+   photoshoot per pack count. Lives in its own subfolder so it never mixes
+   with the older cutout renders still used by 2pack_mixed below (untouched
+   — out of scope for this pass, no user-supplied photography for it). */
+function y2kPhoto(src,labelKey){ return { src:'assets/products/y2k-media/'+src, labelKey }; }
+function y2kGallery(color){
+  return [
+    y2kPhoto(color+'-front-player.png','photo_ÖN'),
+    y2kPhoto(color+'-stack-player.png','photo_SET'),
+    y2kPhoto(color+'-logo-player.png','photo_LOGO'),
+    y2kPhoto(color+'-neck-player.png','photo_YAKA'),
+  ];
+}
 const CONFIGS = [
   { sku:'single_black', pack:'single', color:'black', price:749, sizes:SIZES, out:['S','M','L','XL'],
-    img:'assets/single-black-front-clean.png',
-    photos:[photo('single-black-front-clean.png','photo_ÖN'), photo('ohse-black-1.jpg','photo_MODEL'), photo('collar-black-label.png','photo_YAKA'), photo('detail-black.png','photo_DETAY')] },
+    img:'assets/products/y2k-media/black-front-player.png',
+    photos:y2kGallery('black') },
   { sku:'single_white', pack:'single', color:'white', price:749, sizes:SIZES, out:['XL'],
-    img:'assets/single-white-front-cut.png',
-    photos:[photo('single-white-front-cut.png','photo_ÖN'), photo('ohse-white-1.jpg','photo_MODEL'), photo('single-white-collar.png','photo_YAKA'), photo('detail-white.png','photo_DETAY')] },
+    img:'assets/products/y2k-media/white-front-player.png',
+    photos:y2kGallery('white') },
   { sku:'2pack_black', pack:'2pack', color:'black', price:1199, sizes:SIZES, out:['M','L'],
-    img:'assets/pack2-black-v2.png',
-    photos:[photo('pack2-black-v2.png','photo_ÖN'), photo('ohse-black-2.jpg','photo_MODEL'), photo('collar-black-label.png','photo_YAKA'), photo('detail-black.png','photo_DETAY')] },
+    img:'assets/products/y2k-media/black-front-player.png',
+    photos:y2kGallery('black') },
   { sku:'2pack_white', pack:'2pack', color:'white', price:1199, sizes:SIZES, out:['M','L'],
-    img:'assets/pack2-white-v2.png',
-    photos:[photo('pack2-white-v2.png','photo_ÖN'), photo('ohse-white-2.jpg','photo_MODEL'), photo('single-white-collar.png','photo_YAKA'), photo('detail-white.png','photo_DETAY')] },
+    img:'assets/products/y2k-media/white-front-player.png',
+    photos:y2kGallery('white') },
   { sku:'2pack_mixed', pack:'2pack', color:'mixed', price:1199, sizes:SIZES, out:['M'],
     img:'assets/single-black-front-clean.png',
     imgLayers:['assets/single-white-front-cut.png','assets/single-black-front-clean.png'],
     photos:[photo('ohse-black-1.jpg','photo_MODEL_SİYAH'), photo('ohse-white-1.jpg','photo_MODEL_BEYAZ'), photo('collar-black-label.png','photo_SİYAH_YAKA'), photo('collar-white.png','photo_BEYAZ_YAKA')] },
   { sku:'3pack_black', pack:'3pack', color:'black', price:1699, sizes:SIZES, out:SIZES.slice(),
-    img:'assets/tee-black-cut-clean.png',
-    photos:[photo('tee-black-cut-clean.png','photo_ÖN'), photo('ohse-black-3.jpg','photo_MODEL'), photo('collar-black-label.png','photo_YAKA'), photo('detail-black.png','photo_DETAY')] },
+    img:'assets/products/y2k-media/black-front-player.png',
+    photos:y2kGallery('black') },
   { sku:'3pack_white', pack:'3pack', color:'white', price:1699, sizes:SIZES, out:SIZES.slice(),
-    img:'assets/tee-white-cut.png',
-    photos:[photo('tee-white-cut.png','photo_ÖN'), photo('ohse-white-3.jpg','photo_MODEL'), photo('single-white-collar.png','photo_YAKA'), photo('detail-white.png','photo_DETAY')] },
+    img:'assets/products/y2k-media/white-front-player.png',
+    photos:y2kGallery('white') },
 ];
 function resolveConfig(pack,color){ return CONFIGS.find(c=>c.pack===pack && c.color===color) || null; }
 function variantId(pack,color,size){ const cfg=resolveConfig(pack,color); if(!cfg) return null; const m=VARIANT_MAP[cfg.sku]; return (m && m[size]) || null; }
@@ -1046,12 +1086,19 @@ const WEBP_WIDTHS = {
   'ohse-black-1':[480,768,1000], 'ohse-black-2':[480,768,1000], 'ohse-black-3':[480,768,1000],
   'ohse-white-1':[480,768,1000], 'ohse-white-2':[480,768,1000], 'ohse-white-3':[480,768,900],
   'ohse-signature-logo':[480,768,1184], 'sweatpants-grey-ref':[480,768,1200,1462],
+  'drop-black-white-player':[480,768,1122],
+  'black-front-player':[480,768,1122], 'white-front-player':[480,768,1122],
+  'black-stack-player':[480,768,1122], 'white-stack-player':[480,768,1122],
+  'black-logo-player':[480,768,1122], 'white-logo-player':[480,768,1122],
+  'black-neck-player':[480,768,1122], 'white-neck-player':[480,768,1122],
 };
+/* handles both flat assets/x.png and nested assets/a/b/x.png paths — the
+   Windows-Media-Player product photos live under assets/products/y2k-media/ */
 function srcsetAttr(assetPath, sizes){
-  const m = assetPath.match(/assets\/([^./]+)\.(png|jpg)$/i);
-  if (!m || !WEBP_WIDTHS[m[1]]) return '';
-  const widths = WEBP_WIDTHS[m[1]];
-  return ` srcset="${widths.map(w => `assets/${m[1]}-${w}.webp ${w}w`).join(', ')}" sizes="${sizes}"`;
+  const m = assetPath.match(/^(assets\/(?:.*\/)?)([^./]+)\.(png|jpg)$/i);
+  if (!m || !WEBP_WIDTHS[m[2]]) return '';
+  const widths = WEBP_WIDTHS[m[2]];
+  return ` srcset="${widths.map(w => `${m[1]}${m[2]}-${w}.webp ${w}w`).join(', ')}" sizes="${sizes}"`;
 }
 function mediaHTML(cfg, alt, eager){
   const loadAttr = eager ? 'eager' : 'lazy';
@@ -1344,6 +1391,7 @@ $('#start-sysinfo').addEventListener('click', () => { const p = $('#start-sysinf
 function applyStaticI18n(){
   document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
   document.querySelectorAll('[data-i18n-aria]').forEach(el => { el.setAttribute('aria-label', t(el.dataset.i18nAria)); });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => { el.setAttribute('alt', t(el.dataset.i18nAlt)); });
 }
 function applyLanguage(){
   document.documentElement.lang = lang;
